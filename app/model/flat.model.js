@@ -1,14 +1,17 @@
 module.exports = (sequelize, Sequelize) => {
-	const City = sequelize.define('city', {
-	cityId:{
+	const Flat = sequelize.define('flat', {
+	flatId:{
 			type: Sequelize.INTEGER,
 			autoIncrement:true,
 			primaryKey:true
 		},
-	  cityName: {
+	  type: {
 		  type: Sequelize.STRING
-	  }
+      },
+      size:{
+       type: Sequelize.INTEGER
+      }
 	});
 	
-	return City;
+	return Flat;
 }

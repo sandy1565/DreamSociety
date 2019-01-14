@@ -7,7 +7,9 @@ exports.create = (req,res) => {
     console.log("creating city");
 
     City.create({
-        name:req.body.name
+        cityName:req.body.cityName,
+        stateId:req.body.stateId,
+        userId:req.body.userId
     }).then(city =>{
         res.json({message:"City added successfully!",city:city});
     }).catch(err => {
@@ -40,9 +42,12 @@ exports.getById = (req,res) => {
 
 exports.update = (req,res) => {
     const id = req.params.id;
+    if(!id){
+        res.json("Please enter id");
+    }
     const updates = req.body.updates;
     City.find({
-        where: { id: id }
+        where: { cityId: id }
       })
       .then(city => {
         return city.updateAttributes(updates)
@@ -54,8 +59,11 @@ exports.update = (req,res) => {
 
 exports.delete = (req,res) => {
     const id = req.params.id;
+    if(!id){
+        res.json("Please enter id");
+    }
     City.destroy({
-      where: { id: id }
+      where: { cityId: id }
     })
       .then(deletedCity => {
         res.json({message:"City deleted successfully!",deletedCity:deletedCity});

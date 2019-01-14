@@ -1,14 +1,14 @@
 module.exports = (sequelize, Sequelize) => {
-	const City = sequelize.define('city', {
-	cityId:{
+	const Tower = sequelize.define('tower', {
+		towerId:{
 			type: Sequelize.INTEGER,
 			autoIncrement:true,
 			primaryKey:true
 		},
-	  cityName: {
+	  towerName: {
 		  type: Sequelize.STRING
 	  }
 	});
 	
-	return City;
+	return Tower;
 }

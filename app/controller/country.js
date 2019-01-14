@@ -7,7 +7,10 @@ exports.create = (req,res) => {
     console.log("creating city");
 
     Country.create({
-        name:req.body.name
+        countryName:req.body.countryName,
+        code:req.body.code,
+        currency:req.body.currency,
+        phoneCode:req.body.phoneCode
     }).then(country =>{
         res.json({message:"Country added successfully!",country:country});
     }).catch(err => {
@@ -16,6 +19,7 @@ exports.create = (req,res) => {
 }
 
 exports.get = (req, res) => {
+    console.log("----------------- Country.findAll()");
     Country.findAll()
       .then(country => {
         res.json(country);
@@ -40,9 +44,12 @@ exports.getById = (req,res) => {
 
 exports.update = (req,res) => {
     const id = req.params.id;
+    if(!id){
+        res.json("Please enter id");
+    }
     const updates = req.body.updates;
     Country.find({
-        where: { id: id }
+        where: { countryId: id }
       })
       .then(country => {
         return country.updateAttributes(updates)
@@ -54,8 +61,11 @@ exports.update = (req,res) => {
 
 exports.delete = (req,res) => {
     const id = req.params.id;
+    if(!id){
+        res.json("Please enter id");
+    }
     Country.destroy({
-      where: { id: id }
+      where: { countryId: id }
     })
       .then(deletedCountry => {
         res.json({message:"Country deleted successfully!",deletedCountry:deletedCountry});

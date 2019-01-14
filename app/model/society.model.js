@@ -1,6 +1,11 @@
 module.exports = (sequelize, Sequelize) => {
 	const Society = sequelize.define('society', {
-	  name: {
+		societyId:{
+			type: Sequelize.INTEGER,
+			autoIncrement:true,
+			primaryKey:true
+		},
+	  societyName: {
 		  type: Sequelize.STRING
 	  }
 	});
