@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-// import Country from './components/CountryMaster/CountryMaster';
-// import Login from './components/LoginPage/Login';
-// import ShowDetails from './components/LoginPage/showDetails';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// ========Containers =========//
+import Login from './containers/Login/Login';
 import UserDetails from './containers/UserDetails/UserDetails';
-// import AdminDashboard from './container/admin-dashboard/admin-dashboard';
 import Registration from './containers/Registration/Registration';
+import AdminDashboard from './containers/AdminDashboard/AdminDashboard';
+import OwnerDashboard from './containers/OwnerDashboard/OwnerDashboard';
+import SuperDashboard from './containers/SuperDashboard/SuperDashboard';
+import TenantDashboard from './containers/TenantDashboard/TenantDashboard';
+import VendorDashboard from './containers/VendorDashboard/VendorDashboard';
+
 
 class App extends Component {
   render() {
@@ -13,12 +17,15 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route path="/" exact />
+            <Route path="/" exact component={Login}/>
+            <Route path='/superDashboard' component={SuperDashboard} />
+            <Route path='/adminDashboard' component={AdminDashboard} />
+            <Route path='/ownerDashboard' component={OwnerDashboard} />
+            <Route path='/tenantDashboard' component={TenantDashboard} />
+            <Route path='/vendorDashboard' component={VendorDashboard} />
             <Route path='/registration' component={Registration} />
-            {/* <Route path='/edit_user_details/:id' render ={() => <EditUserDetails {...this.props}/>} />} /> */}
             <Route path ={'/user_details'} component={UserDetails} />
-            {/* <Route path='/registration' component={Registration} /> */}
-            {/* <Route path='/' exact component={ShowDetails} /> */}
+           
           </Switch>
         </div>
       </BrowserRouter>
