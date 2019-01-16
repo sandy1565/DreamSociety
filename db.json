@@ -1,0 +1,194 @@
+[
+  {
+    "userId": 1,
+    "firstName": "Jitendra",
+    "lastName": "Kukreja",
+    "userName": "Jitendra",
+    "contact": "7025742558",
+    "email": "jitendra@gmail.com",
+    "password": "$2a$08$1PF4gXlNAmQKJH6eg0qWd.28T2a3U1Aux9IfQh6KxbvZMGSyg909K",
+    "isActive": true,
+    "createdAt": "2019-01-14T11:07:25.000Z",
+    "updatedAt": "2019-01-14T11:07:25.000Z",
+    "roles": [
+      {
+        "id": 1,
+        "roleName": "SUPER_ADMIN",
+        "user_roles": {
+          "createdAt": "2019-01-14T11:07:25.000Z",
+          "updatedAt": "2019-01-14T11:07:25.000Z",
+          "roleId": 1,
+          "userId": 1
+        }
+      }
+    ]
+  },
+  {
+    "userId": 2,
+    "firstName": "Siddharth",
+    "lastName": "arora",
+    "userName": "siddharth20",
+    "contact": "9999",
+    "email": "siddhartharora15@gmail.com",
+    "password": "$2a$08$w6ZOUgVn19O/z.b94XgAOubXp.Ras2EfjwF8BSQPexVpgOY4CeILm",
+    "isActive": true,
+    "createdAt": "2019-01-14T12:12:08.000Z",
+    "updatedAt": "2019-01-14T12:12:08.000Z",
+    "roles": [
+      {
+        "id": 2,
+        "roleName": "ADMIN",
+        "user_roles": {
+          "createdAt": "2019-01-14T12:12:08.000Z",
+          "updatedAt": "2019-01-14T12:12:08.000Z",
+          "roleId": 2,
+          "userId": 2
+        }
+      }
+    ]
+  },
+  {
+    "userId": 3,
+    "firstName": "Sandeep",
+    "lastName": "Kumar",
+    "userName": "sandeep_kumar",
+    "contact": "2222",
+    "email": "sandeep@test.com",
+    "password": "$2a$08$OfYIGpjDbFHP2BMt0cQ4zOdrI11ZvQUJ4Pgix3Un/3oCiS4qglSbe",
+    "isActive": true,
+    "createdAt": "2019-01-14T12:19:52.000Z",
+    "updatedAt": "2019-01-14T12:19:52.000Z",
+    "roles": [
+      {
+        "id": 2,
+        "roleName": "ADMIN",
+        "user_roles": {
+          "createdAt": "2019-01-14T12:19:52.000Z",
+          "updatedAt": "2019-01-14T12:19:52.000Z",
+          "roleId": 2,
+          "userId": 3
+        }
+      }
+    ]
+  },
+  {
+    "userId": 4,
+    "firstName": "Shubang",
+    "lastName": "Koul",
+    "userName": "shubang",
+    "contact": "9999",
+    "email": "shubang@gmail.com",
+    "password": "$2a$08$.6kcFlY3y1wGUa949OUiNeL9xEAKan9pplTxjDl.vpbzpmLxTP0R2",
+    "isActive": true,
+    "createdAt": "2019-01-14T13:29:05.000Z",
+    "updatedAt": "2019-01-14T13:29:05.000Z",
+    "roles": [
+      {
+        "id": 2,
+        "roleName": "ADMIN",
+        "user_roles": {
+          "createdAt": "2019-01-14T13:29:05.000Z",
+          "updatedAt": "2019-01-14T13:29:05.000Z",
+          "roleId": 2,
+          "userId": 4
+        }
+      }
+    ]
+  },
+  {
+    "userId": 5,
+    "firstName": "aaaa",
+    "lastName": "aaaa",
+    "userName": "aaaa",
+    "contact": "2222",
+    "email": "aaa@test.com",
+    "password": "$2a$08$wW/GZnhP4Yf.TkWmvh15HuBBSlMtPd1OCSsMLSfd6fO/lgcCErcVO",
+    "isActive": true,
+    "createdAt": "2019-01-14T13:30:12.000Z",
+    "updatedAt": "2019-01-14T13:30:12.000Z",
+    "roles": [
+      {
+        "id": 2,
+        "roleName": "ADMIN",
+        "user_roles": {
+          "createdAt": "2019-01-14T13:30:12.000Z",
+          "updatedAt": "2019-01-14T13:30:12.000Z",
+          "roleId": 2,
+          "userId": 5
+        }
+      }
+    ]
+  },
+  {
+    "userId": 6,
+    "firstName": "bb",
+    "lastName": "bbbb",
+    "userName": "bbbb",
+    "contact": "9999",
+    "email": "bb@gmail.com",
+    "password": "$2a$08$GIDHPopB27WTeRzWs0912O30GxPx/OAfybwvG5lkslcMZ.gek85/G",
+    "isActive": true,
+    "createdAt": "2019-01-14T13:30:33.000Z",
+    "updatedAt": "2019-01-14T13:30:33.000Z",
+    "roles": [
+      {
+        "id": 2,
+        "roleName": "ADMIN",
+        "user_roles": {
+          "createdAt": "2019-01-14T13:30:33.000Z",
+          "updatedAt": "2019-01-14T13:30:33.000Z",
+          "roleId": 2,
+          "userId": 6
+        }
+      }
+    ]
+  },
+  {
+    "userId": 7,
+    "firstName": "rohan",
+    "lastName": "arora",
+    "userName": "rohan_30",
+    "contact": "8888",
+    "email": "rohan@gmail.com",
+    "password": "$2a$08$AJ0yRRnNGSjnfjew.X/WpeK4ACyuW1uSGPABRHcO0pslzuGayXXZ6",
+    "isActive": true,
+    "createdAt": "2019-01-14T14:07:14.000Z",
+    "updatedAt": "2019-01-14T14:07:14.000Z",
+    "roles": [
+      {
+        "id": 2,
+        "roleName": "ADMIN",
+        "user_roles": {
+          "createdAt": "2019-01-14T14:07:14.000Z",
+          "updatedAt": "2019-01-14T14:07:14.000Z",
+          "roleId": 2,
+          "userId": 7
+        }
+      }
+    ]
+  },
+  {
+    "userId": 8,
+    "firstName": "jjjj",
+    "lastName": "jjjj",
+    "userName": "jjjj",
+    "contact": "9999",
+    "email": "jj@test.com",
+    "password": "$2a$08$HS4HSvOTVBjYE7eDsqbEHenrJocdDez.MInX3JbbmUsq.j4VUYhWa",
+    "isActive": true,
+    "createdAt": "2019-01-14T14:14:33.000Z",
+    "updatedAt": "2019-01-14T14:14:33.000Z",
+    "roles": [
+      {
+        "id": 2,
+        "roleName": "ADMIN",
+        "user_roles": {
+          "createdAt": "2019-01-14T14:14:33.000Z",
+          "updatedAt": "2019-01-14T14:14:33.000Z",
+          "roleId": 2,
+          "userId": 8
+        }
+      }
+    ]
+  }
+]
