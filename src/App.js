@@ -18,12 +18,12 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/" exact component={Login}/>
-            <Route path='/superDashboard' component={SuperDashboard} />
+            <Route path='/superDashboard' exact component={SuperDashboard} />
             <Route path='/adminDashboard' component={AdminDashboard} />
             <Route path='/ownerDashboard' component={OwnerDashboard} />
             <Route path='/tenantDashboard' component={TenantDashboard} />
             <Route path='/vendorDashboard' component={VendorDashboard} />
-            <Route path='/registration' component={Registration} />
+            <Route path='/superDashboard/registration' component={Registration} />
             <Route path ={'/user_details'} component={UserDetails} />
            
           </Switch>
