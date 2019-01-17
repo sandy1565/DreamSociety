@@ -14,7 +14,7 @@ export default function(state=[], action) {
         case 'GET_USERS':
             return {...state, user: action.payload}
         case 'GET_ROLES':
-            return {...state, roles: action.payload}
+            return {...state, userRole: action.payload}
         case 'DELETE_USERS':
             const deleteduser = initialState.users.filter(users => users.id !== action.id)
             return deleteduser

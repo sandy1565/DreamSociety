@@ -34,7 +34,11 @@ class Registration extends Component {
 
     componentDidMount(){
         // this.props.getRoles()
-        Axios.get('http://192.168.1.113:8081/api/user/role')
+        Axios.get('http://192.168.1.113:8081/api/user/role',{headers:{
+            // 'X-Requested-With': 'XMLHttpRequest',
+            // 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content,
+            'Authorization': localStorage.getItem('token')
+        }})
         .then(results => results.data)
         .then(results => this.setState({roleName:results}))
     }
@@ -105,6 +109,7 @@ class Registration extends Component {
             this.props.addUser({...this.state, userTypeError: "", emailError: "", passwordError: ""});
             this.setState({
                 roleName:[],
+                roles:"",
                 userTypeError:"",
                 firstName:"",
                 lastName:"",
@@ -135,8 +140,8 @@ class Registration extends Component {
                 <option onChange={this.onChange} value={this.state.}>ADMIN</option>
             </input> */}
             <select onChange={(e) => this.setState({roles: e.target.value})}
-                                value={this.state.roles}>
-                {this.state.roleName.map((item) => {
+                                value={this.state.roles} >
+                {this.state.roleName.map((item, index) => {
                     return (
                         <option key={item.roleName} value={item.roleName}>{item.roleName}</option>
                     )
