@@ -17,6 +17,11 @@ import  EventMaster from './containers/EventMaster/event-master';
 
 import DisplaySizeMaster from './containers/SizeMaster/display-size-master';
 
+
+
+import FlatMaster from './containers/Flat_master/flatMaster';
+import FlatMasterDetails from './containers/Flat_master/flatMasterDetails';
+
 class App extends Component {
   render() {
     return (
@@ -37,7 +42,8 @@ class App extends Component {
             <Route path ='/tower'  component ={TowerMaster} />
             <Route path = '/size'  component ={SizeMaster} />
             <Route path ='/event' component ={EventMaster}/>
-
+            <Route path='/flatmaster' exact component= {FlatMaster} />
+            <Route path ='/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
             {/* <Route path='/registration' component={Registration} /> */}
             {/* <Route path='/' exact component={ShowDetails} /> */}
           </Switch>

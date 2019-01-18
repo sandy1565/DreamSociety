@@ -3,6 +3,7 @@ import {combineReducers} from 'redux';
 import userDetail from './registration_reducer';
 import getRoles from './fetchRoles';
 import loginReducer from './Login_reducer';
+import flats from './flatReducer';
 
 // import loginReducer from './login_reducer';
 import TowerDetails from './tower_reducer';
@@ -12,6 +13,7 @@ const rootReducer=combineReducers({
     userDetail,
     getRoles,
     TowerDetails,
-    SizeDetails
+    SizeDetails,
+    flats
 })
 export default rootReducer;
