@@ -129,7 +129,7 @@ class userDetails extends Component {
         return (
             <div className="container">
                 <h1>Users List</h1>
-                <Link to="/registration">Add Users</Link>
+                <Link to="/superDashboard/registration">Add Users</Link>
                 <Modal isOpen={this.state.editUserModal} toggle={this.toggleEditUserModal.bind(this)}>
                     <ModalHeader toggle={this.toggleEditUserModal.bind(this)}>Edit a new book</ModalHeader>
                     <ModalBody>

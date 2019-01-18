@@ -41,7 +41,7 @@ OnKeyPresshandler(event) {
             towerName: ""
          }
      }),
-     this.props.history.push('/display-tower');
+     this.props.history.push('/superDashboard/display-tower');
   }
 
  

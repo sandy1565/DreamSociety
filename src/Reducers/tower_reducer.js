@@ -1,3 +1,4 @@
+import {ADD_TOWER,GET_TOWER} from '../constants/index'
 const initialState ={
     users:{
         id:''
@@ -7,10 +8,10 @@ const initialState ={
     export default  function(state =[], action){
        
        switch(action.type){
-           case 'ADD_TOWER' :
+           case ADD_TOWER :
                return {...state, towers:action.payload}
         
-               case 'GET_TOWER':
+               case GET_TOWER:
                return{...state, tower :action.payload}
             default:
                 return state;

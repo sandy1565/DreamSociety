@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// =====Components============//
+import {PrivateRoute} from './components/PrivateRoute/privateRoute';
 // ========Containers =========//
 import Login from './containers/Login/Login';
 import UserDetails from './containers/UserDetails/UserDetails';
@@ -29,21 +31,23 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/" exact component={Login}/>
+            <Route path='/login' component={Login}/>
+            <PrivateRoute path='/superDashboard' exact component={SuperDashboard} />
             <Route path='/superDashboard' exact component={SuperDashboard} />
             <Route path='/adminDashboard' component={AdminDashboard} />
             <Route path='/ownerDashboard' component={OwnerDashboard} />
             <Route path='/tenantDashboard' component={TenantDashboard} />
             <Route path='/vendorDashboard' component={VendorDashboard} />
             <Route path='/superDashboard/registration' component={Registration} />
-            <Route path ={'/user_details'} component={UserDetails} />
+            <Route path ={'/superDashboard/user_details'} component={UserDetails} />
            
-            <Route path ='/display-tower' component ={DisplayTowerMaster} />
-            <Route path ='/display-size' component ={DisplaySizeMaster} />
-            <Route path ='/tower'  component ={TowerMaster} />
-            <Route path = '/size'  component ={SizeMaster} />
-            <Route path ='/event' component ={EventMaster}/>
-            <Route path='/flatmaster' exact component= {FlatMaster} />
-            <Route path ='/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
+            <Route path ='/superDashboard/display-tower' component ={DisplayTowerMaster} />
+            <Route path ='/superDashboard/display-size' component ={DisplaySizeMaster} />
+            <Route path ='/superDashboard/towermaster'  component ={TowerMaster} />
+            <Route path = '/superDashboard/sizemaster'  component ={SizeMaster} />
+            <Route path ='/superDashboard/event' component ={EventMaster}/>
+            <Route path='/superDashboard/flatmaster' exact component= {FlatMaster} />
+            <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
             {/* <Route path='/registration' component={Registration} /> */}
             {/* <Route path='/' exact component={ShowDetails} /> */}
           </Switch>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import{URN} from '../constants/index';
+import{URN,USER_LOGIN} from '../constants/index';
 export function login(username, password) {
     const request = axios({
         method: 'post',
@@ -32,8 +32,9 @@ export function login(username, password) {
                 return null;
             }
           }
-          else if(data.status===401){
-            logout();
+          else if(data.status === 401){
+              console.log("Welckljxdljdlkfjs")
+       
           }
               
         } 
@@ -42,7 +43,7 @@ export function login(username, password) {
         return Promise.reject(error);
       })          
     return {
-        type: 'USER_LOGIN',
+        type: USER_LOGIN,
         payload: request
     }
 }
@@ -51,21 +52,28 @@ export function login(username, password) {
 
 function handleResponse(response) {
     console.log("=================",response.data)
+    if(response.data.auth){
     var data={
              accessToken:response.data.accessToken,
              userType:response.data.user.roles[0].roleName,
              auth:response.data.auth,
              status:response.data.status
             }
-
+        }
+        else{
+            console.log('surdfdjfkj')
+        return
+        }
     return data;
 }
 
 
-function logout() {
+export function userLogout() {
     // remove user from local storage to log user out
     localStorage.removeItem('token');
     localStorage.removeItem('user-type');
+    return this.history.go('/');
+
 }
 
 

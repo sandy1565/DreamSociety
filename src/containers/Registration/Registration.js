@@ -216,9 +216,9 @@ class Registration extends Component {
         return (
             <div>
                 <div>
-                    <Link to="/user_details" >Home</Link>
+                    <Link to="/superDashboard/user_details" >Home</Link>
                 </div>
-                {this.state.isSubmit ? <Redirect to='/user_details' />: form}
+                {this.state.isSubmit ? <Redirect to='/superDashboard/user_details' />: form}
             </div>
             
         )
