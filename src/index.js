@@ -7,10 +7,11 @@ import{Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import rootReducer from './Reducers';
 import promiseMiddleware from 'redux-promise'; 
+import thunk from 'redux-thunk'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const store= applyMiddleware(promiseMiddleware)(createStore)
+const store= applyMiddleware(promiseMiddleware, thunk)(createStore)
 ReactDOM.render(
     <Provider store={store(rootReducer)}>
         <App/>
