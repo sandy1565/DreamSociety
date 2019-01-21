@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-	const Country = sequelize.define('country', {
+	const Country = sequelize.define('country_master', {
 	  countryId:{
 			type: Sequelize.INTEGER,
 			autoIncrement:true,
@@ -16,8 +16,14 @@ module.exports = (sequelize, Sequelize) => {
 		},
 		phoneCode:{
 			type: Sequelize.STRING
-		}
-	});
+		},
+		isActive:{
+			type:Sequelize.BOOLEAN,
+			defaultValue: true
+		}, 
+	},{
+    freezeTableName: true
+});
 	
 	return Country;
 }

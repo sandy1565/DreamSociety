@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-	const City = sequelize.define('city', {
+	const City = sequelize.define('city_master', {
 	cityId:{
 			type: Sequelize.INTEGER,
 			autoIncrement:true,
@@ -7,8 +7,14 @@ module.exports = (sequelize, Sequelize) => {
 		},
 	  cityName: {
 		  type: Sequelize.STRING
-	  }
-	});
+	  },
+		isActive:{
+			type:Sequelize.BOOLEAN,
+			defaultValue: true
+		}, 
+	},{
+    freezeTableName: true
+});
 	
 	return City;
 }

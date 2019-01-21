@@ -12,8 +12,7 @@ checkDuplicateUserNameOrEmail = (req, res, next) => {
 		} 
 	}).then(user => {
 		if(user){
-			res.status(400).send("Fail -> email is already taken!");
-			return;
+		return res.status(400).json({message:"Fail -> email is already taken!"});
 		}
 		
 		// -> Check Email is already in use
@@ -23,7 +22,7 @@ checkDuplicateUserNameOrEmail = (req, res, next) => {
 			} 
 		}).then(user => {
 			if(user){
-				res.status(400).send("Fail -> Email is already in use!");
+				res.status(400).json({message:"Fail -> Email is already in use!"});
 				return;
 			}
 				
@@ -33,9 +32,15 @@ checkDuplicateUserNameOrEmail = (req, res, next) => {
 }
 
 checkRolesExisted = (req, res, next) => {	
-	for(let i=0; i<req.body.roleName.length; i++){
-		if(!ROLEs.includes(req.body.roleName[i].toUpperCase())){
-			res.status(400).send("Fail -> Does NOT exist Role = " + req.body.roleName[i]);
+	let roleName = [];
+	let roles = req.body.roles;
+	if(roles){
+		roleName.push(roles);
+	}
+	console.log("rolename==>",roleName);
+	for(let i=0; i<roleName.length; i++){
+		if(!ROLEs.includes(roleName[i].toUpperCase())){
+			res.status(400).send("Fail -> Does NOT exist Role = " +roleName[i]);
 			return;
 		}
 	}

@@ -5,16 +5,19 @@ const Service = db.service;
 
 exports.create = (req,res) => {
     let body = req.body;
+    console.log("req.body===>",req.body)
     console.log("creating service");
-    if(!body.serviceName || !body.service_detail){
-        res.json({message:"Parameters Missing"})
+    if(!body.serviceName || !body.serviceId, !body.service_detail){
+      return res.status(422).json({message:"Parameters Missing"})
     }
     Service.create({
         serviceName:req.body.serviceName,
-        service_detail:req.body.service_detail,
+        serviceDetailId:req.body.serviceDetailId
     }).then(service =>{
+        // console.log("service==>",service)
         res.json({message:"Service added successfully!",service:service});
     }).catch(err => {
+        console.log("service error==>",err)
     res.status(500).send("Fail! Error -> " + err);
 })
 }
@@ -47,7 +50,7 @@ exports.update = (req,res) => {
     if(!id){
         res.json("Please enter id");
     }
-    const updates = req.body.updates;
+    const updates = req.body;
     Service.find({
         where: { serviceId: id }
       })

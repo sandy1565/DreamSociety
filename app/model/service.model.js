@@ -1,17 +1,20 @@
 module.exports = (sequelize, Sequelize) => {
-	const Service = sequelize.define('service', {
-		serviceId:{
+	const Service = sequelize.define('service_master', {
+		serviceId: {
 			type: Sequelize.INTEGER,
-			autoIncrement:true,
-			primaryKey:true
+			autoIncrement: true,
+			primaryKey: true
 		},
-	  serviceName: {
-		  type: Sequelize.STRING
-      },
-      service_detail:{
-        type: Sequelize.STRING
-      }
+		serviceName: {
+			type: Sequelize.STRING
+		},
+		isActive: {
+			type: Sequelize.BOOLEAN,
+			defaultValue: true
+		},
+	}, {
+		freezeTableName: true
 	});
-	
+
 	return Service;
 }

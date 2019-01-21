@@ -9,7 +9,8 @@ exports.create = (req,res) => {
     State.create({
         stateName:req.body.stateName,
         stateId:req.body.stateId,
-        countryId:req.body.countryId
+        countryId:req.body.countryId,
+        userId:req.body.userId
     }).then(state =>{
         res.json({message:"State added successfully!",state:state});
     }).catch(err => {
@@ -45,7 +46,7 @@ exports.update = (req,res) => {
     if(!id){
         res.json("Please enter id");
     }
-    const updates = req.body.updates;
+    const updates = req.body;
     State.find({
         where: { stateId: id }
       })

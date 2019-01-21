@@ -5,6 +5,7 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
   host: env.host,
   dialect: env.dialect,
   operatorsAliases: false,
+  logging:false,
  
   pool: {
     max: env.max,
@@ -30,6 +31,9 @@ db.tower = require('../model/tower.model.js')(sequelize, Sequelize);
 db.flat = require('../model/flat.model.js')(sequelize, Sequelize);
 db.service = require('../model/service.model.js')(sequelize, Sequelize);
 db.size = require('../model/size.model.js')(sequelize, Sequelize);
+db.event = require('../model/event.model.js')(sequelize, Sequelize);
+db.serviceDetail = require('../model/serviceDetail.model.js')(sequelize, Sequelize);
+
  
 db.role.belongsToMany(db.user, { through: 'user_roles', foreignKey: 'roleId', otherKey: 'userId'});
 db.user.belongsToMany(db.role, { through: 'user_roles', foreignKey: 'userId', otherKey: 'roleId'});
@@ -47,5 +51,11 @@ db.location.belongsTo(db.country,{foreignKey: 'countryId'});
 db.location.belongsTo(db.state,{foreignKey: 'stateId'});
 db.location.belongsTo(db.city,{foreignKey: 'cityId'});
 db.location.belongsTo(db.user,{foreignKey: 'userId'});
+db.flat.belongsTo(db.size,{foreignKey:'sizeId'});
+db.flat.belongsTo(db.society,{foreignKey:'societyId'});
+db.event.belongsTo(db.user,{foreignKey:'eventOrganiser'});
+db.event.belongsTo(db.user,{foreignKey:'userId'});
+db.service.belongsTo(db.serviceDetail,{foreignKey:'serviceDetailId'});
+
 
 module.exports = db;

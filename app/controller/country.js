@@ -4,15 +4,16 @@ const config = require('../config/config.js');
 const Country = db.country;
 
 exports.create = (req,res) => {
-    console.log("creating city");
+    console.log("creating country");
 
     Country.create({
         countryName:req.body.countryName,
         code:req.body.code,
         currency:req.body.currency,
-        phoneCode:req.body.phoneCode
+        phoneCode:req.body.phoneCode,
+        userId:req.body.userId
     }).then(country =>{
-        res.json({message:"Country added successfully!",country:country});
+        res.status(200).json({message:"Country added successfully!",country:country});
     }).catch(err => {
     res.status(500).send("Fail! Error -> " + err);
 })

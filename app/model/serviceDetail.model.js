@@ -1,13 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
-	const Tower = sequelize.define('tower_master', {
-		towerId: {
+	const ServiceDetail = sequelize.define('service_detail_master', {
+		serviceDetailId: {
 			type: Sequelize.INTEGER,
 			autoIncrement: true,
 			primaryKey: true
 		},
-		towerName: {
-			type: Sequelize.STRING
-		},
+		service_detail: {
+            type: Sequelize.STRING
+        },
 		isActive: {
 			type: Sequelize.BOOLEAN,
 			defaultValue: true
@@ -16,5 +16,7 @@ module.exports = (sequelize, Sequelize) => {
 		freezeTableName: true
 	});
 
-	return Tower;
+	return ServiceDetail;
 }
+
+

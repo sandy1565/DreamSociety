@@ -13,19 +13,30 @@ module.exports = function(app) {
 	const flatController = require('../controller/flat');
 	const serviceController = require('../controller/service');
 	const sizeController = require('../controller/size');
+	const messageController = require('../controller/message');
+	const eventController = require('../controller/event');
+	const serviceDetailController = require('../controller/serviceDetail');
 	
 
 	app.get('/', userController.start);
 
-	app.post('/api/auth/signup', [verifySignUp.checkDuplicateUserNameOrEmail, verifySignUp.checkRolesExisted], userController.signup);
+	app.post('/api/auth/signup', [verifySignUp.checkDuplicateUserNameOrEmail,verifySignUp.checkRolesExisted], userController.signup);
 	
     app.post('/api/auth/signin', userController.signin);
 	
 	app.get('/api/user',userController.get);
+	
+	// app.get('/api/user/test', [authJwt.verifyToken], userController.userContent);
+
+	app.get('/api/user/test' ,[authJwt.verifyToken],userController.roleTest);
+
+	app.get('/api/user/role',userController.role);
 
 	app.put('/api/user/:id', userController.update);
 
-	app.delete('/api/user/:id', userController.delete);
+	// app.put('/api/userUpdate/:id', userController.updateUser);
+
+	app.put('/api/user/delete/:id', userController.delete);
 	
 	app.get('/api/test/owner', [authJwt.verifyToken, authJwt.isOwnerOrTenant], userController.managementBoard);
 	
@@ -99,7 +110,7 @@ module.exports = function(app) {
 
 	app.put('/api/flat/:id',  flatController.update);
 
-	app.delete('/api/flat/:id', flatController.delete);
+	app.put('/api/flat/delete/:id', flatController.delete);
 	
 	app.post('/api/service',  serviceController.create);
 
@@ -120,4 +131,22 @@ module.exports = function(app) {
 	app.put('/api/size/:id', sizeController.update);
 
 	app.delete('/api/size/:id', sizeController.delete);
+
+	app.post('/api/event', eventController.create);
+
+	app.get('/api/event', eventController.get);
+
+	app.put('/api/event/:id', eventController.update);
+
+	app.put('/api/event/delete/:id', eventController.delete);
+
+	app.post('/api/sendMessage', messageController.sendMessage);
+
+	app.post('/api/serviceDetail', serviceDetailController.create);
+
+	app.get('/api/serviceDetail', serviceDetailController.get);
+
+	app.get('/api/eventOrganiser', eventController.getEventOrganiser);
+
+	
 }

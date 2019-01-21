@@ -1,17 +1,26 @@
 module.exports = (sequelize, Sequelize) => {
-	const Flat = sequelize.define('flat', {
-	flatId:{
+	const Flat = sequelize.define('flat_master', {
+		flatId: {
 			type: Sequelize.INTEGER,
-			autoIncrement:true,
-			primaryKey:true
+			autoIncrement: true,
+			primaryKey: true
 		},
-	  type: {
-		  type: Sequelize.STRING
-      },
-      size:{
-       type: Sequelize.INTEGER
-      }
+		flatType: {
+			type: Sequelize.STRING
+		},
+		flatSuperArea: {
+			type: Sequelize.INTEGER
+		},
+		coverArea: {
+			type: Sequelize.INTEGER
+		},
+		isActive: {
+			type: Sequelize.BOOLEAN,
+			defaultValue: true
+		},
+	}, {
+		freezeTableName: true
 	});
-	
+
 	return Flat;
 }

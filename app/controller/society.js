@@ -9,7 +9,7 @@ const State = db.state;
 const User = db.user;
 
 exports.create = (req,res) => {
-    console.log("creating society");
+console.log("creating society");
 console.log("Society====>",req.body)
     Society.create({
         societyName:req.body.societyName,
@@ -17,7 +17,7 @@ console.log("Society====>",req.body)
         countryId:req.body.countryId,
         locationId:req.body.locationId,
         stateId:req.body.stateId,
-        // userId:req.body.userId,
+        userId:req.body.userId,
     }).then(society =>{
         res.json({message:"Society added successfully!",society:society});
     }).catch(err => {
@@ -26,34 +26,45 @@ console.log("Society====>",req.body)
 }
 
 exports.get = (req, res) => {
-    console.log("getting society")
     Society.findAll({
         include:[
-            {model:City},
-            {model:Country},
-            {model:State},
-            {model:User},
-            {model:location}
+            {model:City,
+            attributes: ['cityId', 'cityName']},	
+            {model:Country,
+             attributes: ['countryId', 'countryName']},
+            {model:State,
+            attributes: ['stateId', 'stateName']},
+            {model:User,
+            attributes: ['userId', 'userId']},
+            {model:location,
+            attributes: ['locationId', 'locationId']}, 
     ]
     })
       .then(society => {
           if(society){
             res.json(society);
           }else{
-            res.json({message:'Society Data NOt Found'});
+            res.json({message:'Society Data Not Found'});
           }
       });
     }
+    
 
 exports.getById = (req,res) => {
-Society.findOne({
-    where: {id: req.params.id},
+    console.log("society===>",req.params.id)
+     Society.findOne({
+    where: {societyId: req.params.id},
     include:[
-        {model:City},
-        {model:Country},
-        {model:State},
-        {model:User},
-        {model:location}
+        {model:City,
+        attributes: ['cityId', 'cityName']},
+        {model:Country,
+         attributes: ['countryId', 'countryName']},
+        {model:State,
+        attributes: ['stateId', 'stateName']},
+        {model:User,
+        attributes: ['userId', 'userId']},
+        {model:location,
+        attributes: ['locationId', 'locationId']}, 
 ]
 }).then(society => {
     res.status(200).json({
@@ -74,7 +85,7 @@ exports.update = (req,res) => {
     if(!id){
         res.json("Please enter id");
     }
-    const updates = req.body.updates;
+    const updates = req.body;
     Society.find({
         where: { societyId: id }
       })
@@ -100,3 +111,5 @@ exports.delete = (req,res) => {
         res.json({message:"Society deleted successfully!",deletedSociety:deletedSociety});
       });
 }
+
+ 

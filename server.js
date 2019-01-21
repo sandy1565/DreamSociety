@@ -19,8 +19,6 @@
 //   });
 // }
 
-
-
 var express = require('express');
 var app = express();
 var cors = require('cors');
@@ -70,8 +68,6 @@ next();
  
 // Create a Server
 var server = app.listen(PORT, function () {
- 
-	console.log("-------------- var server = app.listen(PORT, function ()");
 //   var host = server.address().address
 //   var port = server.address().port
  

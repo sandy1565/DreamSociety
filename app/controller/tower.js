@@ -39,11 +39,12 @@ exports.getById = (req,res) => {
 }
 
 exports.update = (req,res) => {
+    console.log("-----update---------");
     const id = req.params.id;
     if(!id){
         res.json("Please enter id");
     }
-    const updates = req.body.updates;
+    const updates = req.body;
     Tower.find({
         where: { towerId: id }
       })
@@ -56,7 +57,9 @@ exports.update = (req,res) => {
 }
 
 exports.delete = (req,res) => {
-    const id = req.params.id;
+    console.log("---delete----");
+    const id = req.params.id;  
+    console.log("Tower id",id);
     if(!id){
         res.json("Please enter id");
     }
