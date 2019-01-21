@@ -1,10 +1,29 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 // import {reducer as formReducer} from 'redux-form';
 import userDetail from './registration_reducer';
 import loginReducer from './Login_reducer';
+import flats from './flatReducer';
+import flat from './flatMasterReducer';
+import societyReducer from './Society_reducer'
 
-const rootReducer=combineReducers({
+// import loginReducer from './login_reducer';
+import TowerDetails from './tower_reducer';
+import SizeDetails from './size_reducer';
+// import SizeDetails from './size_reducer';
+// import TowerDetails from './tower_reducer';
+import EventDetails from './event_reducer';
+
+const rootReducer = combineReducers({
     loginReducer,
-    userDetail
+    userDetail,
+    getRoles,
+    TowerDetails,
+    SizeDetails,
+    flats,
+    flat,
+    EventDetails,
+    flats,
+    societyReducer,
+    flat
 })
 export default rootReducer;

@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+<<<<<<< Updated upstream
 // import './index.css';
+
+=======
+>>>>>>> Stashed changes
 import App from './App';
 import{Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';

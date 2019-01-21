@@ -41,11 +41,11 @@ render() {
          <form onSubmit={this.submit}>
          <div style={{'marginBottom':'10px'}}>
              <label style={{'marginRight':'10px'}}><h4>UserName:</h4></label>
-             <input stype="text" style={{'borderRadius': '10px', 'outline': 'none','textAlign': 'center','width':'400px','height':'40px'}} placeholder="enter user name" name="username" onChange={this.onChangeHandler} required/>
+             <input stype="text" style={{'borderRadius': '10px','border':'1px solid lightgray', 'outline': 'none','textAlign': 'center','width':'400px','height':'40px'}} placeholder="enter user name" name="username" onChange={this.onChangeHandler} required/>
              </div>
              <div style={{'marginBottom':'10px'}}>
              <label style={{'marginRight':'10px'}}><h4>Password:</h4></label>
-             <input type="password" style={{'borderRadius': '10px', 'outline': 'none','textAlign': 'center','width':'400px','height':'40px'}} placeholder="enter password" name="password" onChange={this.onChangeHandler} required />
+             <input type="password" style={{'borderRadius': '10px','border':'1px solid lightgray', 'outline': 'none','textAlign': 'center','width':'400px','height':'40px'}} placeholder="enter password" name="password" onChange={this.onChangeHandler} required />
              </div>
              <button type="submit" className='btn btn-success'>login</button>
          </form>
