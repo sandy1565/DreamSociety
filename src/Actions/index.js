@@ -71,16 +71,6 @@ return{
 }
 }
 
-// export function deleteTowers(id){
-//     const request = axios.delete('http://192.168.1.113:8081/api/tower1' +id)
-//     .then((response) => response.data)
-
-//     return {
-//         type:'DELETE_TOWER',
-//         payload:id
-//     }
-// }
-
 
 export   function AddSize(values){
  
@@ -135,6 +125,18 @@ return{
     payload:request
 }
 }
+
+export function GetEventOrganiser(){
+    const request = axios.get(`${URN}/eventOrganiser`).then((response)=>{
+        response.data
+    })
+    return{
+        type: 'GET_EVENT_ORGANISER',
+        payload:request
+    }
+}
+
+
 
 export  function AddEvent(){
     const request= axios.post(`${URN}/event`).then()

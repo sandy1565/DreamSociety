@@ -137,6 +137,7 @@ class Registration extends Component {
             <select onChange={(e) => this.setState({roles: e.target.value})}
                                 value={this.state.roles}>
                 {this.state.roleName.map((item) => {
+                  
                     return (
                         <option key={item.roleName} value={item.roleName}>{item.roleName}</option>
                     )

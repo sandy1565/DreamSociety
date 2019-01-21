@@ -12,6 +12,10 @@ import SuperDashboard from './containers/SuperDashboard/SuperDashboard';
 import TenantDashboard from './containers/TenantDashboard/TenantDashboard';
 import VendorDashboard from './containers/VendorDashboard/VendorDashboard';
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import TowerMaster from   './containers/TowerMaster/tower-master';
 import  DisplayTowerMaster from './containers/TowerMaster/display-tower-master';
 import SizeMaster from   './containers/SizeMaster/size-master';
@@ -19,10 +23,13 @@ import  EventMaster from './containers/EventMaster/event-master';
 
 import DisplaySizeMaster from './containers/SizeMaster/display-size-master';
 
+<<<<<<< Updated upstream
 
 
 import FlatMaster from './containers/Flat_master/flatMaster';
 import FlatMasterDetails from './containers/Flat_master/flatMasterDetails';
+=======
+>>>>>>> Stashed changes
 
 class App extends Component {
   render() {
@@ -39,6 +46,7 @@ class App extends Component {
             <Route path='/tenantDashboard' component={TenantDashboard} />
             <Route path='/vendorDashboard' component={VendorDashboard} />
             <Route path='/superDashboard/registration' component={Registration} />
+<<<<<<< Updated upstream
             <Route path ={'/superDashboard/user_details'} component={UserDetails} />
            
             <Route path ='/superDashboard/display-tower' component ={DisplayTowerMaster} />
@@ -48,6 +56,15 @@ class App extends Component {
             <Route path ='/superDashboard/event' component ={EventMaster}/>
             <Route path='/superDashboard/flatmaster' exact component= {FlatMaster} />
             <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
+=======
+            <Route path ={'/user_details'} component={UserDetails} />
+            <Route path ='/display-tower' component ={DisplayTowerMaster} />
+            <Route path ='/display-size' component ={DisplaySizeMaster} />
+            <Route path ='/tower'  component ={TowerMaster} />
+            <Route path = '/size'  component ={SizeMaster} />
+            <Route path ='/event' component ={EventMaster}/>
+
+>>>>>>> Stashed changes
             {/* <Route path='/registration' component={Registration} /> */}
             {/* <Route path='/' exact component={ShowDetails} /> */}
           </Switch>
