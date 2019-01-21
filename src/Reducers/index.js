@@ -16,7 +16,6 @@ import EventDetails from './event_reducer';
 const rootReducer = combineReducers({
     loginReducer,
     userDetail,
-    getRoles,
     TowerDetails,
     SizeDetails,
     flats,
