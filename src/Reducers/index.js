@@ -24,6 +24,7 @@ const rootReducer = combineReducers({
     flat,
     EventDetails,
     flats,
-    societyReducer
+    societyReducer,
+    flat
 })
 export default rootReducer;
