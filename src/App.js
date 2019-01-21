@@ -24,6 +24,9 @@ import DisplaySizeMaster from './containers/SizeMaster/display-size-master';
 
 import FlatMaster from './containers/Flat_master/flatMaster';
 import FlatMasterDetails from './containers/Flat_master/flatMasterDetails';
+import serviceMaster from './containers/VendorMangement/ServiceMaster/serviceMaster';
+import displayServices from './containers/VendorMangement/ServiceMaster/displayServiceMaster';
+import vendorMaster from './containers/VendorMangement/VendorMaster/vendorMaster';
 
 class App extends Component {
   render() {
@@ -51,6 +54,17 @@ class App extends Component {
             <Route path='/superDashboard/flatmaster' exact component= {FlatMaster} />
             <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
             <Route path ={'/user_details'} component={UserDetails} />
+            <Route path ='/display-tower' component ={DisplayTowerMaster} />
+            <Route path ='/display-size' component ={DisplaySizeMaster} />
+            <Route path ='/tower'  component ={TowerMaster} />
+            <Route path = '/size'  component ={SizeMaster} />
+            <Route path ='/event' component ={EventMaster}/>
+            <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
+            <Route path='/servicemaster' component={serviceMaster}/>
+            <Route path='/displayservice' component={displayServices}/>
+            <Route path='/vendormaster' component={vendorMaster}/>
+            {/* <Route path='/registration' component={Registration} /> */}
+            {/* <Route path='/' exact component={ShowDetails} /> */}
             <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
           </Switch>
         </div>
