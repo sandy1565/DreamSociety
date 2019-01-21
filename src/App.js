@@ -51,14 +51,7 @@ class App extends Component {
             <Route path='/superDashboard/flatmaster' exact component= {FlatMaster} />
             <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
             <Route path ={'/user_details'} component={UserDetails} />
-            <Route path ='/display-tower' component ={DisplayTowerMaster} />
-            <Route path ='/display-size' component ={DisplaySizeMaster} />
-            <Route path ='/tower'  component ={TowerMaster} />
-            <Route path = '/size'  component ={SizeMaster} />
-            <Route path ='/event' component ={EventMaster}/>
-    <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
-            {/* <Route path='/registration' component={Registration} /> */}
-            {/* <Route path='/' exact component={ShowDetails} /> */}
+            <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
           </Switch>
         </div>
       </BrowserRouter>
