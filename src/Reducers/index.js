@@ -4,13 +4,14 @@ import userDetail from './registration_reducer';
 import getRoles from './fetchRoles';
 import loginReducer from './Login_reducer';
 import flats from './flatReducer';
+import flat from './flatMasterReducer';
 import societyReducer from './Society_reducer'
 
 // import loginReducer from './login_reducer';
 import TowerDetails from './tower_reducer';
 import SizeDetails from './size_reducer';
-import SizeDetails from './size_reducer';
-import TowerDetails from './tower_reducer';
+// import SizeDetails from './size_reducer';
+// import TowerDetails from './tower_reducer';
 import EventDetails from './event_reducer';
 
 const rootReducer = combineReducers({
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     TowerDetails,
     SizeDetails,
     flats,
+    flat,
     EventDetails,
     flats,
     societyReducer
