@@ -1,10 +1,14 @@
 import React,{Component} from 'react';
-import connect from 'react-redux';
- import {AddEvent } from '../../Actions';
+import {connect} from 'react-redux';
+ import {AddEvent, GetEventOrganiser} from '../../Actions';
 import { bindActionCreators } from 'redux';
+
+// import connect from 'react-redux';
+//  import {AddEvent } from '../../Actions';
+// import { bindActionCreators } from 'redux';
 //  import 'bootstrap/dist/css/bootstrap/min.css';
 
- export default  class EventMaster extends  Component{
+  class EventMaster extends  Component{
  constructor(props){
      super(props)
 
@@ -13,7 +17,7 @@ import { bindActionCreators } from 'redux';
  }
 
     state ={
-    eventType: [],
+    eventType: [],  
     eventName:[],
     eventOrganiser:[],
     eventStart_Date:[],
@@ -73,16 +77,17 @@ import { bindActionCreators } from 'redux';
   
 
 
-// mapStateToProps(state){
-//     console.log(state);
-// return{
-//   EventDetails: state.EventDetails
-// }
-// }
-// mapDispatchToProps(dispatch){
-//     return bindActionCreators({AddEvent},dispatch)
-//     }
-// export default connect(mapStateToProps,mapDispatchToProps)(EventMaster)
+  function mapStateToProps(state){
+    console.log(state);
+return{
+  GetEventOrganiser: state.GetEventOrganiser
+}
+}
+  function mapDispatchToProps(dispatch){
+    return bindActionCreators({AddEvent, GetEventOrganiser},dispatch)
+    }
+
+   export default connect(mapStateToProps,mapDispatchToProps)(EventMaster)
 
 
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import{URN} from '../constants/index';
+import{URN,ADD_USER,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
 
 export function addUser(values) {
     const request = axios.post(`${URN}/auth/signup`, values , { method: 'POST',
@@ -13,7 +13,7 @@ export function addUser(values) {
                     .then(getUsers(values))
                     .catch(error=> error);
                     return {
-                        type: 'ADD_USER',
+                        type: ADD_USER,
                         payload: request
                     }
 }
@@ -23,7 +23,7 @@ export function getUsers(){
     .then()
 
     return {
-        type:'GET_USERS',
+        type:GET_USERS,
         payload:request
     }
 }
@@ -33,7 +33,7 @@ export function getRoles(){
     .then((response =>response.data))
 
     return {
-        type:'GET_ROLES',
+        type:GET_ROLES,
         payload:request
     }
 }
@@ -43,7 +43,7 @@ export function deleteUsers(id){
     .then((response) => response.data)
 
     return {
-        type:'DELETE_USERS',
+        type:DELETE_USERS,
         payload:id
     }
 }
@@ -51,53 +51,43 @@ export function deleteUsers(id){
 
 
 export  default function AddTower(values){
-    const request = axios.post(`http://192.168.1.113:8081/api/tower`,values, {method: 'POST'})
+    const request = axios.post(`${URN}/tower`,values, {method: 'POST'})
     .then()
    console.log(request);
    
     return{
-        type:  'ADD_TOWER',
+        type:  ADD_TOWER,
         payload: request
     }
 }
 
 
 export function viewTower(){
-const request  = fetch(`http://192.168.1.113:8081/api/tower`,{method: 'GET'})
+const request  = fetch(`${URN}/tower`,{method: 'GET'})
 .then(response => response.json())
 return{
-      type: 'GET_TOWER',
+      type: GET_TOWER,
       payload: request
 }
 }
 
-// export function deleteTowers(id){
-//     const request = axios.delete('http://192.168.1.113:8081/api/tower1' +id)
-//     .then((response) => response.data)
-
-//     return {
-//         type:'DELETE_TOWER',
-//         payload:id
-//     }
-// }
-
 
 export   function AddSize(values){
  
-    const request =axios.post(`http://192.168.1.113:8081/api/size`,values,{method:'POST'})
+    const request =axios.post(`${URN}/size`,values,{method:'POST'})
      .then()
       return{  
-          type:'ADD_SIZE',
+          type:ADD_SIZE,
           payload: request
       }
 
 }
 
 export function displaySize(){
-    const request = fetch(`http://192.168.1.113:8081/api/size`,{method:'GET'})
+    const request = fetch(`${URN}/size`,{method:'GET'})
     .then(response => response.json())
     return {
-        type:'GET_SIZE',
+        type:GET_SIZE,
         payload:request
     }
 }
@@ -105,8 +95,8 @@ export function displaySize(){
 export function updateSize(size) {
     return dispatch => {
       return dispatch({
-        type: 'UPDATE_SIZE',
-        payload: axios.put(`http://192.168.1.113:8081/api/size1/${size._id}`, size)
+        type: UPDATE_SIZE,
+        payload: axios.put(`${URN}/size1/${size._id}`, size)
       })
     }   
   }
@@ -127,19 +117,31 @@ export function updateSize(size) {
 
 
 export function ViewEvent(){
-const request = axios.get('http://192.168.1.113:8081/api/event').then((response)=>{
+const request = axios.get(`${URN}/event`).then((response)=>{
     response.data
 })
 return{
-    type:'GET_EVENT',
+    type:GET_EVENT,
     payload:request
 }
 }
 
-export  function AddEvent(){
-    const request= axios.post('http://192.168.1.113:8081/api/event').then()
+export function GetEventOrganiser(){
+    const request = axios.get(`${URN}/eventOrganiser`).then((response)=>{
+        response.data
+    })
     return{
-        type:'POST_EVENT',
+        type: 'GET_EVENT_ORGANISER',
+        payload:request
+    }
+}
+
+
+
+export  function AddEvent(){
+    const request= axios.post(`${URN}/event`).then()
+    return{
+        type:POST_EVENT,
         payload:request
     }
 }

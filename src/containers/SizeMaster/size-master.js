@@ -32,7 +32,7 @@ submit(e){
         sizeType:""
      }
      }),
-     this.props.history.push('/display-size');
+     this.props.history.push('/superDashboard/display-size');
 
 }
 

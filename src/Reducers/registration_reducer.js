@@ -8,6 +8,7 @@ export default function(state=[], action) {
     if(typeof state === 'undefined') {
         return initialState
     }
+    console.log('=========registration=========', action.payload)
     switch(action.type){
         case 'ADD_USER':
             return {...state, users: action.payload}

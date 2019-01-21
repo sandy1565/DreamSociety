@@ -137,6 +137,7 @@ class Registration extends Component {
             <select onChange={(e) => this.setState({roles: e.target.value})}
                                 value={this.state.roles}>
                 {this.state.roleName.map((item) => {
+                  
                     return (
                         <option key={item.roleName} value={item.roleName}>{item.roleName}</option>
                     )
@@ -216,9 +217,9 @@ class Registration extends Component {
         return (
             <div>
                 <div>
-                    <Link to="/user_details" >Home</Link>
+                    <Link to="/superDashboard/user_details" >Home</Link>
                 </div>
-                {this.state.isSubmit ? <Redirect to='/user_details' />: form}
+                {this.state.isSubmit ? <Redirect to='/superDashboard/user_details' />: form}
             </div>
             
         )

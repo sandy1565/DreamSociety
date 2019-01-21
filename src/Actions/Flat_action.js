@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {URN,GET_DETAILS,FETCH_DETAILS} from '../constants/index'
 
 // const URL=`http://localhost:3001`;`
 
@@ -10,12 +11,12 @@ import axios from 'axios';
 //         payload:request
 //     }
 // }
-const  URL_ROOT = 'http://192.168.1.113:8081/api/flat/';
+// const  URL_ROOT = 'http://192.168.1.113:8081/api/flat/';
 
 
 export  function AddDetails(societyId,flatType,flatSuperArea,sizeId,coverArea){
   
-    const request= axios.post(`${URL_ROOT}`,{societyId,flatType,flatSuperArea,sizeId,coverArea})
+    const request= axios.post(`${URN}/flat/`,{societyId,flatType,flatSuperArea,sizeId,coverArea})
     .then(response => response.data)
     .then(getDetails())
     // .then(getDetails())
@@ -24,7 +25,7 @@ export  function AddDetails(societyId,flatType,flatSuperArea,sizeId,coverArea){
     // console.log(request)
     
     return{
-        type:'GET_DETAILS',
+        type:GET_DETAILS,
         payload:request
     }
 
@@ -32,13 +33,13 @@ export  function AddDetails(societyId,flatType,flatSuperArea,sizeId,coverArea){
 
 export  function getDetails(){
 
-    const request = fetch(`${URL_ROOT}`,
+    const request = fetch(`${URN}/flat/`,
     {method:'GET'})
     .then(response => response.json())
    
     return{
 
-         type:'FETCH_DETAILS',
+         type:FETCH_DETAILS,
          payload: request 
     }
 

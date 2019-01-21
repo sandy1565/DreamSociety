@@ -1,3 +1,4 @@
+import {GET_ROLES} from '../constants/index'
 const initialState = {
     users: {
         id: ''
@@ -9,7 +10,7 @@ export default function(state=[], action) {
         return initialState
     }
     switch(action.type){
-        case 'GET_ROLES':
+        case GET_ROLES:
             return {...state, roles: action.payload}
         default:
             return state;
