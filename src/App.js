@@ -65,6 +65,7 @@ class App extends Component {
             <Route path='/vendormaster' component={vendorMaster}/>
             {/* <Route path='/registration' component={Registration} /> */}
             {/* <Route path='/' exact component={ShowDetails} /> */}
+            <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
           </Switch>
         </div>
       </BrowserRouter>
