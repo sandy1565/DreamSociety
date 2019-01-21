@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {URN} from '../../constants/index'
+import {URN} from '../../constants'
 import { Table, Button, Modal, FormGroup, ModalBody, ModalHeader, ModalFooter, Input, Label } from 'reactstrap';
 
 class userDetails extends Component {
@@ -27,7 +27,6 @@ class userDetails extends Component {
     componentDidMount() {
         this.refreshData();
         this.props.addUser();
-        this.forceUpdate();
     }
 
     componentWillReceiveProps(){
@@ -144,7 +143,7 @@ class userDetails extends Component {
                             this.setState({ editUserData });
                             }} >
                                  <option value={this.state.editUserData.roleName}>{this.state.editUserData.roleName}</option>
-                                 <option disabled>--Select--</option>
+                                 <option disabled>Select</option>
                                  {this.fetchRoles(this.props.userDetail)}
                             </Input>
                 

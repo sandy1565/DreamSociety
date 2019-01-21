@@ -13,7 +13,7 @@ export function addUser(values) {
                     .then(getUsers())
                     .catch(error=> error);
                     return {
-                        type: ADD_USER,
+                        type: 'ADD_USER',
                         payload: request
                     }
 }
@@ -23,7 +23,7 @@ export function getUsers(){
     .then()
 
     return {
-        type:GET_USERS,
+        type:'GET_USERS',
         payload:request
     }
 }
@@ -33,7 +33,7 @@ export function getRoles(){
     .then((response =>response.data))
 
     return {
-        type:GET_ROLES,
+        type:'GET_ROLES',
         payload:request
     }
 }
