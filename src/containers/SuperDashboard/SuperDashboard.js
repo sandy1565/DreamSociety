@@ -18,7 +18,7 @@ class SuperDashboard extends Component {
                 <Link to="/superDashboard/event " ><h4>Event Management</h4></Link>
                 <Link to="#" ><h4>Vendor Management</h4></Link>
                 <Link to="/superDashboard/flatmaster" ><h4>Flat Master</h4></Link>
-                <Link to="#" ><h4>Society Management</h4></Link>
+                <Link to="/superDashboard/societyManagement" ><h4>Society Management</h4></Link>
                 <Link to="#" ><h4>Service Master</h4></Link>
                 <Link to="/superDashboard/towermaster"><h4>Tower Master</h4></Link>
                 <Link to="/superDashboard/sizemaster"><h4>Size Master</h4></Link>

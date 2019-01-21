@@ -1,9 +1,9 @@
 import {ADD_TOWER,GET_TOWER} from '../constants/index'
-const initialState ={
-    users:{
-        id:''
-    }
-}
+// const initialState ={
+//     users:{
+//         id:''
+//     }
+// }
 
     export default  function(state =[], action){
        

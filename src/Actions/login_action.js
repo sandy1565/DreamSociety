@@ -1,5 +1,7 @@
 import axios from 'axios';
 import{URN,USER_LOGIN} from '../constants/index';
+import React from 'react';
+import {Redirect} from 'react-router-dom';
 export function login(username, password) {
     const request = axios({
         method: 'post',
@@ -32,10 +34,10 @@ export function login(username, password) {
                 return null;
             }
           }
-          else if(data.status === 401){
-              console.log("Welckljxdljdlkfjs")
+        //   else if(data.status === 401){
+        //       console.log("Welckljxdljdlkfjs")
        
-          }
+        //   }
               
         } 
       ) 
@@ -62,7 +64,7 @@ function handleResponse(response) {
         }
         else{
             console.log('surdfdjfkj')
-        return
+        return <Redirect to='/'></Redirect>
         }
     return data;
 }

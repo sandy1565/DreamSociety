@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
  import {AddEvent, GetEventOrganiser} from '../../Actions';
 import { bindActionCreators } from 'redux';
 
+// import connect from 'react-redux';
+//  import {AddEvent } from '../../Actions';
+// import { bindActionCreators } from 'redux';
 //  import 'bootstrap/dist/css/bootstrap/min.css';
 
   class EventMaster extends  Component{

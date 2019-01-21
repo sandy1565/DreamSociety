@@ -13,3 +13,4 @@ export const GET_EVENT='get_event';
 export const POST_EVENT='post_event';
 export const GET_DETAILS='get_details';
 export const FETCH_DETAILS='fetch_details';
+export const GET_COUNTRY='get_country';
