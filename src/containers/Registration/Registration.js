@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import { addUser, getRoles } from '../../Actions';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router';
-import { withRouter } from 'react-router-dom';
-import Axios from 'axios';
+import { withRouter , Redirect} from 'react-router-dom';
+import './Registration.css';
+import { FormGroup, Form, Button, Input, Label } from 'reactstrap';
 
 class Registration extends Component {
     constructor(props){
@@ -13,7 +13,7 @@ class Registration extends Component {
         this.state = {
             roleName:[],
             roles:"",
-            userTypeError:"",
+            roleTypeError:"",
             firstName:"",
             lastName:"",
             userName:"",
@@ -23,7 +23,8 @@ class Registration extends Component {
             password:"",
             passwordError:"",
             passwordConfirmation:"",
-            isSubmit: false
+            isSubmit: false,
+            errors:{}
         }
         this.onChange = this.onChange.bind(this);
         this.submit = this.submit.bind(this);
@@ -33,23 +34,27 @@ class Registration extends Component {
     }
 
     componentDidMount(){
-        // this.props.getRoles()
-        Axios.get('http://192.168.1.113:8081/api/user/role')
-        .then(results => results.data)
-        .then(results => this.setState({roleName:results}))
+        this.props.getRoles();
     }
 
     OnKeyPresshandlerPhone(event) {
         const pattern=/^[0-9]$/;
         let inputChar = String.fromCharCode(event.charCode);
         if (!pattern.test(inputChar)) {
-          event.preventDefault();
-          
+          event.preventDefault(); 
         }
       }
 
       OnKeyPressUserhandler(event) {
-        const pattern=/[a-zA-Z]/;
+        const pattern=/^[a-zA-Z]+$/;
+        let inputChar = String.fromCharCode(event.charCode);
+        if (!pattern.test(inputChar)) {
+          event.preventDefault();
+        }
+      }
+
+      OnKeyPressPasswordhandler(event){
+        const pattern=/^[a-zA-Z0-9]+$/;
         let inputChar = String.fromCharCode(event.charCode);
         if (!pattern.test(inputChar)) {
           event.preventDefault();
@@ -57,55 +62,46 @@ class Registration extends Component {
       }
 
     onChange(e){
-        this.setState({[e.target.name]:e.target.value.trim('')});
+        if(!!this.state.errors[e.target.name]){
+            let errors = Object.assign({}, this.state.errors);
+            delete errors[e.target.name];
+            this.setState({[e.target.name]:e.target.value.trim(''), errors});
+        }
+        else {
+            this.setState({[e.target.name]:e.target.value.trim('')});
+        }
         console.log(this.state)
     }
 
-    validate = () => {
-        let userTypeError = "";
-        let emailError = "";
-        let passwordError = "";
-
-        if(!this.state.userType) {
-            userTypeError = "Name cannot be empty"
-        }
-        if(this.state.userType !== []) {
-            userTypeError = ""
-        }
-
-        if(this.state.password !== this.state.passwordConfirmation) {
-            passwordError = "Password doesn't match"
-        }
-
-        if(!this.state.email.includes('@')) {
-            emailError = 'invalid Email';
-        }
-        else if(this.state.email.includes('@')){
-            emailError = "";
-        }
-
-        if(!this.state.email) {
-            emailError = 'Email cannot be empty';
-        }
-
-        if(emailError || userTypeError || passwordError) {
-            this.setState({emailError, userTypeError, passwordError});
-            return false;
-        }
-        return true;
-    }
-
-    
-
     submit(e) {
         e.preventDefault();
+        let errors = {};
+        if(!this.state.roles){
+            errors.roles = "User type can't be empty. Please select"
+        }
         
-        const isValid = this.validate();
+        if(this.state.firstName === '') errors.firstName = "Can't be empty";
+        else if(this.state.firstName.length < 2) errors.firstName ="First name can't be less than four"
+
+        if(this.state.lastName === '') errors.lastName = "Can't be empty";
+        else if(this.state.lastName.length < 2) errors.lastName = "Last name can't be les than two";
+
+        if(this.state.userName === '') errors.userName = "Can't be empty";
+        if(this.state.email === '') errors.email = "Can't be empty";
+        if(this.state.contact === '') errors.contact = "Can't be empty";
+        if(this.state.password === '') errors.password = "Can't be empty";
+        else if(this.state.password !== this.state.passwordConfirmation) errors.passwordConfirmation = `Password doesn't match`
+
+        this.setState({ errors });
+        const isValid = Object.keys(errors).length === 0
+        
+        // const isValid = this.validate();
         if(isValid) {
-            this.props.addUser({...this.state, userTypeError: "", emailError: "", passwordError: ""});
+            this.props.addUser({...this.state, roleTypeError: "", emailError: "", passwordError: ""});
             this.setState({
                 roleName:[],
-                userTypeError:"",
+                roles:"",
+                roleTypeError:"",
                 firstName:"",
                 lastName:"",
                 userName:"",
@@ -119,101 +115,104 @@ class Registration extends Component {
             });
         }   
     }
+
+    fetchRoles({ userRole}){
+        if (userRole) {
+            console.log(userRole)
+            return (
+                userRole.map((item) => {
+                        console.log(this.state)
+                        return (
+                            <option value={item.roleName} key={item.id}>
+                                {item.roleName}
+                            </option>
+                        )
+                    })
+            )
+        }
+    }
     
 
     render(){
     
-        const form = <form onSubmit={this.submit}>
-        <div>
-            <div></div>
-            <label>User Type</label>
-            {/* <input name="roleName"
-                type="select"
-                value={this.state.roleName}
-                onChange={this.onChange}
-                onKeyPress={this.OnKeyPressUserhandler} >
-                <option onChange={this.onChange} value={this.state.}>ADMIN</option>
-            </input> */}
-            <select onChange={(e) => this.setState({roles: e.target.value})}
-                                value={this.state.roles}>
-                {this.state.roleName.map((item) => {
-                  
-                    return (
-                        <option key={item.roleName} value={item.roleName}>{item.roleName}</option>
-                    )
-                })}
-            </select>
-            <div>{this.state.userTypeError ? 
-                <div style={{color: 'red', fontSize: '12px'}}>
-                    {this.state.userTypeError}
-                </div> 
-                : null}
-            </div>
-        </div>
-        <div>
-            <label>FirstName</label>
-            <input name="firstName"
+        const form = <Form onSubmit={this.submit}>
+            <FormGroup>
+            <Label>User Type</Label>
+                <Input type="select" onChange={(e) => {this.setState({roles: e.target.value});
+                            }}>
+                    <option value=''>--Select--</option>
+                    {this.fetchRoles(this.props.userDetail)}
+                </Input>
+            
+            
+                <span>{this.state.errors.roles}</span>
+            </FormGroup>
+        <FormGroup>
+            <Label>FirstName</Label>
+            <Input name="firstName"
                 type="text"
                 value={this.state.firstName}
-                onChange={this.onChange} />
-        </div>
-        <div>
-            <label>LastName</label>
-            <input name="lastName"
+                onChange={this.onChange}
+                onKeyPress={this.OnKeyPressUserhandler} />
+            <span>{this.state.errors.firstName}</span>
+        </FormGroup>
+        <FormGroup>
+            <Label>LastName</Label>
+            <Input name="lastName"
                 type="text"
                 value={this.state.lastName}
-                onChange={this.onChange} />
-        </div>
-        <div>
-            <label>Username</label>
-            <input name="userName"
+                onChange={this.onChange}
+                onKeyPress={this.OnKeyPressUserhandler} />
+            <span>{this.state.errors.lastName}</span>
+        </FormGroup>
+        <FormGroup>
+            <Label>Username</Label>
+            <Input name="userName"
                 type="text"
                 value={this.state.userName}
                 onChange={this.onChange} />
-        </div>
-        <div>
-            <label>Email</label>
-            <input name="email"
-                type="text"
+            <span>{this.state.errors.userName}</span>
+        </FormGroup>
+        <FormGroup>
+            <Label>Email</Label>
+            <Input name="email"
+                type="email"
                 value={this.state.email}
                 onChange={this.onChange} />
-            <div>{this.state.emailError ? 
-                <div style={{color: 'red', fontSize: '12px'}}>
-                    {this.state.emailError}
-                </div> 
-                : null}
-            </div>
-        </div>
-        <div>
-            <label>Contact No.</label>
-            <input name="contact"
+            <span>{this.state.errors.email}</span>
+        </FormGroup>
+        <FormGroup>
+            <Label>Contact No.</Label>
+            <Input name="contact"
                 type="text"
                 value={this.state.contact}
                 onChange={this.onChange}
-                onKeyPress={this.OnKeyPresshandlerPhone} />
-        </div>
-        <div>
-            <label>Password</label>
-            <input name="password"
+                onKeyPress={this.OnKeyPresshandlerPhone}
+                maxLength='10'
+                minLength='10' />
+            <span>{this.state.errors.contact}</span>
+        </FormGroup>
+        <FormGroup>
+            <Label>Password</Label>
+            <Input name="password"
                 type="password"
                 value={this.state.password}
-                onChange={this.onChange} />
-        </div>
-        <div>
-            <label>Confirm Password</label>
-            <input name="passwordConfirmation"
+                onChange={this.onChange}
+                onKeyPress={this.OnKeyPressPasswordhandler} />
+            <span>{this.state.errors.password}</span>
+        </FormGroup>
+        <FormGroup>
+            <Label>Confirm Password</Label>
+            <Input name="passwordConfirmation"
                 type="password"
                 value={this.state.passwordConfirmation}
-                onChange={this.onChange} />
-        </div>
-        <div>{this.state.passwordError ? 
-            <div style={{color: 'red', fontSize: '12px'}}>
-                {this.state.passwordError}
-            </div> 
-            : null}
-        </div>
-        <button>Add User</button>
-    </form>
+                onChange={this.onChange} 
+                onKeyPress={this.OnKeyPressPasswordhandler} />
+                <span>{this.state.errors.passwordConfirmation}</span>
+        </FormGroup>
+        
+        <Button color="primary">Add User</Button>
+    </Form>
         return (
             <div>
                 <div>
@@ -229,8 +228,7 @@ class Registration extends Component {
 function mapStateToProps(state) {
     console.log(state);
     return {
-        userDetail: state.userDetail,
-        getRoles: state.getRoles
+        userDetail: state.userDetail
     }
 }
 

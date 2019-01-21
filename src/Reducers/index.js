@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import userDetail from './registration_reducer';
-import getRoles from './fetchRoles';
 import loginReducer from './Login_reducer';
 import flats from './flatReducer';
 import flat from './flatMasterReducer';

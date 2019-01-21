@@ -10,7 +10,7 @@ export function addUser(values) {
                     body: JSON.stringify(values) })
                     .then(response => response.data)
                     .then(result => result)
-                    .then(getUsers(values))
+                    .then(getUsers())
                     .catch(error=> error);
                     return {
                         type: ADD_USER,
