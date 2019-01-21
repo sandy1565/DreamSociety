@@ -184,7 +184,7 @@ class flatMasterDetails extends Component {
         return (
             <div className="container">
                 
-                <Link to="/flatmaster">Add flats</Link>
+                <Link to="/superDashboard/flatmaster">Add flats</Link>
                 <Modal isOpen={this.state.editUserModal} toggle={this.toggleEditUserModal.bind(this)}>
                     <ModalHeader toggle={this.toggleEditUserModal.bind(this)}>Edit a flat</ModalHeader>
                     <ModalBody>
