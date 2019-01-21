@@ -6,10 +6,8 @@ export default function(state={},action){
             return{...state,list:action.payload}
         case 'FETCH_DETAILS':
             return{...state,list1:action.payload}
-        case 'FETCH_DROP':
-            return{...state,list2:action.payload}
-        case 'FETCH_SIZE_DROP':
-            return{...state,list3:action.payload}
+        case 'DELETE_DETAILS':
+            // return{...state,list2:action.payload}
         default:
             return state;
     }

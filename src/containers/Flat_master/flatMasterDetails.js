@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getDetails, AddDetails,getDrop,getSizeDrop } from '../../Actions/Flat_action';
+import { getDetails, AddDetails } from '../../Actions/Flat_action';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -15,11 +15,12 @@ class flatMasterDetails extends Component {
         editUserData: {
             flatId:'',
             societyId:'',
-            societyName:'',
+            societyName:[],
+            societyName1:'',
              flatType:'',
             flatSuperArea:'',
             sizeId:'',
-             sizeType:'',
+             sizeType:[],
             sizeType1:'',
             coverArea:'',
             isActive:false
@@ -31,24 +32,27 @@ class flatMasterDetails extends Component {
     }
 
 
-    componentDidMount(){
+    componentWillMount(){
+    //    console.log(this.state)
+    //     axios.get('http://192.168.1.113:8081/api/flat/')
+    //     .then(results => results.data)
+    //     .then(results => this.setState({editUserData:{flatId:results,type:results,size:results}}))
+        
         
         this.refreshData()
         
     }
 
-    // componentDidUpdate(){
-    //     if(this.props.AddDetails){
-           
-    //     }
-    // }
+    componentDidUpdate(){
+        if(this.props.AddDetails){
+            
+        }
+    }
 
     
 
     refreshData(){
         this.props.getDetails();
-        this.props.getDrop();
-        this.props.getSizeDrop();
         
     }
 
@@ -59,18 +63,23 @@ class flatMasterDetails extends Component {
       }
     
       updateBook=()=> {
-         let{ flatId,societyId,flatType,flatSuperArea,sizeId,coverArea} =this.state.editUserData;
+         let{ flatId,flatType,flatSuperArea,coverArea} =this.state.editUserData;
   
-        axios.put('http://192.168.1.113:8081/api/flat/' +flatId, {  societyId, flatType, flatSuperArea,
-        sizeId,coverArea}).then((response) => {
+        axios.put('http://192.168.1.113:8081/api/flat/' +flatId, { flatType, flatSuperArea,coverArea})
+        
+       
+        .then(response => console.log(response))
           this.refreshData();
-        })
+    
           this.setState({
-            editUserModal: false, editUserData: {  flatId: '',societyName:'',flatType:'', flatSuperArea: '',sizeType:'',CoverArea:''  }
-        })
-      
+            editUserModal: false, editUserData: {  flatId: '',flatType:'', flatSuperArea: '',CoverArea:''  }
+          })
+        
+        
     
     }
+   
+      
 
       selectflatType =(e) =>{
          
@@ -79,6 +88,8 @@ class flatMasterDetails extends Component {
         editUserData.flatType = e.target.value;
 
         this.setState({editUserData})
+           
+            // console.log( this.state.editUserData.flatType);
           
       }
       setFlatSuperArea =(e) =>{
@@ -88,6 +99,8 @@ class flatMasterDetails extends Component {
         editUserData.flatSuperArea = e.target.value;
 
         this.setState({editUserData})
+           
+            // console.log(this.state.editUserData.flatSuperArea);
           
       }
       setCoverArea =(e) =>{
@@ -97,21 +110,24 @@ class flatMasterDetails extends Component {
         editUserData.coverArea = e.target.value;
 
         this.setState({editUserData})
+           
+            // console.log(  this.state.editUserData.coverArea);
           
       }
 
-      societyNameType = (e) => {
-          this.state.editUserData.societyId=e.target.value;
-      }
-      sizeNameType=(e) =>{
-          this.state.editUserData.sizeId=e.target.value
-          
-      }
-
-      editBook(flatId,societyName,flatType,flatSuperArea,sizeType,coverArea) {
+      editBook(flatId,flatType,flatSuperArea,coverArea) {
           this.setState({
-              editUserData:{flatId,societyName,flatType,flatSuperArea,sizeType,coverArea}, editUserModal: ! this.state.editUserModal
-          })    
+              editUserData:{flatId,flatType,flatSuperArea,coverArea}, editUserModal: ! this.state.editUserModal
+          })
+        // this.setState({
+        //   editUserData: { id, flatId, type, size }, editUserModal: ! this.state.editUserModal
+        // });
+            
+        // axios.get('http://192.168.1.113:8081/api/flat/')
+        // .then(results => results.data)
+        // .then(results => this.setState({editUserData:{flatId:results,type:results,size:results},
+        //     editUserModal: ! this.state.editUserModal}))
+            
       }
 
         deleteUser(flatId){
@@ -125,20 +141,16 @@ class flatMasterDetails extends Component {
 
     fetchUsers({list1}) {
         if(list1){
-          
             return list1.map((item) => {
                 
                 return (
                     <tr key={item.flatId}>
-                        <td>{item.society_master.societyName}</td>
                         <td>{item.flatType}</td>
                         <td>{item.flatSuperArea}</td>
-                        <td>{item.size_master.sizeType}</td>
                         <td>{item.coverArea}</td>
                         <td>
                             <Button color="success" size="sm" className="mr-2" 
-                            onClick={this.editBook.bind(this, item.flatId,item.society_master.societyName, 
-                            item.flatType, item.flatSuperArea,item.size_master.sizeType,item.coverArea)}>Edit</Button>
+                            onClick={this.editBook.bind(this, item.flatId, item.flatType, item.flatSuperArea,item.coverArea)}>Edit</Button>
                             <Button color="danger" size="sm" onClick={this.deleteUser.bind(this, item.flatId)} >Delete</Button>
                         </td>
                     </tr>
@@ -146,39 +158,6 @@ class flatMasterDetails extends Component {
             })
         }
     }
-    fetchDrop({list2}){
-        if(list2){
-            
-           return( 
-               list2.map((item) =>{
-                   return(
-                       <option key={item.societyId} value={item.societyId}>
-                        {item.societyName}
-                       </option>
-                   )
-               })
-           )
-            
-        }
-    }
-
-    fetchSizeDrop({list3}){
-        if(list3){
-          
-           return( 
-               list3.map((item) =>{
-                   return(
-                       <option key={item.sizeId} value={item.sizeId}>
-                        {item.sizeType}
-                       </option>
-                   )
-               })
-           )
-            
-        }
-    }
-
-        
 
     render() {
         return (
@@ -189,20 +168,14 @@ class flatMasterDetails extends Component {
                     <ModalHeader toggle={this.toggleEditUserModal.bind(this)}>Edit a flat</ModalHeader>
                     <ModalBody>
                     <FormGroup>
-                        <Label for="roles">SocietyName</Label>
-                       <select  value={this.state.editUserData.societyId} onChange={this.societyNameType}>
-                            <option value={this.state.editUserData.societyName}>{this.state.editUserData.societyName}</option>
-                            <option disabled>Select</option>
-                            {this.fetchDrop(this.props.flats)}
-                       </select>
-                    </FormGroup>
-                    <FormGroup>
                         <Label for="roles">flatType</Label>
                         <input
                             type="textbox"
                             placeholder="enter  flat type"
                             value={this.state.editUserData.flatType} 
                             onChange={this.selectflatType } />
+                            
+                            
                     </FormGroup>
                     <FormGroup>
                         <Label for="firstName">Flat Super Area</Label>
@@ -211,14 +184,8 @@ class flatMasterDetails extends Component {
                             placeholder="enter flat super area"
                             value={this.state.editUserData.flatSuperArea} 
                             onChange={this.setFlatSuperArea } />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="roles">sizeType</Label>
-                       <select  value={this.state.editUserData.sizeId} onChange={this.sizeNameType}>
-                            <option value={this.state.editUserData.sizeType}>{this.state.editUserData.sizeType}</option>
-                            <option disabled>Select</option>
-                            {this.fetchSizeDrop(this.props.flats)}
-                       </select>
+                             
+                        
                     </FormGroup>
                     <FormGroup>
                         <Label for="lastName">Cover Area</Label>
@@ -239,10 +206,8 @@ class flatMasterDetails extends Component {
                 <Table>
                     <thead>
                         <tr>
-                            <th>societyName</th>
                             <th>flat Type</th>
                             <th>flat SuperArea</th>
-                            <th>sizeType</th>
                             <th>coverArea</th>
                             
                         </tr>
@@ -267,9 +232,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getDetails,
-        AddDetails,
-        getDrop,
-        getSizeDrop
+        AddDetails
     }, dispatch)
 }
 
