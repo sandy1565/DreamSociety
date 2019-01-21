@@ -44,6 +44,57 @@ export  function getDetails(){
 
 }
 
+export  function getDrop(){
+
+    const request = axios.get(`http://192.168.1.113:8081/api/society`,)
+    .then(response => response.data)
+   
+    return{
+
+         type:'FETCH_DROP',
+         payload: request 
+    }
+
+}
+
+export  function getSizeDrop(){
+
+    const request = axios.get(`http://192.168.1.113:8081/api/size`,)
+    .then(response => response.data)
+   
+    return{
+
+         type:'FETCH_SIZE_DROP',
+         payload: request 
+    }
+
+}
+
+export  function getSocietyNameDetails(){
+
+    const request = axios.get(`http://192.168.1.113:8081/api/society`,)
+    .then(response => response.data)
+   
+    return{
+
+         type:'FETCH_SOCIETY_DROP',
+         payload: request 
+    }
+
+}
+
+export  function getSizeTypeDetails(){
+
+    const request = axios.get(`http://192.168.1.113:8081/api/size/`,)
+    .then(response => response.data)
+   
+    return{
+
+         type:'FETCH_SIZEMASTER_DROP',
+         payload: request 
+    }
+
+}
 // export  function deleteEntry(id){
 
 //     const request = axios.delete(`${URL_ROOT}/flatsIndex/` +id)
