@@ -7,7 +7,7 @@ exports.create = (req,res) => {
     let body = req.body;
     console.log("req.body===>",req.body)
     console.log("creating service");
-    if(!body.serviceName || !body.serviceId, !body.service_detail){
+    if(!body.serviceName && !body.serviceDetailId){
       return res.status(422).json({message:"Parameters Missing"})
     }
     Service.create({
