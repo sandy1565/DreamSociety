@@ -6,9 +6,6 @@ import societyReducer from './Society_reducer';
 import SizeDetails from './size_reducer';
 import TowerDetails from './tower_reducer';
 import flat from './flatMasterReducer';
-import societyReducer from './Society_reducer'
-import TowerDetails from './tower_reducer';
-import SizeDetails from './size_reducer';
 import EventDetails from './event_reducer';
 import serviceMasterReducer from './VendorMangement/serviceMasterReducer';
 import displayServiceMasterReducer from './VendorMangement/displayServiceMasterReducer';

@@ -63,21 +63,14 @@ class FlatMaster extends Component{
        
     //  
     }
-      
-       console.log(societyId,flatType,flatSuperArea,sizeId,coverArea);
-
-       this.props.AddDetails(societyId,flatType,flatSuperArea,sizeId,coverArea)
-       this.props.history.push('/superDashboard/flatmaster/flatmasterdetails');
-    //    this.props.getDetails();
-    
    
                
 }
     onChange = (e) => {
         if(!!this.state.errors[e.target.value]){
-            let errors=Object.assign({},this.state.errors);
-            delete errors[e.target.name];
-            this.setState({[e.target.name]:e.target.value.trim(''),errors});
+            // let errors=Object.assign({},this.state.errors);
+            // delete errors[e.target.name];
+            // this.setState({[e.target.name]:e.target.value.trim(''),errors});
         }else{
             this.setState({[e.target.name]:e.target.value.trim('')});
         }
@@ -122,10 +115,6 @@ class FlatMaster extends Component{
         }
     }
     
-    push=(e)=>{
-        e.preventDefault();
-        this.props.history.push('/superDashboard/flatmaster/flatmasterdetails')
-    }
      
     render(){
         
