@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { authHeader } from '../helper/auth-header';
 import {URN,GET_DETAILS,FETCH_DETAILS,FETCH_DROP,FETCH_SIZE_DROP,FETCH_SOCIETY_DROP,FETCH_SIZEMASTER_DROP} from '../constants/index'
 
 // const URL=`http://localhost:3001`;`
@@ -16,7 +17,7 @@ import {URN,GET_DETAILS,FETCH_DETAILS,FETCH_DROP,FETCH_SIZE_DROP,FETCH_SOCIETY_D
 
 export  function AddDetails(values){
   
-    const request= axios.post(`${URN}/flat/`,values)
+    const request= axios.post(`${URN}/flat/`,values,{headers:authHeader()})
     .then(response => response.data)
     .then(getDetails())
     // .then(getDetails())
@@ -33,7 +34,7 @@ export  function AddDetails(values){
 
 export  function getDetails(){
 
-    const request = fetch(`${URN}/flat/`,
+    const request = fetch(`${URN}/flat/`,{headers:authHeader()},
     {method:'GET'})
     .then(response => response.json())
    
@@ -47,7 +48,7 @@ export  function getDetails(){
 
 export  function getDrop(){
 
-    const request = axios.get(`${URN}/society`,)
+    const request = axios.get(`${URN}/society`,{headers:authHeader()})
     .then(response => response.data)
    
     return{
@@ -59,10 +60,10 @@ export  function getDrop(){
 }
 
 export  function getSizeDrop(){
+console.log("size api call==>",localStorage.getItem('token'))
+    const request = axios.get(`${URN}/size`,{headers:authHeader()})
+    .then(response => console.log(response.data))
 
-    const request = axios.get(`${URN}/size`,)
-    .then(response => response.data)
-   
     return{
 
          type:FETCH_SIZE_DROP,
@@ -73,7 +74,7 @@ export  function getSizeDrop(){
 
 export  function getSocietyNameDetails(){
 
-    const request = axios.get(`${URN}/society`,)
+    const request = axios.get(`${URN}/society`,{headers:authHeader()})
     .then(response => response.data)
    
     return{
@@ -86,7 +87,7 @@ export  function getSocietyNameDetails(){
 
 export  function getSizeTypeDetails(){
 
-    const request = axios.get(`${URN}/size/`,)
+    const request = axios.get(`${URN}/size/`,{headers:authHeader()})
     .then(response => response.data)
    
     return{

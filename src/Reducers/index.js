@@ -16,8 +16,6 @@ const rootReducer = combineReducers({
     userDetail,
     TowerDetails,
     SizeDetails,
-    flats,
-    flat,
     EventDetails,
     societyReducer,
     flats,
