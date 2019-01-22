@@ -19,6 +19,7 @@ constructor(props){
 
 
     handleChange=(event)=>  {
+        
         this.setState({[event.target.name]:event.target.value});
         console.log(event.target.value)
         
@@ -37,7 +38,8 @@ constructor(props){
         if(detail){
             return detail.service.map((item)=>{console.log(item)
                     return(
-                        <option key={item.serviceDetailId} value={item.serviceDetailId}>{item.service_detail}</option>
+                        <option key={item.serviceDetailId} value={item.serviceDetailId}>
+                        {item.service_detail}</option>
                     )
                     
                 })
@@ -89,6 +91,7 @@ render(){
                        
           
            <select value={this.state.serviceDetailId} onChange={(e) => this.setState({serviceDetailId: e.target.value})} >
+           <option >--SELECT--</option>    
         
                 {this.getDropdown(this.props.serviceMasterReducer)}
 
