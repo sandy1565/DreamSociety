@@ -14,9 +14,10 @@ class displayServices extends Component{
         state={
             editServiceData:{
                 
-            serviceId:[],
-            serviceName:[],
-            service_detail:[]
+            serviceId:'',
+            serviceName:'',
+            service_detail:[],
+            serviceDetailId:''
         },
         editServiceModal: false
         
@@ -53,26 +54,27 @@ class displayServices extends Component{
       }
 
     updateServices() {
-        let {serviceId, serviceName,service_detail } = this.state.editServiceData;
+        let {serviceId, serviceName,service_detail,serviceDetailId } = this.state.editServiceData;
     
         axios.put(`${URN}/service/` + this.state.editServiceData.serviceId, {
-            serviceName, service_detail
+            serviceName, service_detail,serviceDetailId
         }).then((response) => {
           this.refreshData();
     
           this.setState({
-            editServiceModal: false, editServiceData: {  serviceId: '',serviceName: '', service_detail: ''}
+            editServiceModal: false, editServiceData: {  serviceId: '',serviceName: '', service_detail: '',serviceDetailId:''}
           })
         });
     
       }
 
-    editUser(serviceId,serviceName,service_detail){
-        console.log('ffffff',serviceName);
-        console.log('hhhhh',serviceId);
+    editUser(serviceId,serviceName,service_detail,serviceDetailId){
+        console.log('serviceName',serviceName);
+        console.log('serviceId',serviceId);
+        console.log('serviceDetailId',serviceDetailId)
         this.setState({
             
-            editServiceData:{ serviceId, serviceName, service_detail}, editServiceModal: !this.state.editServiceModal
+            editServiceData:{ serviceId, serviceName, service_detail,serviceName}, editServiceModal: !this.state.editServiceModal
         });
     
    } 
