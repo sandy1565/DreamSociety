@@ -1,11 +1,12 @@
-import axios from 'axios';
 import {URN,GET_SERVICE_TYPE} from '../constants/index';
+import {authHeader} from '../helper/auth-header';
 
 export function getServiceTypes(serviceId){
-    const request=fetch(`${URN}/service`,serviceId,{method:'GET'})
+
+    const request=fetch(`${URN}/service`,serviceId,{method:'GET' ,headers:authHeader()})
     .then((response)=> response.json())
     return{
         type:GET_SERVICE_TYPE,
-        payload:serviceId
+        payload:request
     }
 }

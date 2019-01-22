@@ -1,0 +1,21 @@
+.form-group {
+    margin-bottom: 1rem;
+    color: darkblue;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: cadetblue;
+    border-color: cadetblue;
+    margin-left: 190px;
+}
+
+.form{
+    margin-left: 400px;
+    margin-top: 50px;
+
+}
+/* 
+.table{
+    width: 100%;
+} */
