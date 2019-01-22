@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {URN,GET_DETAILS,FETCH_DETAILS} from '../constants/index'
+import {URN,GET_DETAILS,FETCH_DETAILS,FETCH_DROP,FETCH_SIZE_DROP,FETCH_SOCIETY_DROP,FETCH_SIZEMASTER_DROP} from '../constants/index'
 
 // const URL=`http://localhost:3001`;`
 
@@ -14,9 +14,9 @@ import {URN,GET_DETAILS,FETCH_DETAILS} from '../constants/index'
 // const  URL_ROOT = 'http://192.168.1.113:8081/api/flat/';
 
 
-export  function AddDetails(societyId,flatType,flatSuperArea,sizeId,coverArea){
+export  function AddDetails(values){
   
-    const request= axios.post(`${URN}/flat/`,{societyId,flatType,flatSuperArea,sizeId,coverArea})
+    const request= axios.post(`${URN}/flat/`,values)
     .then(response => response.data)
     .then(getDetails())
     // .then(getDetails())
@@ -47,12 +47,12 @@ export  function getDetails(){
 
 export  function getDrop(){
 
-    const request = axios.get(`http://192.168.1.113:8081/api/society`,)
+    const request = axios.get(`${URN}/society`,)
     .then(response => response.data)
    
     return{
 
-         type:'FETCH_DROP',
+         type:FETCH_DROP,
          payload: request 
     }
 
@@ -60,12 +60,12 @@ export  function getDrop(){
 
 export  function getSizeDrop(){
 
-    const request = axios.get(`http://192.168.1.113:8081/api/size`,)
+    const request = axios.get(`${URN}/size`,)
     .then(response => response.data)
    
     return{
 
-         type:'FETCH_SIZE_DROP',
+         type:FETCH_SIZE_DROP,
          payload: request 
     }
 
@@ -73,12 +73,12 @@ export  function getSizeDrop(){
 
 export  function getSocietyNameDetails(){
 
-    const request = axios.get(`http://192.168.1.113:8081/api/society`,)
+    const request = axios.get(`${URN}/society`,)
     .then(response => response.data)
    
     return{
 
-         type:'FETCH_SOCIETY_DROP',
+         type:FETCH_SOCIETY_DROP,
          payload: request 
     }
 
@@ -86,12 +86,12 @@ export  function getSocietyNameDetails(){
 
 export  function getSizeTypeDetails(){
 
-    const request = axios.get(`http://192.168.1.113:8081/api/size/`,)
+    const request = axios.get(`${URN}/size/`,)
     .then(response => response.data)
    
     return{
 
-         type:'FETCH_SIZEMASTER_DROP',
+         type:FETCH_SIZEMASTER_DROP,
          payload: request 
     }
 

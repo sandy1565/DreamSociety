@@ -20,6 +20,9 @@ import DisplayEventMaster from './containers/EventMaster/display-event-master';
 import DisplaySizeMaster from './containers/SizeMaster/display-size-master';
 import FlatMaster from './containers/Flat_master/flatMaster';
 import FlatMasterDetails from './containers/Flat_master/flatMasterDetails';
+import serviceMaster from './containers/VendorMangement/ServiceMaster/serviceMaster';
+import displayServices from './containers/VendorMangement/ServiceMaster/displayServiceMaster';
+import vendorMaster from './containers/VendorMangement/VendorMaster/vendorMaster';
 
 class App extends Component {
   render() {
