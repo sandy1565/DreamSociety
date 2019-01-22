@@ -11,17 +11,13 @@ import OwnerDashboard from './containers/OwnerDashboard/OwnerDashboard';
 import SuperDashboard from './containers/SuperDashboard/SuperDashboard';
 import TenantDashboard from './containers/TenantDashboard/TenantDashboard';
 import VendorDashboard from './containers/VendorDashboard/VendorDashboard';
-
 import SocietyManagement from './containers/SocietyManagement/SocietyMangement';
 import TowerMaster from   './containers/TowerMaster/tower-master';
 import  DisplayTowerMaster from './containers/TowerMaster/display-tower-master';
 import SizeMaster from   './containers/SizeMaster/size-master';
 import  EventMaster from './containers/EventMaster/event-master';
-
+import DisplayEventMaster from './containers/EventMaster/display-event-master';
 import DisplaySizeMaster from './containers/SizeMaster/display-size-master';
-
-
-
 import FlatMaster from './containers/Flat_master/flatMaster';
 import FlatMasterDetails from './containers/Flat_master/flatMasterDetails';
 
@@ -42,7 +38,6 @@ class App extends Component {
             <Route path='/superDashboard/registration' component={Registration} />
             <Route path ={'/superDashboard/user_details'} component={UserDetails} />
             <Route path ={'/superDashboard/registration/user_details'} component={UserDetails} />
-           
             <Route path ='/superDashboard/display-tower' component ={DisplayTowerMaster} />
             <Route path ='/superDashboard/display-size' component ={DisplaySizeMaster} />
             <Route path ='/superDashboard/towermaster'  component ={TowerMaster} />
@@ -50,8 +45,8 @@ class App extends Component {
             <Route path ='/superDashboard/event' component ={EventMaster}/>
             <Route path='/superDashboard/flatmaster' exact component= {FlatMaster} />
             <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
-            <Route path ={'/user_details'} component={UserDetails} />
             <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
+            <Route path ='/superDashboard/display-event'component ={DisplayEventMaster}/>
           </Switch>
         </div>
       </BrowserRouter>

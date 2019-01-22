@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 
 
-export default  class DisplayEventMaster extends component
+export default  class DisplayEventMaster extends Component
 
         {
 
