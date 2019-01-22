@@ -13,15 +13,12 @@ class Registration extends Component {
         this.state = {
             roleName:[],
             roles:"",
-            roleTypeError:"",
             firstName:"",
             lastName:"",
             userName:"",
             email:"",
-            emailError:"",
             contact: "",
             password:"",
-            passwordError:"",
             passwordConfirmation:"",
             isSubmit: false,
             errors:{}
@@ -97,19 +94,17 @@ class Registration extends Component {
         
         // const isValid = this.validate();
         if(isValid) {
-            this.props.addUser({...this.state, roleTypeError: "", emailError: "", passwordError: ""});
+            this.setState({isSubmit: true})
+            this.props.addUser({...this.state});
             this.setState({
                 roleName:[],
                 roles:"",
-                roleTypeError:"",
                 firstName:"",
                 lastName:"",
                 userName:"",
                 email:"",
-                emailError:"",
                 contact: "",
                 password:"",
-                passwordError:"",
                 passwordConfirmation:"",
                 isSubmit: true
             });
@@ -138,8 +133,7 @@ class Registration extends Component {
         const form = <Form onSubmit={this.submit}>
             <FormGroup>
             <Label>User Type</Label>
-                <Input type="select" onChange={(e) => {this.setState({roles: e.target.value});
-                            }}>
+                <Input type="select" name="roles" onChange={this.onChange}>
                     <option value=''>--Select--</option>
                     {this.fetchRoles(this.props.userDetail)}
                 </Input>
