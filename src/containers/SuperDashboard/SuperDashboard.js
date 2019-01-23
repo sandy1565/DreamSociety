@@ -3,6 +3,7 @@ import {userLogout} from '../../Actions/login_action';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import './SuperDashboard.css';
 
 class SuperDashboard extends Component {
     logout=()=>{
@@ -11,20 +12,24 @@ class SuperDashboard extends Component {
     render() {
         return (
             <div>
-                <h1> SuperDashboard</h1>
-                <Link to="/superDashboard/registration" ><h4>Registration</h4></Link>
-                <Link to="#" ><h4>Parking Mangement</h4></Link>
-                <Link to="#" ><h4>Assets Management</h4></Link>
-                <Link to="/superDashboard/event " ><h4>Event Management</h4></Link>
-                <Link to="#" ><h4>Vendor Management</h4></Link>
-                <Link to="/superDashboard/flatmaster" ><h4>Flat Master</h4></Link>
-                <Link to="/superDashboard/societyManagement" ><h4>Society Management</h4></Link>
-                <Link to="#" ><h4>Service Master</h4></Link>
-                <Link to="/superDashboard/towermaster"><h4>Tower Master</h4></Link>
-                <Link to="/superDashboard/sizemaster"><h4>Size Master</h4></Link>
-
-                 <button className='btn btn-danger' onClick={this.logout}>Logout</button>
+                <h1 className='heading'> SuperDashboard</h1>
+                <div className="sidebar">
+                <input placeholder="search"/>
+                <Link className="Link"to="/superDashboard/registration" ><h5 style={{textDecoration:'none'}}>Registration</h5></Link>
+                <Link className="Link"to="#" ><h5>Parking Mangement</h5></Link>
+                <Link className="Link"to="#" ><h5>Assets Management</h5></Link>
+                <Link className="Link"to="/superDashboard/event " ><h5>Event Management</h5></Link>
+                <Link className="Link"to="#" ><h5>Vendor Management</h5></Link>
+                <Link className="Link"to="/superDashboard/flatmaster" ><h5>Flat Master</h5></Link>
+                <Link className="Link"to="/superDashboard/societyManagement" ><h5>Society Management</h5></Link>
+                <Link className="Link"to="#" ><h5>Service Master</h5></Link>
+                <Link className="Link"to="/superDashboard/towermaster"><h5>Tower Master</h5></Link>
+                <Link className="Link"to="/superDashboard/sizemaster"><h5>Size Master</h5></Link>
+                </div>
+                 <button className='btn btn-danger' id='logout' onClick={this.logout}>Logout</button>
+     
             </div>
+
         );
     }
 }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { viewTower } from '../../Actions';
+import { viewTower } from '../../Actions/tower_action';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import {authHeader} from '../../helper/auth-header';
 import { Button, Modal, FormGroup, ModalBody, ModalHeader, ModalFooter, Input, Label } from 'reactstrap';
 
 class DisplayTowerMaster extends Component {
@@ -11,6 +11,8 @@ class DisplayTowerMaster extends Component {
     super(props);
     // this.deleteTower = this.deleteTower.bind(this);
   }
+
+
   state = {
     editTowerData: {
       
@@ -32,10 +34,10 @@ class DisplayTowerMaster extends Component {
   deleteTower(towerId) {
     console.log(towerId);
 
-    var setUrl = 'http://192.168.1.113:8081/api/tower/'+towerId;
-    console.log("------------- setUrl", setUrl);
-    axios.delete(setUrl).then((response) => {
-      console.log("-------axios.delete-----------");
+    
+    axios.delete(
+      'http://192.168.1.113:8081/api/tower/'+towerId,{headers:authHeader()}).then((response) => {
+  
         this.setState(this.refreshdata());
 
       })
@@ -54,7 +56,7 @@ class DisplayTowerMaster extends Component {
     console.log('----------------',towerId, towerName);
     axios.put('http://192.168.1.113:8081/api/tower/' + this.state.editTowerData.towerId, {
       towerName
-    }).then((response) => {    
+    },{headers:authHeader()}).then((response) => {    
       this.refreshdata();
 
       this.setState({
@@ -74,11 +76,11 @@ class DisplayTowerMaster extends Component {
 
 
   TowerMasterDetails({tower}) {
-    console.log(tower);
+    
     if (tower) {
       return tower.map((item) => {
         return (
-          <tr key={item.id}>
+          <tr key={item.towerId}>
            
  
             <td>{item.towerName}</td>

@@ -1,0 +1,50 @@
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 60%;
+    overflow: auto;
+  }
+  .sidebar input{
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    padding-left: 7px;
+  }
+ 
+  .sidebar .Link {
+    display: block;
+    color: black;
+    padding: 0px;
+    text-decoration:none;
+    margin-left: 5px; 
+  }
+  
+ .Link.active {
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+  }
+  .Link :hover:not(.active) {
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+  }
+  #logout{
+    float: right;
+    margin-right: 10px;
+  }
+  .heading{
+    background: #555;
+    color: white;
+    text-shadow: 2px 2px blue;
+  }
+  /* .footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+  } */
+  

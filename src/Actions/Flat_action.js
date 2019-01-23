@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {URN,GET_DETAILS,FETCH_DETAILS,FETCH_DROP,FETCH_SIZE_DROP,FETCH_SOCIETY_DROP,FETCH_SIZEMASTER_DROP} from '../constants/index'
-
+import {authHeader} from '../helper/auth-header'
 // const URL=`http://localhost:3001`;`
 
 // export function getUser(){
@@ -16,7 +16,7 @@ import {URN,GET_DETAILS,FETCH_DETAILS,FETCH_DROP,FETCH_SIZE_DROP,FETCH_SOCIETY_D
 
 export  function AddDetails(values){
   
-    const request= axios.post(`${URN}/flat/`,values)
+    const request= axios.post(`${URN}/flat/`,values,{headers:authHeader()})
     .then(response => response.data)
     .then(getDetails())
     // .then(getDetails())
@@ -34,7 +34,7 @@ export  function AddDetails(values){
 export  function getDetails(){
 
     const request = fetch(`${URN}/flat/`,
-    {method:'GET'})
+    {method:'GET',headers:authHeader()})
     .then(response => response.json())
    
     return{
@@ -47,7 +47,7 @@ export  function getDetails(){
 
 export  function getDrop(){
 
-    const request = axios.get(`${URN}/society`,)
+    const request = axios.get(`${URN}/society`,{headers:authHeader()})
     .then(response => response.data)
    
     return{
@@ -60,7 +60,7 @@ export  function getDrop(){
 
 export  function getSizeDrop(){
 
-    const request = axios.get(`${URN}/size`,)
+    const request = axios.get(`${URN}/size`,{headers:authHeader()})
     .then(response => response.data)
    
     return{
@@ -73,7 +73,7 @@ export  function getSizeDrop(){
 
 export  function getSocietyNameDetails(){
 
-    const request = axios.get(`${URN}/society`,)
+    const request = axios.get(`${URN}/society`,{headers:authHeader()})
     .then(response => response.data)
    
     return{
@@ -86,7 +86,7 @@ export  function getSocietyNameDetails(){
 
 export  function getSizeTypeDetails(){
 
-    const request = axios.get(`${URN}/size/`,)
+    const request = axios.get(`${URN}/size/`,{headers:authHeader()})
     .then(response => response.data)
    
     return{
