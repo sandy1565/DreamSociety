@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import AddTower  from '../../Actions';
+import AddTower  from '../../Actions/tower_action';
 import { bindActionCreators } from 'redux';
 import {connect}  from 'react-redux';
 

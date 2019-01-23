@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import  {addServiceType,getServiceDetail}  from '../../../Actions/serviceMasterAction';
+import './serviceMaster.css'
 
 
 class serviceMaster extends Component{
@@ -11,6 +12,7 @@ constructor(props){
             
                  serviceName:'',
                  serviceDetailId:'',
+                 services:'',
                  service_detail:[],
                  
         }
@@ -38,7 +40,7 @@ constructor(props){
         if(detail){
             return detail.service.map((item)=>{console.log(item)
                     return(
-                        <option key={item.serviceDetailId} value={item.serviceDetailId}>
+                        <option key={item.serviceDetailId} value={item.serviceDetailId} required>
                         {item.service_detail}</option>
                     )
                     
@@ -59,6 +61,7 @@ constructor(props){
             state: {
                 serviceName:'',
                 serviceDetailId:'',
+                services:'',
                 service_detail:[]
              
                 }
@@ -82,23 +85,21 @@ constructor(props){
 render(){
     
     return(
-        <div>
+        <div className="form">
             <form onSubmit={this.onSubmit}>
-             <label>Service Type</label>
-                <input type="text" name="serviceName" value={this.state.serviceName} onKeyPress={this.OnKeyPressUserhandler}  onChange={this.handleChange}></input>
-             <br/>
-             <label>Service Details</label>
-                       
-          
-           <select value={this.state.serviceDetailId} onChange={(e) => this.setState({serviceDetailId: e.target.value})} >
-           <option >--SELECT--</option>    
-        
-                {this.getDropdown(this.props.serviceMasterReducer)}
-
-            </select>
-            
-            <br/>
-              <button type="submit" value="submit">Submit</button>
+                <div className="form-group col-md-6">
+                    <label>Service Type</label>
+                    <input type="text"   className ="form-control" name="serviceName" value={this.state.serviceName} onKeyPress={this.OnKeyPressUserhandler}  onChange={this.handleChange} required></input>
+                </div>
+                <div className="form-group  col-md-6">
+                    <label>Service Details</label>
+                    <select className ="form-control" value={this.state.serviceDetailId} onChange={(e) => this.setState({serviceDetailId: e.target.value})} required>
+                    <option >--SELECT--</option>    
+                          {this.getDropdown(this.props.serviceMasterReducer)}
+                    </select>
+                </div>
+         
+                <button type="submit" class="btn btn-primary" value="submit">Submit</button>
             </form>
     </div>
     )

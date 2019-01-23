@@ -1,11 +1,12 @@
 
 
 import React, { Component } from 'react';
-import { displaySize } from '../../Actions';
+import { displaySize } from '../../Actions/size_action';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {authHeader} from '../../helper/auth-header';
 import { Button, Modal, FormGroup, ModalBody, ModalHeader, ModalFooter, Input, Label } from 'reactstrap';
 // import { Link } from 'react-router-dom';
 class DisplaySizeMaster extends Component {
@@ -49,13 +50,11 @@ class DisplaySizeMaster extends Component {
   updateSize() {
     let { id, sizeId, sizeType } = this.state.editSizeData;
     console.log('dfdsfd', id,sizeId, sizeType);
-    var setUrl = 'http://192.168.1.113:8081/api/size/' + this.state.editSizeData.sizeId;
-    console.log("---------setUrl---------", setUrl);
-    axios.put(setUrl, {
+ 
+    axios.put('http://192.168.1.113:8081/api/size/' +this.state.editSizeData.sizeId, {
       sizeType
-    }).then((response) => {
+    },{headers:authHeader()}).then((response) => {
 
-      console.log("------------then((response)---------", sizeType)
       this.refreshData();
 
       this.setState({
@@ -78,7 +77,7 @@ class DisplaySizeMaster extends Component {
   deleteSize(sizeId) {
     console.log('sisxcdasd', sizeId);
 
-    axios.delete('http://192.168.1.113:8081/api/size/' + sizeId).then((response) => {
+    axios.delete('http://192.168.1.113:8081/api/size/' + sizeId,{headers:authHeader()}).then((response) => {
       console.log(response.data);
       this.setState(this.refreshData())
     })
@@ -92,16 +91,15 @@ class DisplaySizeMaster extends Component {
     if (getSize) {
       return getSize.map((item) => {
         return (
-          <tr key={item.id}>
+          <tr key={item.sizeId}>
 
 
 
             <td>{item.sizeType}</td>
-            <br />
+        
             <td>
               <button className="btn btn-primary" onClick={this.editSize.bind(this, item.id,item.sizeId, item.sizeType)}> Edit</button>
-            </td>
-            <td>
+            
               <button className="btn btn-danger" onClick={this.deleteSize.bind(this, item.sizeId)}>Delete</button>
             </td>
           </tr>

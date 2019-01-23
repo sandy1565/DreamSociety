@@ -1,8 +1,9 @@
 import axios from 'axios';
+import {authHeader} from '../helper/auth-header';
 import {URN,GET_DETAIL,GET_SERVICE,ADD_SERVICE,REMOVE_SERVICE} from '../constants/index';
 
 export function getServiceDetail(){
-    const request=axios.get(`${URN}/serviceDetail`,{method:'GET'})
+    const request=axios.get(`${URN}/serviceDetail`,{headers:authHeader()})
     .then(response =>response.data)
     return {
         type:GET_DETAIL,
@@ -11,7 +12,7 @@ export function getServiceDetail(){
 }
 
 export function getServiceType(){
-    const request =fetch(`${URN}/service`, { method: 'GET'})
+    const request =fetch(`${URN}/service`, {method:'GET' ,headers:authHeader()})
     .then(response => response.json())
     return {
         type:GET_SERVICE,
@@ -20,8 +21,7 @@ export function getServiceType(){
 }
 
 export function addServiceType(values){
-    const request = axios.post(`${URN}/service`,values, { method: 'POST'}
-    )
+    const request = axios.post(`${URN}/service`,values, {headers:authHeader()})
     .then()
     return {
         type:ADD_SERVICE,
@@ -30,12 +30,12 @@ export function addServiceType(values){
  
 }
 export function delServiceType(serviceId){
-    const request = axios.delete(`${URN}/service` +serviceId,{method:'DELETE'})
+    const request = axios.delete(`${URN}/service` +serviceId,{headers:authHeader()})
     .then((response) => response.data)
 
     return {
         type:REMOVE_SERVICE,
-        payload:serviceId
+        payload:request
     }
 }
 
