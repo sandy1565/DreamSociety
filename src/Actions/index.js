@@ -1,16 +1,19 @@
 import axios from 'axios';
+import { authHeader } from '../helper/auth-header';
+import _ from 'lodash';
 import{URN,ADD_USER,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
 
 export function addUser(values) {
+    console.log("localstorage get item---?",localStorage.getItem('token'))
     const request = axios.post(`${URN}/auth/signup`, values , { method: 'POST',
                     headers: {
                         'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'x-access-token': authHeader()
                     },
                     body: JSON.stringify(values) })
                     .then(response => response.data)
                     .then(result => result)
-                    .then(getUsers())
                     .catch(error=> error);
                     return {
                         type: ADD_USER,
@@ -19,7 +22,7 @@ export function addUser(values) {
 }
 
 export function getUsers(){
-    const request = axios.get(`${URN}/user`, {method: 'GET'}).then((response) => response.data)
+    const request = axios.get(`${URN}/user`,  {headers:authHeader()}).then((response) => response.data)
     .then()
 
     return {
@@ -29,7 +32,7 @@ export function getUsers(){
 }
 
 export function getRoles(){
-    const request = axios.get(`${URN}/user/role`, {method:'GET'})
+    const request = axios.get(`${URN}/user/role`, {headers:authHeader()})
     .then((response =>response.data))
 
     return {
@@ -39,7 +42,7 @@ export function getRoles(){
 }
 
 export function deleteUsers(id){
-   axios.delete(`${URN}/User/` +id)
+   axios.delete(`${URN}/User/` +id, {headers:authHeader()})
     .then((response) => response.data)
 
     return {

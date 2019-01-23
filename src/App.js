@@ -11,6 +11,7 @@ import OwnerDashboard from './containers/OwnerDashboard/OwnerDashboard';
 import SuperDashboard from './containers/SuperDashboard/SuperDashboard';
 import TenantDashboard from './containers/TenantDashboard/TenantDashboard';
 import VendorDashboard from './containers/VendorDashboard/VendorDashboard';
+import ParkingMaster from './containers/ParkingMaster/ParkingMaster'
 
 import SocietyManagement from './containers/SocietyManagement/SocietyMangement';
 import TowerMaster from   './containers/TowerMaster/tower-master';
@@ -44,6 +45,7 @@ class App extends Component {
             <Route path='/vendorDashboard' component={VendorDashboard} />
             <Route path='/superDashboard/registration' component={Registration} />
             <Route path ={'/superDashboard/user_details'} component={UserDetails} />
+            <Route path='/superDashboard/parking_master' component={ParkingMaster} />
             <Route path ={'/superDashboard/registration/user_details'} component={UserDetails} />
            
             <Route path ='/superDashboard/display-tower' component ={DisplayTowerMaster} />

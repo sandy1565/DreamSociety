@@ -1,4 +1,4 @@
-export  const URN = 'http://192.168.1.113:8081/api';
+export  const URN = 'http://192.168.1.15:8081/api';
 export const USER_LOGIN='user_login';
 export const GET_ROLES='get_roles';
 export const GET_USERS='get_users';
@@ -17,7 +17,7 @@ export const GET_COUNTRY='get_country';
 export const FETCH_DROP='fetch_drop';
 export const FETCH_SIZE_DROP='fetch_size_drop';
 export const ADD_DETAILS='add_details';
-export const FETCH_SOCIETY_DROP='fetch_society_drop'
+export const FETCH_SOCIETY_DROP='fetch_society_drop';
 export const FETCH_SIZEMASTER_DROP='fetch_sizemaster_drop';
 export const GET_DETAIL='get_detail';
 export const GET_SERVICE='get_service';
