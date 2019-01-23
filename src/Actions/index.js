@@ -1,6 +1,6 @@
 import axios from 'axios';
 import{URN,ADD_USER,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
-
+import {authHeader} from '../helper/auth-header';
 export function addUser(values) {
     const request = axios.post(`${URN}/auth/signup`, values , { method: 'POST',
                     headers: {
@@ -19,7 +19,7 @@ export function addUser(values) {
 }
 
 export function getUsers(){
-    const request = axios.get(`${URN}/user`, {method: 'GET'}).then((response) => response.data)
+    const request = axios.get(`${URN}/user`, {method: 'GET',headers:authHeader()}).then((response) => response.data)
     .then()
 
     return {
@@ -29,7 +29,7 @@ export function getUsers(){
 }
 
 export function getRoles(){
-    const request = axios.get(`${URN}/user/role`, {method:'GET'})
+    const request = axios.get(`${URN}/user/role`, {method:'GET',headers:authHeader()})
     .then((response =>response.data))
 
     return {
@@ -39,7 +39,7 @@ export function getRoles(){
 }
 
 export function deleteUsers(id){
-   axios.delete(`${URN}/User/` +id)
+   axios.delete(`${URN}/User/` +id,{headers:authHeader()})
     .then((response) => response.data)
 
     return {
@@ -51,7 +51,7 @@ export function deleteUsers(id){
 
 
 export  default function AddTower(values){
-    const request = axios.post(`${URN}/tower`,values, {method: 'POST'})
+    const request = axios.post(`${URN}/tower`,values, {method: 'POST',headers:authHeader()})
     .then()
    console.log(request);
    
@@ -63,7 +63,7 @@ export  default function AddTower(values){
 
 
 export function viewTower(){
-const request  = fetch(`${URN}/tower`,{method: 'GET'})
+const request  = fetch(`${URN}/tower`,{method: 'GET',headers:authHeader()})
 .then(response => response.json())
 return{
       type: GET_TOWER,
@@ -74,7 +74,7 @@ return{
 
 export   function AddSize(values){
  
-    const request =axios.post(`${URN}/size`,values,{method:'POST'})
+    const request =axios.post(`${URN}/size`,values,{method:'POST',headers:authHeader()})
      .then()
       return{  
           type:ADD_SIZE,
@@ -84,7 +84,7 @@ export   function AddSize(values){
 }
 
 export function displaySize(){
-    const request = fetch(`${URN}/size`,{method:'GET'})
+    const request = fetch(`${URN}/size`,{method:'GET',headers:authHeader()})
     .then(response => response.json())
     return {
         type:GET_SIZE,
@@ -117,7 +117,7 @@ export function updateSize(size) {
 
 
 export function ViewEvent(){
-const request = axios.get(`${URN}/event`).then((response)=>{
+const request = axios.get(`${URN}/event`,{headers:authHeader()}).then((response)=>{
     response.data
 })
 return{
@@ -127,7 +127,7 @@ return{
 }
 
 export function GetEventOrganiser(){
-    const request = axios.get(`${URN}/eventOrganiser`).then((response)=>{
+    const request = axios.get(`${URN}/eventOrganiser`,{headers:authHeader()}).then((response)=>{
         response.data
     })
     return{

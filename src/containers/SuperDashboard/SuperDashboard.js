@@ -3,6 +3,7 @@ import {userLogout} from '../../Actions/login_action';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import './SuperDashboard.css';
 
 class SuperDashboard extends Component {
     logout=()=>{
@@ -25,6 +26,7 @@ class SuperDashboard extends Component {
 
                  <button className='btn btn-danger' onClick={this.logout}>Logout</button>
             </div>
+
         );
     }
 }
