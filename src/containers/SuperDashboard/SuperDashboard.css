@@ -33,18 +33,48 @@
     color: white;
     text-decoration: none;
   }
-  #logout{
+ .head #logout{
     float: right;
     margin-right: 10px;
+    margin-top:-46px
   }
-  .heading{
+  .head {
     background: #555;
     color: white;
     text-shadow: 2px 2px blue;
+    display: inline-block;
+    width:100%
   }
-  /* .footer {
-    background-color: #555;
-    color: white;
-    padding: 15px;
-  } */
-  
+  .head .icons{
+    float: right;
+    margin-right: 100px;
+    padding:10px
+  }
+
+.head .icons button{
+  margin-right:5px
+}
+
+.head .icons .user{
+  border-radius: 10px;
+  color:white;
+  border:none;
+  background-color: black;
+}
+.head .icons .user:hover{
+color:black;
+background-color: white;
+}
+.head .icons .user:hover .content{
+  color:black;
+  background-color: white; 
+  display: block;
+  }
+  .content{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    /* min-width: 160px; */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /* z-index: 1; */
+  }
