@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getDetails, AddDetails,getDrop,getSizeDrop } from '../../Actions/Flat_action';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
+import { authHeader } from '../../helper/auth-header';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
@@ -61,8 +62,8 @@ class flatMasterDetails extends Component {
       updateBook=()=> {
          let{ flatId,societyId,flatType,flatSuperArea,sizeId,coverArea} =this.state.editUserData;
   
-        axios.put('http://192.168.1.113:8081/api/flat/' +flatId, {  societyId, flatType, flatSuperArea,
-        sizeId,coverArea}).then((response) => {
+        axios.put('http://192.168.1.113:8081/api/flat/' +flatId,{  societyId, flatType, flatSuperArea,
+        sizeId,coverArea},{headers:authHeader()}).then((response) => {
           this.refreshData();
         })
           this.setState({
@@ -116,7 +117,7 @@ class flatMasterDetails extends Component {
 
         deleteUser(flatId){
             let { isActive } = this.state.editUserData
-        axios.put('http://192.168.1.113:8081/api/flat/delete/'+flatId, {isActive}).then((response) => {
+        axios.put('http://192.168.1.113:8081/api/flat/delete/'+flatId, {isActive},{headers:authHeader()}).then((response) => {
             this.refreshData()
             this.setState({editUserData: {isActive: false}})
             
@@ -191,7 +192,7 @@ class flatMasterDetails extends Component {
                     <FormGroup>
                         <Label for="roles">SocietyName</Label>
                        <select  value={this.state.editUserData.societyId} onChange={this.societyNameType}>
-                            <option value={this.state.editUserData.societyName}>{this.state.editUserData.societyName}</option>
+                            <option>{this.state.editUserData.societyName}</option>
                             <option disabled>Select</option>
                             {this.fetchDrop(this.props.flats)}
                        </select>

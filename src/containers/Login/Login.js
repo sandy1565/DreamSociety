@@ -12,11 +12,9 @@ constructor(props){
     
     this.state={
         username:'',
-        password:'',
-       
+        password:'', 
     }
 }
-
 
 
 onChangeHandler=(e)=>{
@@ -30,11 +28,13 @@ e.preventDefault();
 const { username, password } = this.state
 if (username!==null && password!==null ) {
     this.props.login(username,password)
+    .then(response=>{
+        console.log('response',response)
+    })
+    
     
 }
 }
-
-
 
 render() {
     return (
@@ -61,9 +61,8 @@ render() {
 }
 
 function mapStateToProps(state) {
-  console.log('----------',state)
     return {
-        loginReducer: state.loginReducer
+        loginReducer:state.loginReducer
     }
 }
 

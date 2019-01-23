@@ -84,6 +84,7 @@ class FlatMaster extends Component{
             console.log(this.state)
     }
     societyName({list0}){
+        console.log(list0)
         if(list0){
             
            return( 
