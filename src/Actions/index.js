@@ -42,15 +42,54 @@ export function getRoles(){
 }
 
 export function deleteUsers(id){
-   axios.delete(`${URN}/User/` +id, {headers:authHeader()})
-    .then((response) => response.data)
+   axios.put(`${URN}/user/` +id, {headers:authHeader()})
 
     return {
         type:DELETE_USERS,
         payload:id
     }
 }
+// ===================Testing============
+export const FETCH_BASEMENT = 'FETCH_BASEMENT';
+export const FETCH_PARKING = 'FETCH_PARKING';
+export const CREATE_PARKING = 'CREATE_PARKING';
+export const DELETE_PARKING = 'DELETE_PARKING';
+const ROOT_URL = 'http://localhost:3001';
+const API_KEY = '?key=parking'
 
+export function fetchBasement(){
+    const request = axios.get(`${URN}/parking`, {headers:authHeader()});
+    return {
+        type: FETCH_BASEMENT,
+        payload: request
+    };
+}
+
+export function createParking(props){
+    const request = axios.post(`${URN}/slot`, props);
+    return {
+        type: CREATE_PARKING,
+        payload: request
+    } 
+}
+
+export function fetchParking(props){
+    const request = axios.get(`http://localhost:3002/createParking${API_KEY}`, props);
+    return {
+        type: FETCH_PARKING,
+        payload: request
+    }
+}   
+
+export function deleteParking(id){
+    const request = axios.delete(`http://localhost:3002/createParking/${id}${API_KEY}`);
+    return {
+        type: DELETE_PARKING,
+        payload: request
+    }
+}
+
+// =====================
 
 
 export  default function AddTower(values){

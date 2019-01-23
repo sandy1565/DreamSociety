@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUsers, getRoles, addUser } from '../../Actions';
+import { getUsers, getRoles, addUser, deleteUsers } from '../../Actions';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -77,11 +77,14 @@ class userDetails extends Component {
             this.refreshData()
             this.setState({
                 editUserData: { isActive: false }
-
             })
             console.log(response)
         })
     }
+    // deleteUser(id){
+    //     this.props.deleteUsers(id)
+    //     .then(() => this.setState({isActive: false}))
+    // }
 
     fetchUsers({ user }) {
         if (user) {
@@ -244,7 +247,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getUsers,
         getRoles,
-        addUser
+        addUser,
+        deleteUsers
     }, dispatch)
 }
 
