@@ -1,20 +1,24 @@
 
  
- 
- 
-//  export default function (state=initialState,action){
-//   switch(action.type){
-//       case 'GET_EVENT':  return{
-//           ...state, get: action.payload
-//       }
-//       case 'GET_EVENT_ORGANISER': return{
-//           ...state, get_event :action.payload
-//       }
-//       case 'VIEW_EVENT': return{
-//           ...state,view_event:action.payload
-//       }
-//   }
-
+ import {GET_EVENT,GET_EVENT_ORGANISER,ADD_EVENT} from '../constants/index'
+ const initialState ={
+    //  get:[]
+ }
+ export default function (state={},action){
+  switch(action.type){
+      case GET_EVENT:  return{
+          ...state, getEvent: action.payload
+      }
+      case GET_EVENT_ORGANISER: return{
+          ...state, events :action.payload
+      }
+      case ADD_EVENT: return{
+          ...state,add_event:action.payload
+      }
+      default : return state
+      
+  }
+ }
 
 
 

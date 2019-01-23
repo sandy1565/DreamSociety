@@ -55,6 +55,7 @@ class App extends Component {
             <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
             <Route path ='/superDashboard/display-event'component ={DisplayEventMaster}/>
             <Route path='/superDashboard/add_parking/new' component ={Parking} />
+            <Route path ='/supdashboard/servicemaster' component ={serviceMaster}/>
           </Switch>
         </div>
       </BrowserRouter>
