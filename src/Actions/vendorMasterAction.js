@@ -1,12 +1,14 @@
-import {URN,GET_SERVICE_TYPE} from '../constants/index';
+import {URN,ADD_VENDOR_MASTER} from '../constants/index';
 import {authHeader} from '../helper/auth-header';
+import axios from 'axios';
 
-export function getServiceTypes(serviceId){
 
-    const request=fetch(`${URN}/service`,serviceId,{method:'GET' ,headers:authHeader()})
-    .then((response)=> response.json())
+export function addVendorMaster(values){
+    const request=axios.post(`${URN}/vendor`,values,{headers:authHeader()})
+    .then(response=>response.data)
+
     return{
-        type:GET_SERVICE_TYPE,
+        type:ADD_VENDOR_MASTER,
         payload:request
     }
 }

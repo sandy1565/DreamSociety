@@ -22,5 +22,5 @@ export const FETCH_SIZEMASTER_DROP='fetch_sizemaster_drop';
 export const GET_DETAIL='get_detail';
 export const GET_SERVICE='get_service';
 export const ADD_SERVICE='add_service';
-export const REMOVE_SERVICE='remove_service';
-export const GET_SERVICE_TYPE ='get_service_type'
+export const ADD_VENDOR_MASTER='add_vendor_master';
+

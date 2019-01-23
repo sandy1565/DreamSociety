@@ -46,10 +46,13 @@ class App extends Component {
             <Route path ='/superDashboard/towermaster'  component ={TowerMaster} />
             <Route path = '/superDashboard/sizemaster'  component ={SizeMaster} />
             <Route path ='/superDashboard/event' component ={EventMaster}/>
-            <Route path='/superDashboard/flatmaster' exact component= {FlatMaster} />
+            <Route path='/superDashboard/flatmaster' exact component= {FlatMaster}/>
             <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
             <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
             <Route path ='/superDashboard/display-event'component ={DisplayEventMaster}/>
+            <Route path='/superDashboard/serviceMaster' component={serviceMaster}/>
+            <Route path='/superDashboard/displayServices' component={displayServices}/>
+            <Route path='/superDashboard/vendorMaster' component={vendorMaster}/>
           </Switch>
         </div>
       </BrowserRouter>

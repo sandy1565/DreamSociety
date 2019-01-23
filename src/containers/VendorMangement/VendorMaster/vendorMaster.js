@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {getServiceTypes} from '../../../Actions/vendorMasterAction';
+import {getServiceType} from '../../../Actions/serviceMasterAction';
+import {addVendorMaster} from '../../../Actions/vendorMasterAction';
 
 
 class vendorMaster extends Component{
@@ -9,33 +10,79 @@ class vendorMaster extends Component{
         super(props);
         this.state={
             vendorName:'',
-            serviceName:[],
-            service_details:[]
+            serviceName:'',
+            serviceId:'',
+            description:''
+
+            
         }
         this.handleChange=this.handleChange.bind(this); 
 
     }
 
-    
+    OnKeyPressUserhandler(event) {
+        const pattern=/[a-zA-Z_ ]/;
+        let inputChar = String.fromCharCode(event.charCode);
+        if (!pattern.test(inputChar)) {
+          event.preventDefault();
+        }
+      }
+
+
     handleChange(event)  {
         this.setState({[event.target.name]:event.target.value});
     }
 
+    componentDidMount(){
+        this.props.getServiceType();
+    }
+
+    getDropDowm=({item})=>{
+        if(item){
+            return item.map((item)=>{
+                return(
+                    <option key={item.serviceId} value={item.serviceId}>
+                        {item.serviceName}
+                    </option>
+                )
+            })
+        }
+
+    }
+
+    onSubmit=(event)=>{
+        event.preventDefault();
+        this.props.addVendorMaster(this.state);
+        this.setState({
+            vendorName:'',
+            serviceName:'',
+            serviceId:'',
+            description:''
+        }
+        )}
 
     render(){
         return(
             <div>
-                <form>
-                <label> Vendor Name
-                <input type="text" name="vendorName" value={this.state.vendorName} onChange={this.handleChange}  required></input>
-                </label><br/>
-                <select> Service Type
-                <option type="text" name="serviceName" value={this.state.serviceName} onChange={this.handleChange}></option>
-                </select><br/>
-                <select> Service Details
-                <option type="text" name="service_detail" value={this.state.service_details} onChange={this.handleChange}></option>
-                </select><br/>
-                <button type="submit" value="submit">Submit</button>
+                <form onSubmit={this.onSubmit}>
+                <div className="form-group col-md-6">
+                    <label>Vendor Name</label>
+                    <input type="text"   className ="form-control" name="vendorName" value={this.state.vendorName} onKeyPress={this.OnKeyPressUserhandler}  onChange={this.handleChange} required></input>
+                </div>
+                <div className="form-group  col-md-6">
+                    <label>Service Type</label>
+                    <select className ="form-control" value={this.state.serviceId} onChange={(e)=>{
+                                                this.setState({serviceId:e.target.value})}}> 
+                    <option>--SELECT--</option>
+                        {this.getDropDowm(this.props.displayServiceMasterReducer)}
+                    </select>
+                </div>
+                <div className="form-group col-md-6">
+                    <label>Description</label>
+                    <input className ="form-control" type="text" name="description"></input>
+                </div>
+              
+                <button type="submit" className="btn btn-primary" value="submit">Submit</button>
             </form>
             </div>
         )
@@ -44,13 +91,14 @@ class vendorMaster extends Component{
 
 function mapStateToProps(state){
     return{ 
-        vendorMasterReducer: state.vendorMasterReducer
+        displayServiceMasterReducer: state.displayServiceMasterReducer,
+        vendorMasterReducer:state.vendorMasterReducer
     }
 }
 
 function mapDispatchToProps(dispatch){
 
-    return bindActionCreators({getServiceTypes}, dispatch);
+    return bindActionCreators({getServiceType,addVendorMaster}, dispatch);
 }
 
 

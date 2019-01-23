@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import  {addServiceType,getServiceDetail}  from '../../../Actions/serviceMasterAction';
-import './serviceMaster.css'
+import './serviceMaster.css';
+import { Link } from 'react-router-dom';
+    
 
 
 class serviceMaster extends Component{
@@ -12,8 +14,7 @@ constructor(props){
             
                  serviceName:'',
                  serviceDetailId:'',
-                 services:'',
-                 service_detail:[],
+                 service_detail:'',
                  
         }
    
@@ -21,7 +22,7 @@ constructor(props){
 
 
     handleChange=(event)=>  {
-        
+                   
         this.setState({[event.target.name]:event.target.value});
         console.log(event.target.value)
         
@@ -40,7 +41,7 @@ constructor(props){
         if(detail){
             return detail.service.map((item)=>{console.log(item)
                     return(
-                        <option key={item.serviceDetailId} value={item.serviceDetailId} required>
+                        <option key={item.serviceDetailId} value={item.serviceDetailId} >
                         {item.service_detail}</option>
                     )
                     
@@ -61,14 +62,13 @@ constructor(props){
             state: {
                 serviceName:'',
                 serviceDetailId:'',
-                services:'',
-                service_detail:[]
+                service_detail:''
              
                 }
                 
         })
         
-        this.props.history.push('/displayservice')
+        this.props.history.push('/superDashboard/displayServices')
         
     
 
@@ -93,13 +93,16 @@ render(){
                 </div>
                 <div className="form-group  col-md-6">
                     <label>Service Details</label>
-                    <select className ="form-control" value={this.state.serviceDetailId} onChange={(e) => this.setState({serviceDetailId: e.target.value})} required>
+                    <select className ="form-control" value={this.state.serviceDetailId} onChange={(e) => this.setState({serviceDetailId: e.target.value})}>
                     <option >--SELECT--</option>    
                           {this.getDropdown(this.props.serviceMasterReducer)}
                     </select>
                 </div>
          
-                <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                <button type="submit" className ="btn btn-primary" value="submit">Submit</button>
+                <Link to='/superDashboard/displayServices'>
+                <button className="btn">Show Details</button>
+                </Link>
             </form>
     </div>
     )
@@ -111,7 +114,7 @@ function mapStateToProps(state) {
     console.log(state);
     return {
         serviceMasterReducer: state.serviceMasterReducer
-        // getServiceDetail: state.getServiceDetail
+
     }
 }
 
