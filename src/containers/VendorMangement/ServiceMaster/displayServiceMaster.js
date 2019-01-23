@@ -1,22 +1,25 @@
 import React,{Component} from 'react';
-import {getServiceType,delServiceType} from '../../../Actions/serviceMasterAction';
+import {getServiceType,delServiceType,getServiceDetail} from '../../../Actions/serviceMasterAction';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import {authHeader} from '../../../helper/auth-header';
 import { bindActionCreators} from 'redux';
 import {Button, Modal,FormGroup, ModalBody, ModalHeader, ModalFooter, Input, Label } from 'reactstrap';
 import {URN} from '../../../constants/index';
+import './serviceMaster.css';
 
 
 class displayServices extends Component{
-    constructor(props){
-        super(props);
-    }
+    
+        
+    
         state={
             editServiceData:{
                 
-            serviceId:[],
-            serviceName:[],
-            service_detail:[]
+            serviceId:'',
+            serviceName:'',
+            service_detail:[],
+            serviceDetailId:''
         },
         editServiceModal: false
         
@@ -25,6 +28,7 @@ class displayServices extends Component{
     
     componentDidMount() {
      this.props.getServiceType()
+     this.props.getServiceDetail();
     }
     
     componentWillMount(){
@@ -37,9 +41,7 @@ class displayServices extends Component{
     
     deleteService(serviceId) {
         console.log(serviceId);
-        var setUrl = `${URN}/service/` +serviceId;
-        console.log("------------setUrl---------", setUrl);
-        axios.delete(setUrl).then((response) => {
+        axios.delete(`${URN}/service/` +serviceId,{headers:authHeader()}).then((response) => {
             this.setState(this.refreshData())
             
         })
@@ -53,42 +55,61 @@ class displayServices extends Component{
       }
 
     updateServices() {
-        let {serviceId, serviceName,service_detail } = this.state.editServiceData;
+        let { serviceName,service_detail,serviceDetailId } = this.state.editServiceData;
     
         axios.put(`${URN}/service/` + this.state.editServiceData.serviceId, {
-            serviceName, service_detail
-        }).then((response) => {
+            serviceName, service_detail,serviceDetailId
+        },{headers:authHeader()}).then((response) => {
           this.refreshData();
     
           this.setState({
-            editServiceModal: false, editServiceData: {  serviceId: '',serviceName: '', service_detail: ''}
+            editServiceModal: false, editServiceData: {  serviceId: '',serviceName: '', service_detail: '',serviceDetailId:''}
           })
         });
     
       }
 
-    editUser(serviceId,serviceName,service_detail){
-        console.log('ffffff',serviceName);
-        console.log('hhhhh',serviceId);
+    editUser(serviceId,serviceName,service_detail,serviceDetailId){
+        console.log('serviceName',serviceName);
+        console.log('serviceId',serviceId);
+        console.log('serviceDetailId',serviceDetailId)
         this.setState({
             
-            editServiceData:{ serviceId, serviceName, service_detail}, editServiceModal: !this.state.editServiceModal
+            editServiceData:{ serviceId, serviceName, service_detail,serviceDetailId}, editServiceModal: !this.state.editServiceModal
         });
     
    } 
 
+   
+   getDropdown1=({detail})=>{
+    if(detail){
+        return detail.service.map((item)=>{console.log(item)
+                return(
+                    <option key={item.serviceDetailId} value={item.serviceDetailId}>
+                    {item.service_detail}</option>
+                )
+                
+            })
+
+            
+        
+    }
+}
+  
  renderList =({item})=>{
      console.log(item);
      if(item){
          return item.map((items) =>{
              return(
                     
-                     <tr key={items.serviceId}>
+                     <tr  key={items.serviceId}>
+                     
                             
                              <td>{items.serviceName}</td>
-                             <td>{items.service_detail}</td>
+                             {/* <td>{items.service_detail}</td> */}
+                     
                                  <td>
-                                    <button className="btn btn-primary" onClick={this.editUser.bind(this,items.serviceId,items.serviceName,items.service_detail)}>Edit</button>
+                                    <button className="btn btn-primary" onClick={this.editUser.bind(this,items.serviceId,items.serviceName,items.service_detail,items.serviceDetailId)}>Edit</button>
                                  </td>
                                   <td>
                                     <button className="btn btn-danger"  onClick={this.deleteService.bind(this, items.serviceId)}>Delete</button>
@@ -119,13 +140,24 @@ class displayServices extends Component{
 
     <FormGroup>
         <Label for="service_detail">Service Details</Label>
-        <Input id="service_detail" value={this.state.editServiceData.service_detail} onChange={(e) => {
+        {/* <Input id="service_detail" value={this.state.editServiceData.service_detail} onChange={(e) => {
         let { editServiceData } = this.state;
 
         editServiceData.service_detail = e.target.value;
 
         this.setState({ editServiceData });
-        }} />
+        }} /> */}
+        <select value={this.state.editServiceData.serviceDetailId} onChange={(e) => {
+                                                                    let { editServiceData } = this.state;
+                                                                         editServiceData.serviceDetailId = e.target.value;
+                                                                             this.setState({ editServiceData })}}>
+        <option disabled>--SELECT--</option>
+        <option value={this.state.editServiceData.service_detail}>
+            {this.state.editServiceData.service_detail}
+        </option>
+        {this.getDropdown1(this.props.serviceMasterReducer)}
+   
+        </select>
     </FormGroup>
        </ModalBody>
 
@@ -135,11 +167,11 @@ class displayServices extends Component{
     </ModalFooter>
 </Modal>
     
-                <table>
+                <table className="table table-bordered">
                     <thead>
                     <tr>
                         <th>Service Type</th>
-                        <th>Service Details</th>
+                        {/* <th>Service Details</th> */}
                     </tr>
                     </thead>
                     
@@ -155,13 +187,14 @@ class displayServices extends Component{
 
 function mapStateToProps(state) {
     return {
-        displayServiceMasterReducer: state.displayServiceMasterReducer
+        displayServiceMasterReducer: state.displayServiceMasterReducer,
+        serviceMasterReducer:state.serviceMasterReducer
     
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getServiceType,delServiceType}, dispatch);
+    return bindActionCreators({getServiceType,delServiceType,getServiceDetail}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(displayServices);

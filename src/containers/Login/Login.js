@@ -35,6 +35,7 @@ if (username!==null && password!==null ) {
 }
 
 
+
 render() {
     return (
         <div style={{'textAlign':'center','margin':'150px 0px', 'padding':'0px'}}>
@@ -49,7 +50,7 @@ render() {
              </div>
              <button type="submit" className='btn btn-success'>login</button>
          </form>
-  
+           
         </div>
         
         
@@ -60,9 +61,9 @@ render() {
 }
 
 function mapStateToProps(state) {
-    console.log(state)
+  console.log('----------',state)
     return {
-        loginError: state.loginReducer
+        loginReducer: state.loginReducer
     }
 }
 

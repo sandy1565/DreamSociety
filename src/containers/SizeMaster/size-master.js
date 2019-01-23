@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {AddSize} from '../../Actions';
+import {AddSize} from '../../Actions/size_action';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

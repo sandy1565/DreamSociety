@@ -64,6 +64,7 @@ function handleResponse(response) {
         }
         else{
             console.log('surdfdjfkj')
+           
         return <Redirect to='/'></Redirect>
         }
     return data;
