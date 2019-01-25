@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { getUsers, getRoles, addUser } from '../../Actions';
+import { getUsers, getRoles, addUser, deleteUsers } from '../../Actions';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {URN} from '../../constants'
 import { Table, Button, Modal, FormGroup, ModalBody, ModalHeader, ModalFooter, Input, Label } from 'reactstrap';
-
+import { authHeader } from '../../helper/auth-header';
 class userDetails extends Component {
 
     state = {
@@ -29,8 +29,10 @@ class userDetails extends Component {
         this.props.addUser();
     }
 
-    componentWillReceiveProps(){
-        this.setState({userDetail: this.props.userDetail})
+    componentDidUpdate(){
+        if(this.props.addUser){
+            this.refreshData
+        }
     }
 
     toggle() {
@@ -51,11 +53,10 @@ class userDetails extends Component {
 
     updateUser = () => {
         let { userId, roleName, firstName, lastName, userName, email, contact } = this.state.editUserData;
-        axios.put(`${URN}/user/` + this.state.editUserData.userId, {
+        axios.put(`${URN}/user/` + userId, {
             userId, roleName, firstName, lastName, userName, email, contact
-        }).then((response) => {
-            this.refreshData();
-
+        }, {headers:authHeader()}).then((response) => {
+            this.refreshData(userId);
             this.setState({
                 editUserModal: false, editUserData: { userId: '', roleName: '', firstName: '', lastName: '', userName: '', email: '', contact: '' }
             })
@@ -72,15 +73,18 @@ class userDetails extends Component {
         let { isActive } = this.state.editUserData
         console.log(userId)
         const url = `${URN}/user/delete/`
-        axios.put(`${url}` + userId, { isActive }).then((response) => {
+        axios.put(`${url}` + userId, { isActive },{headers:authHeader()}).then((response) => {
             this.refreshData()
             this.setState({
                 editUserData: { isActive: false }
-
             })
             console.log(response)
         })
     }
+    // deleteUser(id){
+    //     this.props.deleteUsers(id)
+    //     .then(() => this.setState({isActive: false}))
+    // }
 
     fetchUsers({ user }) {
         if (user) {
@@ -243,7 +247,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getUsers,
         getRoles,
-        addUser
+        addUser,
+        deleteUsers
     }, dispatch)
 }
 

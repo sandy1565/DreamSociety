@@ -11,6 +11,9 @@ import OwnerDashboard from './containers/OwnerDashboard/OwnerDashboard';
 import SuperDashboard from './containers/SuperDashboard/SuperDashboard';
 import TenantDashboard from './containers/TenantDashboard/TenantDashboard';
 import VendorDashboard from './containers/VendorDashboard/VendorDashboard';
+import ParkingMaster from './containers/ParkingMaster/ParkingMaster';
+import Parking from './components/Parking/Parking';
+
 import SocietyManagement from './containers/SocietyManagement/SocietyMangement';
 import TowerMaster from   './containers/TowerMaster/tower-master';
 import  DisplayTowerMaster from './containers/TowerMaster/display-tower-master';
@@ -41,6 +44,7 @@ class App extends Component {
             <Route path='/vendorDashboard' component={VendorDashboard} />
             <Route path='/superDashboard/registration' component={Registration} />
             <Route path ={'/superDashboard/user_details'} component={UserDetails} />
+            <Route path='/superDashboard/parking_master' component={ParkingMaster} />
             <Route path ={'/superDashboard/registration/user_details'} component={UserDetails} />
             <Route path ='/superDashboard/display-tower' component ={DisplayTowerMaster} />
             <Route path ='/superDashboard/display-size' component ={DisplaySizeMaster} />
@@ -55,6 +59,8 @@ class App extends Component {
             <Route path= '/superDashboard/displayVendorMaster' component={displayVendorMaster}/>
             <Route path ='/superDashboard/displayServices'component ={displayServices}/>
             <Route path ='/superDashboard/serviceMaster'component ={serviceMaster}/>
+            <Route path='/superDashboard/add_parking/new' component ={Parking} />
+            <Route path ='/supdashboard/servicemaster' component ={serviceMaster}/>
           </Switch>
         </div>
       </BrowserRouter>

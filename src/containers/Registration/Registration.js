@@ -95,7 +95,8 @@ class Registration extends Component {
         // const isValid = this.validate();
         if(isValid) {
             this.setState({isSubmit: true})
-            this.props.addUser({...this.state});
+            this.props.addUser({...this.state})
+            .then(() => this.props.history.push('/superDashboard/user_details'));
             this.setState({
                 roleName:[],
                 roles:"",
@@ -213,7 +214,7 @@ class Registration extends Component {
                     <Link to="/superDashboard/user_details" >Home</Link>
                 </div>
                 <div className="Registration_container">
-                    {this.state.isSubmit ? <Redirect to='/superDashboard/user_details' />: form}
+                    {form}
                 </div>
                 
             </div>

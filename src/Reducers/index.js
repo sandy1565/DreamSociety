@@ -10,6 +10,7 @@ import displayServiceMasterReducer from './VendorMangement/displayServiceMasterR
 import vendorMasterReducer from './VendorMangement/vendorMasterReducer';
 import SizeDetails from './size_reducer';
 import societyReducer from './Society_reducer';
+import parkingDetail from './parking_reducer';
 
 const rootReducer = combineReducers({
     loginReducer,
@@ -18,6 +19,8 @@ const rootReducer = combineReducers({
     SizeDetails,
     flat,
     EventDetails,
+    parkingDetail,
+    societyReducer,
     flats,
     serviceMasterReducer,
     displayServiceMasterReducer,

@@ -1,16 +1,18 @@
 import axios from 'axios';
+import { authHeader } from '../helper/auth-header';
+import _ from 'lodash';
 import{URN,ADD_USER,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
-import {authHeader} from '../helper/auth-header';
 export function addUser(values) {
+    console.log("localstorage get item---?",localStorage.getItem('token'))
     const request = axios.post(`${URN}/auth/signup`, values , { method: 'POST',
                     headers: {
                         'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'x-access-token': authHeader()
                     },
                     body: JSON.stringify(values) })
                     .then(response => response.data)
                     .then(result => result)
-                    .then(getUsers())
                     .catch(error=> error);
                     return {
                         type: ADD_USER,
@@ -19,7 +21,7 @@ export function addUser(values) {
 }
 
 export function getUsers(){
-    const request = axios.get(`${URN}/user`, {method: 'GET',headers:authHeader()}).then((response) => response.data)
+    const request = axios.get(`${URN}/user`,  {headers:authHeader()}).then((response) => response.data)
     .then()
 
     return {
@@ -29,7 +31,7 @@ export function getUsers(){
 }
 
 export function getRoles(){
-    const request = axios.get(`${URN}/user/role`, {method:'GET',headers:authHeader()})
+    const request = axios.get(`${URN}/user/role`, {headers:authHeader()})
     .then((response =>response.data))
 
     return {
@@ -47,7 +49,47 @@ export function deleteUsers(id){
         payload:id
     }
 }
+// ===================Testing============
+export const FETCH_BASEMENT = 'FETCH_BASEMENT';
+export const FETCH_PARKING = 'FETCH_PARKING';
+export const CREATE_PARKING = 'CREATE_PARKING';
+export const DELETE_PARKING = 'DELETE_PARKING';
+const ROOT_URL = 'http://localhost:3001';
+const API_KEY = '?key=parking'
 
+export function fetchBasement(){
+    const request = axios.get(`${URN}/parking`, {headers:authHeader()});
+    return {
+        type: FETCH_BASEMENT,
+        payload: request
+    };
+}
+
+export function createParking(props){
+    const request = axios.post(`${URN}/slot`, props);
+    return {
+        type: CREATE_PARKING,
+        payload: request
+    } 
+}
+
+export function fetchParking(props){
+    const request = axios.get(`http://localhost:3002/createParking${API_KEY}`, props);
+    return {
+        type: FETCH_PARKING,
+        payload: request
+    }
+}   
+
+export function deleteParking(id){
+    const request = axios.delete(`http://localhost:3002/createParking/${id}${API_KEY}`);
+    return {
+        type: DELETE_PARKING,
+        payload: request
+    }
+}
+
+// =====================
 
 
 export  default function AddTower(values){

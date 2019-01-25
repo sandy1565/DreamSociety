@@ -69,6 +69,7 @@ constructor(props){
         })
         
         this.props.history.push('/superDashboard/displayServices')
+        this.props.history.push('/superDashboard/serviceMaster/displayServices')
         
     
 
