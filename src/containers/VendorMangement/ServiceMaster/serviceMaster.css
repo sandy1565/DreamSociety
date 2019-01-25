@@ -7,7 +7,7 @@
     color: #fff;
     background-color: cadetblue;
     border-color: cadetblue;
-    margin-left: 140px;
+    
 }
 
 .form{
@@ -24,7 +24,7 @@
 .btn{
     color:white;
     background-color: cadetblue;
-    margin-right: 20px;
+    margin-left: 50px;
     border-color: cadetblue;
 }
 

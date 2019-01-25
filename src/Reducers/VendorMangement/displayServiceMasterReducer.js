@@ -1,4 +1,4 @@
-import {GET_SERVICE,REMOVE_SERVICE} from '../../constants/index';
+import {GET_SERVICE} from '../../constants/index';
 
 const initialState={
     item:[]

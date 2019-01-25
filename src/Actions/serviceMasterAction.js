@@ -12,8 +12,8 @@ export function getServiceDetail(){
 }
 
 export function getServiceType(){
-    const request =fetch(`${URN}/service`, {method:'GET' ,headers:authHeader()})
-    .then(response => response.json())
+    const request =axios.get(`${URN}/service`,{headers:authHeader()})
+    .then(response => response.data)
     return {
         type:GET_SERVICE,
         payload:request

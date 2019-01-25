@@ -23,6 +23,7 @@ import FlatMasterDetails from './containers/Flat_master/flatMasterDetails';
 import serviceMaster from './containers/VendorMangement/ServiceMaster/serviceMaster';
 import displayServices from './containers/VendorMangement/ServiceMaster/displayServiceMaster';
 import vendorMaster from './containers/VendorMangement/VendorMaster/vendorMaster';
+import displayVendorMaster from './containers/VendorMangement/VendorMaster/displayVendorMaster';
 
 class App extends Component {
   render() {
@@ -50,7 +51,8 @@ class App extends Component {
             <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
             <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
             <Route path ='/superDashboard/display-event'component ={DisplayEventMaster}/>
-            <Route path ='/superDashboard/vendor-master'component ={vendorMaster}/>
+            <Route path ='/superDashboard/vendorMaster'component ={vendorMaster}/>
+            <Route path= '/superDashboard/displayVendorMaster' component={displayVendorMaster}/>
             <Route path ='/superDashboard/displayServices'component ={displayServices}/>
             <Route path ='/superDashboard/serviceMaster'component ={serviceMaster}/>
           </Switch>

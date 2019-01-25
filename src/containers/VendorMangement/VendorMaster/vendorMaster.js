@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {getServiceType} from '../../../Actions/serviceMasterAction';
 import {addVendorMaster} from '../../../Actions/vendorMasterAction';
+import { Link } from 'react-router-dom';
+// import './vendorMaster.css';
 
 
 class vendorMaster extends Component{
@@ -63,27 +65,30 @@ class vendorMaster extends Component{
 
     render(){
         return(
-            <div>
+            <div  className="form1">
                 <form onSubmit={this.onSubmit}>
-                <div className="form-group col-md-6">
-                    <label>Vendor Name</label>
-                    <input type="text"   className ="form-control" name="vendorName" value={this.state.vendorName} onKeyPress={this.OnKeyPressUserhandler}  onChange={this.handleChange} required></input>
-                </div>
-                <div className="form-group  col-md-6">
-                    <label>Service Type</label>
-                    <select className ="form-control" value={this.state.serviceId} onChange={(e)=>{
+                    <div className="form-group col-md-6">
+                     <label>Vendor Name</label>
+                        <input type="text"   className ="form-control" name="vendorName" value={this.state.vendorName} onKeyPress={this.OnKeyPressUserhandler}  onChange={this.handleChange} required></input>
+                    </div>
+                    <div className="form-group  col-md-6">
+                     <label>Service Type</label>
+                     <select className ="form-control" value={this.state.serviceId} onChange={(e)=>{
                                                 this.setState({serviceId:e.target.value})}}> 
-                    <option>--SELECT--</option>
+                     <option>--SELECT--</option>      
                         {this.getDropDowm(this.props.displayServiceMasterReducer)}
-                    </select>
-                </div>
-                <div className="form-group col-md-6">
-                    <label>Description</label>
-                    <input className ="form-control" type="text" name="description"></input>
-                </div>
+                     </select>
+                    </div>
+                    <div className="form-group col-md-6">
+                     <label>Description</label>
+                     <input className ="form-control"  value={this.state.description} onChange={this.handleChange} type="text" name="description"></input>
+                    </div>
               
                 <button type="submit" className="btn btn-primary" value="submit">Submit</button>
             </form>
+            <Link to='/superDashboard/displayVendorMaster'>
+                <button className="btn1">Show Details</button>
+                </Link>
             </div>
         )
     }

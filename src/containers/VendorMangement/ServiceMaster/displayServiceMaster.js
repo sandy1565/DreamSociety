@@ -20,7 +20,8 @@ class displayServices extends Component{
             serviceId:'',
             serviceName:'',
             service_detail:'',
-            serviceDetailId:''
+            serviceDetailId:'',
+            isActive: false
         },
         editServiceModal: false
         
@@ -40,13 +41,16 @@ class displayServices extends Component{
         this.props.getServiceType();
     }
     
+ 
+    
     deleteService(serviceId) {
-        console.log(serviceId);
-        axios.delete(`${URN}/service/` +serviceId,{headers:authHeader()}).then((response) => {
-            this.setState(this.refreshData())
-            
-        })
-    }
+        let {isActive} = this.state.editServiceData;
+        axios.put(`${URN}/service/` +serviceId, {isActive},{headers:authHeader()}).then((response) => {
+        this.refreshData()
+        this.setState({editServiceData: {isActive: false}})
+        
+    })
+}
    
     toggleEditServiceModal() {
         this.setState({
@@ -128,47 +132,41 @@ class displayServices extends Component{
      return(
          <div>
     <Modal isOpen={this.state.editServiceModal} toggle={this.toggleEditServiceModal.bind(this)}>
-    <ModalHeader toggle={this.toggleEditServiceModal.bind(this)}>Edit a Service</ModalHeader>
-    <ModalBody>
-    <FormGroup>
-        <Label for="serviceName">Service Type</Label>
-        <Input id="serviceName" value={this.state.editServiceData.serviceName} onChange={(e) => {
-        let { editServiceData } = this.state;
+         <ModalHeader toggle={this.toggleEditServiceModal.bind(this)}>Edit a Service</ModalHeader>
+            <ModalBody>
+                <FormGroup>
+                     <Label for="serviceName">Service Type</Label>
+                     <Input id="serviceName" value={this.state.editServiceData.serviceName} onChange={(e) => {
+                          let { editServiceData } = this.state;
 
-        editServiceData.serviceName = e.target.value;
+                          editServiceData.serviceName = e.target.value;
 
-        this.setState({ editServiceData });
-        }} />
-    </FormGroup>
+                          this.setState({ editServiceData });
+                 }} />
+                </FormGroup>
 
-    <FormGroup>
-        <Label for="service_detail">Service Details</Label>
-        {/* <Input id="service_detail" value={this.state.editServiceData.service_detail} onChange={(e) => {
-        let { editServiceData } = this.state;
-
-        editServiceData.service_detail = e.target.value;
-
-        this.setState({ editServiceData });
-        }} /> */}
-        <select value={this.state.editServiceData.serviceDetailId} onChange={(e) => {
+                <FormGroup>
+                    <Label for="service_detail">Service Details</Label>
+      
+                        <select value={this.state.editServiceData.serviceDetailId} onChange={(e) => {
                                                                     let { editServiceData } = this.state;
                                                                     editServiceData.serviceDetailId = e.target.value;
                                                                     this.setState({ editServiceData })}}>
-        <option disabled>--SELECT--</option>
-        <option value={this.state.editServiceData.service_detail}>
-            {this.state.editServiceData.service_detail}
-        </option>
-        {this.getDropdown1(this.props.serviceMasterReducer)}
+                       <option disabled>--SELECT--</option>
+                         <option value={this.state.editServiceData.service_detail}>
+                      {this.state.editServiceData.service_detail}
+                        </option>
+                         {this.getDropdown1(this.props.serviceMasterReducer)}
    
-        </select>
-    </FormGroup>
-       </ModalBody>
+                       </select>
+                </FormGroup>
+            </ModalBody>
 
-    <ModalFooter>
-    <Button color="primary" onClick={this.updateServices.bind(this)}>Update </Button>
-    <Button color="secondary" onClick={this.toggleEditServiceModal.bind(this)}>Cancel</Button>
-    </ModalFooter>
-</Modal>
+        <ModalFooter>
+            <Button color="primary" onClick={this.updateServices.bind(this)}>Update </Button>
+            <Button color="secondary" onClick={this.toggleEditServiceModal.bind(this)}>Cancel</Button>
+        </ModalFooter>
+    </Modal>
     
                 <table className="table table-bordered">
                     <thead>
@@ -182,7 +180,7 @@ class displayServices extends Component{
                         {this.renderList(this.props.displayServiceMasterReducer)}
                     </tbody>
                 </table>    
-                <Link to="/superDashboard/serviceMaster">
+                 <Link to="/superDashboard/serviceMaster">
                 <button className="button" type="button">Add Services</button>
                 </Link>
             </div>
