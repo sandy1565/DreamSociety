@@ -55,13 +55,17 @@ class vendorMaster extends Component{
     onSubmit=(event)=>{
         event.preventDefault();
         this.props.addVendorMaster(this.state);
-        this.setState({
+        this.setState(
+            {
             vendorName:'',
             serviceName:'',
             serviceId:'',
             description:''
         }
-        )}
+        
+        )
+        this.props.history.push('/superDashboard/displayVendorMaster')}
+        
 
     render(){
         return(
@@ -74,14 +78,14 @@ class vendorMaster extends Component{
                     <div className="form-group  col-md-6">
                      <label>Service Type</label>
                      <select className ="form-control" value={this.state.serviceId} onChange={(e)=>{
-                                                this.setState({serviceId:e.target.value})}}> 
+                                                this.setState({serviceId:e.target.value})}} required> 
                      <option>--SELECT--</option>      
                         {this.getDropDowm(this.props.displayServiceMasterReducer)}
                      </select>
                     </div>
                     <div className="form-group col-md-6">
                      <label>Description</label>
-                     <input className ="form-control"  value={this.state.description} onChange={this.handleChange} type="text" name="description"></input>
+                     <input className ="form-control"  value={this.state.description} onChange={this.handleChange} type="text" name="description" required></input>
                     </div>
               
                 <button type="submit" className="btn btn-primary" value="submit">Submit</button>

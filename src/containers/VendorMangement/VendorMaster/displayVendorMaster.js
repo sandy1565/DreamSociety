@@ -52,14 +52,13 @@ class displayVendorMaster extends Component {
 
     }
 
-    getDropdown = ({ item }) => {
+    getDropdown = ({item}) => {
         console.log("hiii", item)
         if (item) {
             return item.map((item) => {
                 return (
                     <option key={item.serviceId} value={item.serviceId}>
                         {item.serviceName}
-
                     </option>
                 )
             })
@@ -73,7 +72,7 @@ class displayVendorMaster extends Component {
         this.refreshData()
         this.setState({editVendorData: {isActive: false}})
         
-    })
+    })  
 }
    
 
@@ -95,7 +94,7 @@ class displayVendorMaster extends Component {
         this.setState({
             editVendorModal: !this.state.editVendorModal
         });
-        // console.log(this.state.editVendorData)
+        
     }
 
     renderList = ({ vendors }) => {
@@ -144,17 +143,21 @@ class displayVendorMaster extends Component {
                         </FormGroup>
                         <FormGroup>
                             <Label for="serviceName">Service Name</Label>
-                            <select value={this.state.editVendorData.serviceId} onChange={(e) => {
-                                let { editVendorData } = this.state;
-                                editVendorData.serviceId = e.target.value;
-                                this.setState({ editVendorData })
-                            }}>
-                                <option disabled>--SELECT--</option>
-                                <option value={this.state.editVendorData.serviceName}>
-                                    {this.state.editVendorData.serviceName}
-                                </option>
-                                {this.getDropdown(this.props.displayServiceMasterReducer)}
-                            </select>
+                        
+                            <Input type="select"  id="serviceName" value={this.state.editVendorData.serviceId} onChange={(e)=>{
+                                let {editVendorData}=this.state;
+
+                                editVendorData.serviceId=e.target.value;
+
+                                this.setState({editVendorData})
+                                }}>
+                                    <option  value={this.state.editVendorData.serviceName}>
+                                     {this.state.editVendorData.serviceName}
+                                    </option>
+                                    
+                                      <option disabled>--Select--</option>
+                                         {this.getDropdown(this.props.displayServiceMasterReducer)}
+                             </Input>   
                         </FormGroup>
                         <FormGroup>
                             <Label for="description">Description</Label>

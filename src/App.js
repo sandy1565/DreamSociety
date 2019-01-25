@@ -12,7 +12,7 @@ import SuperDashboard from './containers/SuperDashboard/SuperDashboard';
 import TenantDashboard from './containers/TenantDashboard/TenantDashboard';
 import VendorDashboard from './containers/VendorDashboard/VendorDashboard';
 import ParkingMaster from './containers/ParkingMaster/ParkingMaster';
-import Parking from './components/Parking/Parking';
+// import Parking from './components/Parking/Parking';
 
 import SocietyManagement from './containers/SocietyManagement/SocietyMangement';
 import TowerMaster from   './containers/TowerMaster/tower-master';
@@ -59,7 +59,7 @@ class App extends Component {
             <Route path= '/superDashboard/displayVendorMaster' component={displayVendorMaster}/>
             <Route path ='/superDashboard/displayServices'component ={displayServices}/>
             <Route path ='/superDashboard/serviceMaster'component ={serviceMaster}/>
-            <Route path='/superDashboard/add_parking/new' component ={Parking} />
+            {/* <Route path='/superDashboard/add_parking/new' component ={Parking} /> */}
             <Route path ='/supdashboard/servicemaster' component ={serviceMaster}/>
           </Switch>
         </div>

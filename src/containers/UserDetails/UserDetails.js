@@ -138,7 +138,7 @@ class userDetails extends Component {
                     <ModalHeader toggle={this.toggleEditUserModal.bind(this)}>Edit User</ModalHeader>
                     <ModalBody>
                         <FormGroup>
-                            <Label>Role</Label>
+                            <Label>Role</Label> 
                             <Input type="select" id="roleName" value={this.state.editUserData.roleName} onChange={(e) => {console.log(this.state)
                             let { editUserData } = this.state;
 

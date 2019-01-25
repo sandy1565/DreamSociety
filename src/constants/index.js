@@ -12,6 +12,7 @@ export const UPDATE_SIZE='update_size';
 export const GET_EVENT='get_event';
 export const GET_EVENT_ORGANISER = 'get_event_organiser'
 export const ADD_EVENT='add_event';
+export const POST_EVENT='add_event';
 export const GET_DETAILS='get_details';
 export const FETCH_DETAILS='fetch_details';
 export const GET_COUNTRY='get_country';

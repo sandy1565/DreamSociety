@@ -1,9 +1,19 @@
 .form1{
     margin-left: 420px;
+    margin-top: 80px;
 }
 
 .btn1{
     color: white;   
+    border-color: white;
     background-color: cadetblue;
-    margin-top: -90px;
+    margin-left:180px;
+    margin-right:auto;
+    display:block;
+    margin-top:-4%;
+    margin-bottom:0%;
+    border-radius: 5px;
+    width: 160px;
+    height: 40px;
 }
+

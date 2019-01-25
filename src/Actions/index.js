@@ -2,6 +2,7 @@ import axios from 'axios';
 import { authHeader } from '../helper/auth-header';
 import _ from 'lodash';
 import{URN,ADD_USER,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
+
 export function addUser(values) {
     console.log("localstorage get item---?",localStorage.getItem('token'))
     const request = axios.post(`${URN}/auth/signup`, values , { method: 'POST',
