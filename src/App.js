@@ -11,7 +11,11 @@ import OwnerDashboard from './containers/OwnerDashboard/OwnerDashboard';
 import SuperDashboard from './containers/SuperDashboard/SuperDashboard';
 import TenantDashboard from './containers/TenantDashboard/TenantDashboard';
 import VendorDashboard from './containers/VendorDashboard/VendorDashboard';
+<<<<<<< Updated upstream
 import ParkingMaster from './containers/ParkingMaster/ParkingMaster';
+=======
+// import ParkingMaster from './containers/ParkingMaster/ParkingMaster';
+>>>>>>> Stashed changes
 // import Parking from './components/Parking/Parking';
 
 import SocietyManagement from './containers/SocietyManagement/SocietyMangement';
@@ -44,7 +48,7 @@ class App extends Component {
             <Route path='/vendorDashboard' component={VendorDashboard} />
             <Route path='/superDashboard/registration' component={Registration} />
             <Route path ={'/superDashboard/user_details'} component={UserDetails} />
-            <Route path='/superDashboard/parking_master' component={ParkingMaster} />
+            {/* <Route path='/superDashboard/parking_master' component={ParkingMaster} /> */}
             <Route path ={'/superDashboard/registration/user_details'} component={UserDetails} />
             <Route path ='/superDashboard/display-tower' component ={DisplayTowerMaster} />
             <Route path ='/superDashboard/display-size' component ={DisplaySizeMaster} />
@@ -55,10 +59,13 @@ class App extends Component {
             <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
             <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
             <Route path ='/superDashboard/display-event'component ={DisplayEventMaster}/>
+<<<<<<< Updated upstream
             <Route path ='/superDashboard/vendorMaster'component ={vendorMaster}/>
             <Route path= '/superDashboard/displayVendorMaster' component={displayVendorMaster}/>
             <Route path ='/superDashboard/displayServices'component ={displayServices}/>
             <Route path ='/superDashboard/serviceMaster'component ={serviceMaster}/>
+=======
+>>>>>>> Stashed changes
             {/* <Route path='/superDashboard/add_parking/new' component ={Parking} /> */}
             <Route path ='/supdashboard/servicemaster' component ={serviceMaster}/>
           </Switch>

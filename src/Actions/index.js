@@ -3,6 +3,10 @@ import { authHeader } from '../helper/auth-header';
 import _ from 'lodash';
 import{URN,ADD_USER,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 export function addUser(values) {
     console.log("localstorage get item---?",localStorage.getItem('token'))
     const request = axios.post(`${URN}/auth/signup`, values , { method: 'POST',
@@ -175,16 +179,6 @@ export function GetEventOrganiser(){
     })
     return{
         type: 'GET_EVENT_ORGANISER',
-        payload:request
-    }
-}
-
-
-
-export  function AddEvent(){
-    const request= axios.post(`${URN}/event`).then()
-    return{
-        type:POST_EVENT,
         payload:request
     }
 }
