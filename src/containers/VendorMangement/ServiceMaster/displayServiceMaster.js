@@ -66,7 +66,7 @@ class displayServices extends Component{
             serviceName, service_detail,serviceDetailId
         },{headers:authHeader()}).then((response) => {
           this.refreshData();
-    
+               
           this.setState({
             editServiceModal: false, editServiceData: {  serviceId: '',serviceName: '', service_detail: '',serviceDetailId:''}
           })
@@ -151,11 +151,12 @@ class displayServices extends Component{
                         <select value={this.state.editServiceData.serviceDetailId} onChange={(e) => {
                                                                     let { editServiceData } = this.state;
                                                                     editServiceData.serviceDetailId = e.target.value;
-                                                                    this.setState({ editServiceData })}}>
+                                                                    this.setState({ editServiceData })
+                                                                    }}>
                        <option disabled>--SELECT--</option>
-                         <option value={this.state.editServiceData.service_detail}>
+                         {/* <option value={this.state.editServiceData.service_detail}>
                       {this.state.editServiceData.service_detail}
-                        </option>
+                        </option> */}
                          {this.getDropdown1(this.props.serviceMasterReducer)}
    
                        </select>

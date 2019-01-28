@@ -83,7 +83,7 @@ class displayVendorMaster extends Component {
             vendorName, serviceName, serviceId, description
         }, { headers: authHeader() }).then((response) => {
             this.refreshData();
-
+      console.log('dddddddd',response.data);
             this.setState({
                 editVendorModal: false, editVendorData: { vendorId: '', vendorName: '', serviceName: '', serviceId: '', description: '' }
             })
@@ -151,10 +151,10 @@ class displayVendorMaster extends Component {
 
                                 this.setState({editVendorData})
                                 }}>
-                                    <option  value={this.state.editVendorData.serviceName}>
+                                    {/* <option  value={this.state.editVendorData.serviceName}>
                                      {this.state.editVendorData.serviceName}
                                     </option>
-                                    
+                                     */}
                                       <option disabled>--Select--</option>
                                          {this.getDropdown(this.props.displayServiceMasterReducer)}
                              </Input>   
