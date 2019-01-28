@@ -1,4 +1,4 @@
-import { FETCH_BASEMENT, FETCH_PARKING } from '../Actions/index'
+import { FETCH_PARKING,FETCH_BASEMENT } from '../constants';
 
 const INITIAL_STATE = {all:[], parking: null};
 

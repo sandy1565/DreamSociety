@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchParking, deleteParking } from '../../Actions';
-import { Table, Button, Modal, FormGroup, ModalBody, ModalHeader, ModalFooter, Input, Label } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class ParkingMaster extends Component {
@@ -18,14 +18,15 @@ class ParkingMaster extends Component {
     renderParking({parking}){
         console.log(parking);
         if(parking){
-            return parking.map((item) => {
+            return parking.slot.map((item) => {
+                console.log(item)
                 return (
-                    <tr key={item.id}>
+                    <tr key={item.parking_master.parkingName}>
                         <td>
-                            {item.basement}
+                            {item.parking_master.parkingName}
                         </td>
                         <td>
-                            {item.parking}
+                            {item.count}
                         </td>
                         <td>
                             <Button color='success' className="mr-2">Edit</Button>
