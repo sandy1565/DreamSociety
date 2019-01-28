@@ -12,8 +12,6 @@ import SuperDashboard from './containers/SuperDashboard/SuperDashboard';
 import TenantDashboard from './containers/TenantDashboard/TenantDashboard';
 import VendorDashboard from './containers/VendorDashboard/VendorDashboard';
 import ParkingMaster from './containers/ParkingMaster/ParkingMaster';
-// import Parking from './components/Parking/Parking';
-
 import SocietyManagement from './containers/SocietyManagement/SocietyMangement';
 import TowerMaster from   './containers/TowerMaster/tower-master';
 import  DisplayTowerMaster from './containers/TowerMaster/display-tower-master';
@@ -27,6 +25,8 @@ import serviceMaster from './containers/VendorMangement/ServiceMaster/serviceMas
 import displayServices from './containers/VendorMangement/ServiceMaster/displayServiceMaster';
 import vendorMaster from './containers/VendorMangement/VendorMaster/vendorMaster';
 import displayVendorMaster from './containers/VendorMangement/VendorMaster/displayVendorMaster';
+import flatDetailMaster from './containers/FlatDetailMaster/flatDetailMaster';
+import flatDetails from './containers/FlatDetailMaster/flatDetails';
 
 class App extends Component {
   render() {
@@ -60,7 +60,9 @@ class App extends Component {
             <Route path ='/superDashboard/displayServices'component ={displayServices}/>
             <Route path ='/superDashboard/serviceMaster'component ={serviceMaster}/>
             {/* <Route path='/superDashboard/add_parking/new' component ={Parking} /> */}
-            <Route path ='/supdashboard/servicemaster' component ={serviceMaster}/>
+            <Route path ='/superdashboard/flatDetailMaster' component ={flatDetailMaster}/>
+            <Route path ='/superdashboard/flatDetails' component ={flatDetails}/>
+}/>
           </Switch>
         </div>
       </BrowserRouter>

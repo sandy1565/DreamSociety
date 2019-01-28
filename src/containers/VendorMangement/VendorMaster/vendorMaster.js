@@ -52,6 +52,8 @@ class vendorMaster extends Component{
 
     }
 
+    
+
     onSubmit=(event)=>{
         event.preventDefault();
         this.props.addVendorMaster(this.state);

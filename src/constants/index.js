@@ -26,5 +26,7 @@ export const GET_SERVICE='get_service';
 export const ADD_SERVICE='add_service';
 export const ADD_VENDOR_MASTER='add_vendor_master';
 export const GET_VENDOR_MASTER='get_vendor_master';
+export const GET_TOWER_NAME='get_tower_name';
+export const GET_FLAT_TYPE ='get_flat_type';
 
 
