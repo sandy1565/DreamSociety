@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {getServiceType,delServiceType,getServiceDetail} from '../../../Actions/serviceMasterAction';
+import {getServiceType,getServiceDetail} from '../../../Actions/serviceMasterAction';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {authHeader} from '../../../helper/auth-header';
@@ -7,6 +7,7 @@ import { bindActionCreators} from 'redux';
 import {Button, Modal,FormGroup, ModalBody, ModalHeader, ModalFooter, Input, Label } from 'reactstrap';
 import {URN} from '../../../constants/index';
 import './serviceMaster.css';
+import { Link } from 'react-router-dom';
 
 
 class displayServices extends Component{
@@ -18,8 +19,9 @@ class displayServices extends Component{
                 
             serviceId:'',
             serviceName:'',
-            service_detail:[],
-            serviceDetailId:''
+            service_detail:'',
+            serviceDetailId:'',
+            isActive: false
         },
         editServiceModal: false
         
@@ -39,13 +41,16 @@ class displayServices extends Component{
         this.props.getServiceType();
     }
     
+ 
+    
     deleteService(serviceId) {
-        console.log(serviceId);
-        axios.delete(`${URN}/service/` +serviceId,{headers:authHeader()}).then((response) => {
-            this.setState(this.refreshData())
-            
-        })
-    }
+        let {isActive} = this.state.editServiceData;
+        axios.put(`${URN}/service/` +serviceId, {isActive},{headers:authHeader()}).then((response) => {
+        this.refreshData()
+        this.setState({editServiceData: {isActive: false}})
+        
+    })
+}
    
     toggleEditServiceModal() {
         this.setState({
@@ -97,22 +102,24 @@ class displayServices extends Component{
 }
   
  renderList =({item})=>{
+    
      console.log(item);
      if(item){
-         return item.map((items) =>{
+         return item.map((item) =>{
              return(
                     
-                     <tr  key={items.serviceId}>
-                     
-                            
-                             <td>{items.serviceName}</td>
-                             {/* <td>{items.service_detail}</td> */}
+                     <tr  key={item.serviceId}>
+                
+                                            
+                             <td>{item.serviceName}</td>
+                             <td>{item.service_detail_master.service_detail}</td>
+                           
                      
                                  <td>
-                                    <button className="btn btn-primary" onClick={this.editUser.bind(this,items.serviceId,items.serviceName,items.service_detail,items.serviceDetailId)}>Edit</button>
+                                    <button className="btn btn-primary" onClick={this.editUser.bind(this,item.serviceId,item.serviceName,item.service_detail,item.serviceDetailId)}>Edit</button>
                                  </td>
                                   <td>
-                                    <button className="btn btn-danger"  onClick={this.deleteService.bind(this, items.serviceId)}>Delete</button>
+                                    <button className="btn btn-danger"  onClick={this.deleteService.bind(this, item.serviceId)}>Delete</button>
                                   </td>  
                      </tr>
         
@@ -125,53 +132,47 @@ class displayServices extends Component{
      return(
          <div>
     <Modal isOpen={this.state.editServiceModal} toggle={this.toggleEditServiceModal.bind(this)}>
-    <ModalHeader toggle={this.toggleEditServiceModal.bind(this)}>Edit a Service</ModalHeader>
-    <ModalBody>
-    <FormGroup>
-        <Label for="serviceName">Service Type</Label>
-        <Input id="serviceName" value={this.state.editServiceData.serviceName} onChange={(e) => {
-        let { editServiceData } = this.state;
+         <ModalHeader toggle={this.toggleEditServiceModal.bind(this)}>Edit a Service</ModalHeader>
+            <ModalBody>
+                <FormGroup>
+                     <Label for="serviceName">Service Type</Label>
+                     <Input id="serviceName" value={this.state.editServiceData.serviceName} onChange={(e) => {
+                          let { editServiceData } = this.state;
 
-        editServiceData.serviceName = e.target.value;
+                          editServiceData.serviceName = e.target.value;
 
-        this.setState({ editServiceData });
-        }} />
-    </FormGroup>
+                          this.setState({ editServiceData });
+                 }} />
+                </FormGroup>
 
-    <FormGroup>
-        <Label for="service_detail">Service Details</Label>
-        {/* <Input id="service_detail" value={this.state.editServiceData.service_detail} onChange={(e) => {
-        let { editServiceData } = this.state;
-
-        editServiceData.service_detail = e.target.value;
-
-        this.setState({ editServiceData });
-        }} /> */}
-        <select value={this.state.editServiceData.serviceDetailId} onChange={(e) => {
+                <FormGroup>
+                    <Label for="service_detail">Service Details</Label>
+      
+                        <select value={this.state.editServiceData.serviceDetailId} onChange={(e) => {
                                                                     let { editServiceData } = this.state;
-                                                                         editServiceData.serviceDetailId = e.target.value;
-                                                                             this.setState({ editServiceData })}}>
-        <option disabled>--SELECT--</option>
-        <option value={this.state.editServiceData.service_detail}>
-            {this.state.editServiceData.service_detail}
-        </option>
-        {this.getDropdown1(this.props.serviceMasterReducer)}
+                                                                    editServiceData.serviceDetailId = e.target.value;
+                                                                    this.setState({ editServiceData })}}>
+                       <option disabled>--SELECT--</option>
+                         <option value={this.state.editServiceData.service_detail}>
+                      {this.state.editServiceData.service_detail}
+                        </option>
+                         {this.getDropdown1(this.props.serviceMasterReducer)}
    
-        </select>
-    </FormGroup>
-       </ModalBody>
+                       </select>
+                </FormGroup>
+            </ModalBody>
 
-    <ModalFooter>
-    <Button color="primary" onClick={this.updateServices.bind(this)}>Update </Button>
-    <Button color="secondary" onClick={this.toggleEditServiceModal.bind(this)}>Cancel</Button>
-    </ModalFooter>
-</Modal>
+        <ModalFooter>
+            <Button color="primary" onClick={this.updateServices.bind(this)}>Update </Button>
+            <Button color="secondary" onClick={this.toggleEditServiceModal.bind(this)}>Cancel</Button>
+        </ModalFooter>
+    </Modal>
     
                 <table className="table table-bordered">
                     <thead>
                     <tr>
                         <th>Service Type</th>
-                        {/* <th>Service Details</th> */}
+                        <th>Service Details</th>
                     </tr>
                     </thead>
                     
@@ -179,7 +180,9 @@ class displayServices extends Component{
                         {this.renderList(this.props.displayServiceMasterReducer)}
                     </tbody>
                 </table>    
-                
+                 <Link to="/superDashboard/serviceMaster">
+                <button className="button" type="button">Add Services</button>
+                </Link>
             </div>
         )
     }
@@ -194,7 +197,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({getServiceType,delServiceType,getServiceDetail}, dispatch);
+    return bindActionCreators({getServiceType,getServiceDetail}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(displayServices);

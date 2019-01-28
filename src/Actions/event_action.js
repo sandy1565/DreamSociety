@@ -1,12 +1,12 @@
 import {authHeader} from '../helper/auth-header';
 import axios from 'axios';
-import {URN,GET_EVENT,POST_EVENT} from '../constants/index';
+import {URN,GET_EVENT,ADD_EVENT, GET_EVENT_ORGANISER} from '../constants/index';
 
 
 export function ViewEvent(){
-    const request = axios.get(`${URN}/event`).then((response)=>{
-        response.data
-    })
+    console.log('byrr');
+    const request = axios.get(`${URN}/event`,{headers:authHeader()})
+    .then(response=> response.data)
     return{
         type:GET_EVENT,
         payload:request
@@ -14,21 +14,21 @@ export function ViewEvent(){
     }
     
     export function GetEventOrganiser(){
-        const request = axios.get(`${URN}/eventOrganiser`).then((response)=>{
-            response.data
-        })
+          console.log('hii')
+        const request = axios.get(`${URN}/eventOrganiser`,{headers:authHeader()})
+        .then(response=> response.data )
         return{
-            type: 'GET_EVENT_ORGANISER',
+            type: GET_EVENT_ORGANISER,
             payload:request
         }
     }
     
     
     
-    export  function AddEvent(){
-        const request= axios.post(`${URN}/event`).then()
+    export  function AddEvent(values){
+        const request= axios.post(`${URN}/event`,values,{headers:authHeader()}).then()
         return{
-            type:POST_EVENT,
+            type:ADD_EVENT,
             payload:request
         }
     }

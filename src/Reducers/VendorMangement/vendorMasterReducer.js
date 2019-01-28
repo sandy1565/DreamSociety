@@ -1,15 +1,17 @@
+import {ADD_VENDOR_MASTER,GET_VENDOR_MASTER} from '../../constants/index';
 
-const initialState={
-    item:[]
-}
+export default function(state={}, action) {
 
-export default function(state=initialState,action){
     switch(action.type){
-        case 'GET_SERVICE_TYPE':
-        return{
-            ...state, item:action.payload
-        }
+        case ADD_VENDOR_MASTER:
+            return {...state, vendor: action.payload} 
+            
+        case GET_VENDOR_MASTER:
+            return {...state, vendors: action.payload}     
         default:
-        return state;
+            return state;
+    
     }
+    
+
 }

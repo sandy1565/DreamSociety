@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { authHeader } from '../helper/auth-header';
 import _ from 'lodash';
-import{URN,ADD_USER,FETCH_PARKING,CREATE_PARKING,FETCH_BASEMENT,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
+
+import{URN,ADD_USER,FETCH_BASEMENT,FETCH_PARKING,CREATE_PARKING,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
+
+
 export function addUser(values) {
     console.log("localstorage get item---?",localStorage.getItem('token'))
     const request = axios.post(`${URN}/auth/signupCopy`, values , { method: 'POST',
@@ -172,16 +175,6 @@ export function GetEventOrganiser(){
     })
     return{
         type: 'GET_EVENT_ORGANISER',
-        payload:request
-    }
-}
-
-
-
-export  function AddEvent(){
-    const request= axios.post(`${URN}/event`).then()
-    return{
-        type:POST_EVENT,
         payload:request
     }
 }

@@ -10,7 +10,9 @@ export const ADD_SIZE='add_size';
 export const GET_SIZE='get_size';
 export const UPDATE_SIZE='update_size';
 export const GET_EVENT='get_event';
-export const POST_EVENT='post_event';
+export const GET_EVENT_ORGANISER = 'get_event_organiser'
+export const ADD_EVENT='add_event';
+export const POST_EVENT='add_event';
 export const GET_DETAILS='get_details';
 export const FETCH_DETAILS='fetch_details';
 export const GET_COUNTRY='get_country';
@@ -27,3 +29,7 @@ export const GET_SERVICE_TYPE ='get_service_type';
 export const FETCH_BASEMENT = 'FETCH_BASEMENT';
 export const FETCH_PARKING = 'FETCH_PARKING';
 export const CREATE_PARKING = 'CREATE_PARKING';
+export const ADD_VENDOR_MASTER='add_vendor_master';
+export const GET_VENDOR_MASTER='get_vendor_master';
+
+

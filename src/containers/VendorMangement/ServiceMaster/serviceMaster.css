@@ -7,7 +7,7 @@
     color: #fff;
     background-color: cadetblue;
     border-color: cadetblue;
-    margin-left: 190px;
+    
 }
 
 .form{
@@ -15,7 +15,22 @@
     margin-top: 50px;
 
 }
-/* 
-.table{
-    width: 100%;
-} */
+
+.button{
+    background-color: gray;
+    color: white;
+}   
+
+.btn{
+    color:white;
+    background-color: cadetblue;
+    margin-left: 50px;
+    border-color: cadetblue;
+}
+
+.btn-danger{
+    background-color: #E32020;
+    border-color: #E32020;
+
+}
+
