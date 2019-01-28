@@ -1,9 +1,7 @@
 
  
- import {GET_EVENT,GET_EVENT_ORGANISER,ADD_EVENT} from '../constants/index'
- const initialState ={
-    //  get:[]
- }
+ import {GET_EVENT,GET_EVENT_ORGANISER,ADD_EVENT} from '../constants/index';
+
  export default function (state={},action){
   switch(action.type){
       case GET_EVENT:  return{

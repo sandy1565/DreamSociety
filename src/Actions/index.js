@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { authHeader } from '../helper/auth-header';
 import _ from 'lodash';
-import{URN,ADD_USER,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
+
+import{URN,ADD_USER,FETCH_BASEMENT,FETCH_PARKING,CREATE_PARKING,GET_ROLES,GET_USERS,DELETE_USERS,ADD_TOWER,GET_TOWER,ADD_SIZE,GET_SIZE,UPDATE_SIZE,GET_EVENT,POST_EVENT} from '../constants/index';
+
 
 export function addUser(values) {
     console.log("localstorage get item---?",localStorage.getItem('token'))
-    const request = axios.post(`${URN}/auth/signup`, values , { method: 'POST',
+    const request = axios.post(`${URN}/auth/signupCopy`, values , { method: 'POST',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
@@ -51,9 +53,7 @@ export function deleteUsers(id){
     }
 }
 // ===================Testing============
-export const FETCH_BASEMENT = 'FETCH_BASEMENT';
-export const FETCH_PARKING = 'FETCH_PARKING';
-export const CREATE_PARKING = 'CREATE_PARKING';
+
 export const DELETE_PARKING = 'DELETE_PARKING';
 const ROOT_URL = 'http://localhost:3001';
 const API_KEY = '?key=parking'
@@ -67,7 +67,7 @@ export function fetchBasement(){
 }
 
 export function createParking(props){
-    const request = axios.post(`${URN}/slot`, props);
+    const request = axios.post(`${URN}/slot`, props,  {headers:authHeader()});
     return {
         type: CREATE_PARKING,
         payload: request
@@ -75,7 +75,7 @@ export function createParking(props){
 }
 
 export function fetchParking(props){
-    const request = axios.get(`http://localhost:3002/createParking${API_KEY}`, props);
+    const request = axios.get(`${URN}/slot`, props, {headers:authHeader()});
     return {
         type: FETCH_PARKING,
         payload: request
@@ -175,16 +175,6 @@ export function GetEventOrganiser(){
     })
     return{
         type: 'GET_EVENT_ORGANISER',
-        payload:request
-    }
-}
-
-
-
-export  function AddEvent(){
-    const request= axios.post(`${URN}/event`).then()
-    return{
-        type:POST_EVENT,
         payload:request
     }
 }

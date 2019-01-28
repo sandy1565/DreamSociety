@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // =====Components============//
 import {PrivateRoute} from './components/PrivateRoute/privateRoute';
+import Parking from './components/Parking/Parking';
 // ========Containers =========//
 import Login from './containers/Login/Login';
 import UserDetails from './containers/UserDetails/UserDetails';
@@ -12,6 +13,9 @@ import SuperDashboard from './containers/SuperDashboard/SuperDashboard';
 import TenantDashboard from './containers/TenantDashboard/TenantDashboard';
 import VendorDashboard from './containers/VendorDashboard/VendorDashboard';
 import ParkingMaster from './containers/ParkingMaster/ParkingMaster';
+// import ParkingMaster from './containers/ParkingMaster/ParkingMaster';
+// import Parking from './components/Parking/Parking';
+
 import SocietyManagement from './containers/SocietyManagement/SocietyMangement';
 import TowerMaster from   './containers/TowerMaster/tower-master';
 import  DisplayTowerMaster from './containers/TowerMaster/display-tower-master';
@@ -44,7 +48,7 @@ class App extends Component {
             <Route path='/vendorDashboard' component={VendorDashboard} />
             <Route path='/superDashboard/registration' component={Registration} />
             <Route path ={'/superDashboard/user_details'} component={UserDetails} />
-            <Route path='/superDashboard/parking_master' component={ParkingMaster} />
+            {/* <Route path='/superDashboard/parking_master' component={ParkingMaster} /> */}
             <Route path ={'/superDashboard/registration/user_details'} component={UserDetails} />
             <Route path ='/superDashboard/display-tower' component ={DisplayTowerMaster} />
             <Route path ='/superDashboard/display-size' component ={DisplaySizeMaster} />
@@ -55,6 +59,9 @@ class App extends Component {
             <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
             <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
             <Route path ='/superDashboard/display-event'component ={DisplayEventMaster}/>
+            <Route path='/superDashboard/add_parking/new' component ={Parking} />
+            <Route path='/superDashboard/serviceMaster' component={serviceMaster} />
+
             <Route path ='/superDashboard/vendorMaster'component ={vendorMaster}/>
             <Route path= '/superDashboard/displayVendorMaster' component={displayVendorMaster}/>
             <Route path ='/superDashboard/displayServices'component ={displayServices}/>

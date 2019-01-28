@@ -1,80 +1,21 @@
-.sidebar {
-    margin: 0;
+#headernav{max-height: 70px;opacity: 1;
+   
+}
+#headernav:hover{background-color: black}
+#headernav div li {
+    padding-left: 12.5px;
+    padding-right:12.5px;
+}
+.ui.basic.segment{
     padding: 0;
-    width: 250px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 60%;
-    overflow: auto;
-  }
-  .sidebar input{
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    padding-left: 7px;
-  }
- 
-  .sidebar .Link {
-    display: block;
-    color: black;
-    padding: 0px;
-    text-decoration:none;
-    margin-left: 5px; 
-  }
-  
- .Link.active {
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-  }
-  .Link :hover:not(.active) {
-    background-color: #555;
-    color: white;
-    text-decoration: none;
-  }
- .head #logout{
-    float: right;
-    margin-right: 10px;
-    margin-top:-46px
-  }
-  .head {
-    background: #555;
-    color: white;
-    text-shadow: 2px 2px blue;
-    display: inline-block;
-    width:100%
-  }
-  .head .icons{
-    float: right;
-    margin-right: 100px;
-    padding:10px
-  }
-
-.head .icons button{
-  margin-right:5px
 }
-
-.head .icons .user{
-  border-radius: 10px;
-  color:white;
-  border:none;
-  background-color: black;
+.nav-item{
+    border-top:2px transparent solid;
 }
-.head .icons .user:hover{
-color:black;
-background-color: white;
+.nav-item:hover{border-bottom:2px skyblue solid}
+#login{
+    position: relative;
 }
-.head .icons .user:hover .content{
-  color:black;
-  background-color: white; 
-  display: block;
-  }
-  .content{
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    /* min-width: 160px; */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    /* z-index: 1; */
-  }
+.bg_img{
+    background-image: url('../../Assets/2.jpg');
+}
