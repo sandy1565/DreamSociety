@@ -159,10 +159,9 @@ class userDetails extends Component {
                     <Sidebar width='thin' as={Menu} animation="uncover" visible={this.state.menuVisible} icon="labeled" vertical inverted>
                         <Menu.Item><Icon name="Super Admin Register" /><Link to="/superDashboard/registration" onClick={this.register}>Super Admin Register</Link></Menu.Item>
                         <Menu.Item><Icon name="Admin Register" />Admin Register</Menu.Item>
-                        <Menu.Item><Icon name="Vendor Register" />Vendor Register</Menu.Item>
                         <Menu.Item><Icon name="Society Member Owner Register" />Society Member Owner Register</Menu.Item>
                         <Menu.Item><Icon name="Society Member Tenant Registe" />Society Member Tenant Register</Menu.Item>
-                        <Menu.Item><Icon name="Vendor" />Vendor</Menu.Item>
+                        <Menu.Item><Icon name="user" /><Link to="/vendorDashboard">Vendor</Link></Menu.Item>
                     </Sidebar>
                     <Sidebar.Pusher dimmed={this.state.menuVisible}>
                         <Segment basic >

@@ -168,12 +168,11 @@ class Registration extends Component {
             <div style={{ marginTop: '48px' }}>
                 <Sidebar.Pushable as={Segment} attached="bottom">
                     <Sidebar width='thin' as={Menu} animation="uncover" visible={this.state.menuVisible} icon="labeled" vertical inverted>
-                        <Menu.Item><Icon name="user" /><Link to="/superDashboard/registration" onClick={this.register}>Society Admin Register</Link></Menu.Item>
+                        <Menu.Item><Icon name="user" /><Link to="/superDashboard/registration" >Super Admin Register</Link></Menu.Item>
                         <Menu.Item><Icon name="user" />Admin Register</Menu.Item>
-                        <Menu.Item><Icon name="user" />Vendor Register</Menu.Item>
                         <Menu.Item><Icon name="user" />Society Member Owner Register</Menu.Item>
                         <Menu.Item><Icon name="user" />Society Member Tenant Register</Menu.Item>
-                        <Menu.Item><Icon name="user" />Vendor</Menu.Item>
+                        <Menu.Item><Icon name="user" /><Link to="/vendorDashboard">Vendor</Link></Menu.Item>
                     </Sidebar>
                     <Sidebar.Pusher dimmed={this.state.menuVisible}>
                         <Segment basic style={{ backgroundImage: `url(${Logo})`,padding:'55px 0', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: 'auto' }}>
