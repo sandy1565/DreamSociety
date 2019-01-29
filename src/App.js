@@ -5,6 +5,7 @@ import {PrivateRoute} from './components/PrivateRoute/privateRoute';
 import Parking from './components/Parking/Parking';
 // ========Containers =========//
 import Login from './containers/Login/Login';
+import QR from './containers/QR/QR Code';
 import UserDetails from './containers/UserDetails/UserDetails';
 import Registration from './containers/Registration/Registration';
 import AdminDashboard from './containers/AdminDashboard/AdminDashboard';
@@ -25,6 +26,8 @@ import DisplayEventMaster from './containers/EventMaster/display-event-master';
 import DisplaySizeMaster from './containers/SizeMaster/display-size-master';
 import FlatMaster from './containers/Flat_master/flatMaster';
 import FlatMasterDetails from './containers/Flat_master/flatMasterDetails';
+import AssetManagement from './containers/Asset/Asset_Management';
+import AssetManagementDetails from './containers/Asset/Asset-Management-Details';
 import serviceMaster from './containers/VendorMangement/ServiceMaster/serviceMaster';
 import displayServices from './containers/VendorMangement/ServiceMaster/displayServiceMaster';
 import vendorMaster from './containers/VendorMangement/VendorMaster/vendorMaster';
@@ -39,6 +42,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/" exact component={Login}/>
+            
             <Route path='/login' component={Login}/>
             <PrivateRoute path='/superDashboard' exact component={SuperDashboard} />
             <Route path='/superDashboard' exact component={SuperDashboard} />
@@ -46,6 +50,7 @@ class App extends Component {
             <Route path='/ownerDashboard' component={OwnerDashboard} />
             <Route path='/tenantDashboard' component={TenantDashboard} />
             <Route path='/vendorDashboard' component={VendorDashboard} />
+            <Route path ='/superDashboard/QR' exact component={QR}/>
             <Route path='/superDashboard/registration' component={Registration} />
             <Route path ={'/superDashboard/user_details'} component={UserDetails} />
             <Route path='/superDashboard/parking_master' component={ParkingMaster} />
@@ -59,6 +64,8 @@ class App extends Component {
             <Route path ='/superDashboard/flatmaster/flatmasterdetails' component ={FlatMasterDetails}/>
             <Route path ='/superDashboard/societyManagement' component={SocietyManagement}/>
             <Route path ='/superDashboard/display-event'component ={DisplayEventMaster}/>
+            <Route path ='/superDashboard/assetmanagement'component ={AssetManagement}/>
+            <Route path ='/superDashboard/assetmanagement/assetmanagementdetails'component ={AssetManagementDetails}/>
             <Route path='/superDashboard/add_parking/new' component ={Parking} />
             <Route path='/superDashboard/serviceMaster' component={serviceMaster} />
 

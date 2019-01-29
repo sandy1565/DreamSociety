@@ -102,10 +102,16 @@ class flatMasterDetails extends Component {
       }
 
       societyNameType = (e) => {
-          this.state.editUserData.societyId=e.target.value;
+             let{ editUserData }= this.state
+             editUserData.societyId = e.target.value
+             this.setState({editUserData})
+        
       }
       sizeNameType=(e) =>{
-          this.state.editUserData.sizeId=e.target.value
+        let{ editUserData }= this.state
+        editUserData.sizeId = e.target.value
+        this.setState({editUserData})
+          
           
       }
 
@@ -216,7 +222,7 @@ class flatMasterDetails extends Component {
                     <FormGroup>
                         <Label for="roles">sizeType</Label>
                        <select  value={this.state.editUserData.sizeId} onChange={this.sizeNameType}>
-                            <option value={this.state.editUserData.sizeType}>{this.state.editUserData.sizeType}</option>
+                            <option>{this.state.editUserData.sizeType}</option>
                             <option disabled>Select</option>
                             {this.fetchSizeDrop(this.props.flats)}
                        </select>
