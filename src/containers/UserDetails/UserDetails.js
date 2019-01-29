@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { getUsers, getRoles, addUser } from '../../Actions';
+import { getUsers, getRoles, addUser, deleteUsers } from '../../Actions';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {URN} from '../../constants'
+import {URN} from '../../constants';
+import {Segment,Menu,Icon,Sidebar } from 'semantic-ui-react';
 import { Table, Button, Modal, FormGroup, ModalBody, ModalHeader, ModalFooter, Input, Label } from 'reactstrap';
-
+import { authHeader } from '../../helper/auth-header';
 class userDetails extends Component {
 
     state = {
@@ -18,7 +19,8 @@ class userDetails extends Component {
             userName: "",
             email: "",
             contact: "",
-            isActive: false
+            isActive: false,
+            menuVisible: false
         },
         editUserModal: false,
         dropdownOpen: false
@@ -26,11 +28,6 @@ class userDetails extends Component {
 
     componentDidMount() {
         this.refreshData();
-        this.props.addUser();
-    }
-
-    componentWillReceiveProps(){
-        this.setState({userDetail: this.props.userDetail})
     }
 
     toggle() {
@@ -51,15 +48,15 @@ class userDetails extends Component {
 
     updateUser = () => {
         let { userId, roleName, firstName, lastName, userName, email, contact } = this.state.editUserData;
-        axios.put(`${URN}/user/` + this.state.editUserData.userId, {
+        axios.put(`${URN}/user/` + userId, {
             userId, roleName, firstName, lastName, userName, email, contact
-        }).then((response) => {
+        }, {headers:authHeader()}).then((response) => {
             this.refreshData();
-
+            });
             this.setState({
                 editUserModal: false, editUserData: { userId: '', roleName: '', firstName: '', lastName: '', userName: '', email: '', contact: '' }
             })
-        });
+        
     }
 
     editUser(userId, roleName, firstName, lastName, userName, email, contact) {
@@ -72,15 +69,18 @@ class userDetails extends Component {
         let { isActive } = this.state.editUserData
         console.log(userId)
         const url = `${URN}/user/delete/`
-        axios.put(`${url}` + userId, { isActive }).then((response) => {
+        axios.put(`${url}` + userId, { isActive },{headers:authHeader()}).then((response) => {
             this.refreshData()
             this.setState({
                 editUserData: { isActive: false }
-
             })
             console.log(response)
         })
     }
+    // deleteUser(id){
+    //     this.props.deleteUsers(id)
+    //     .then(() => this.setState({isActive: false}))
+    // }
 
     fetchUsers({ user }) {
         if (user) {
@@ -126,7 +126,49 @@ class userDetails extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
+                <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="headernav" >
+                <Menu.Item onClick={() => this.setState({ menuVisible: !this.state.menuVisible })} >
+                    <Icon name="sidebar" style={{ color: 'white', cursor: 'pointer' }} />
+
+                </Menu.Item>
+                <i style={{ fontSize: '24px', color: 'skyblue', cursor: 'pointer' }} className="fa">&#xf1ad;</i> <Link className="navbar-brand" to="#">DRE@M SOCIETY</Link>
+                <div className="navbar-collapse collapse" id="navbarCollapse" style={{ marginLeft: '20%' }}>
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item active">
+                            <Link className="nav-link" to="/superDashboard">Home<span className="sr-only">(current)</span></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="#">Gallery</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="#">About Us</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="#">Contact Us</Link>
+                        </li>
+                    </ul>
+                    <form className="form-inline mt-2 mt-md-0">
+                        <button className="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#myModal" id="login" type="button"
+                            onClick={this.editUser}>Logout</button>
+                    </form>
+                </div>
+            </nav>
+            <div style={{ marginTop: '48px' }}>
+                <Sidebar.Pushable as={Segment} attached="bottom">
+                    <Sidebar width='thin' as={Menu} animation="uncover" visible={this.state.menuVisible} icon="labeled" vertical inverted>
+                        <Menu.Item><Icon name="Super Admin Register" /><Link to="/superDashboard/registration" onClick={this.register}>Super Admin Register</Link></Menu.Item>
+                        <Menu.Item><Icon name="Admin Register" />Admin Register</Menu.Item>
+                        <Menu.Item><Icon name="Vendor Register" />Vendor Register</Menu.Item>
+                        <Menu.Item><Icon name="Society Member Owner Register" />Society Member Owner Register</Menu.Item>
+                        <Menu.Item><Icon name="Society Member Tenant Registe" />Society Member Tenant Register</Menu.Item>
+                        <Menu.Item><Icon name="Vendor" />Vendor</Menu.Item>
+                    </Sidebar>
+                    <Sidebar.Pusher dimmed={this.state.menuVisible}>
+                        <Segment basic >
+                            {/* <Header as="h3">Application Content</Header> */}
+                            {/* <Image src='//unsplash.it/800/480' /> */}
+                            <div className="container">
 
                 <h1>Users List</h1>
                 <Link to="/superDashboard/registration">Add Users</Link>
@@ -134,7 +176,7 @@ class userDetails extends Component {
                     <ModalHeader toggle={this.toggleEditUserModal.bind(this)}>Edit User</ModalHeader>
                     <ModalBody>
                         <FormGroup>
-                            <Label>Role</Label>
+                            <Label>Role</Label> 
                             <Input type="select" id="roleName" value={this.state.editUserData.roleName} onChange={(e) => {console.log(this.state)
                             let { editUserData } = this.state;
 
@@ -227,6 +269,13 @@ class userDetails extends Component {
                     </tbody>
 
                 </Table>
+                            </div>
+                        </Segment>
+                    </Sidebar.Pusher>
+                </Sidebar.Pushable>
+            </div>
+            
+            
             </div>
         )
     }
@@ -243,7 +292,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         getUsers,
         getRoles,
-        addUser
+        addUser,
+        deleteUsers
     }, dispatch)
 }
 

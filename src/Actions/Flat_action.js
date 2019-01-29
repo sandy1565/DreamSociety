@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { authHeader } from '../helper/auth-header';
 import {URN,GET_DETAILS,FETCH_DETAILS,FETCH_DROP,FETCH_SIZE_DROP,FETCH_SOCIETY_DROP,FETCH_SIZEMASTER_DROP,GET_QR} from '../constants/index'
-
 // const URL=`http://localhost:3001`;`
 
 // export function getUser(){

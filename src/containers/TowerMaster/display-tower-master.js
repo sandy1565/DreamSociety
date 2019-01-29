@@ -80,6 +80,7 @@ class DisplayTowerMaster extends Component {
     if (tower) {
       return tower.map((item) => {
         return (
+          
           <tr key={item.towerId}>
            
  
@@ -89,6 +90,7 @@ class DisplayTowerMaster extends Component {
               <button className="btn btn-danger" onClick={this.deleteTower.bind(this,item.towerId)}>delete</button>
             </td>
           </tr>
+          
         )
       })
     }

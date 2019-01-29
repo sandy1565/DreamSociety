@@ -15,9 +15,12 @@ export function login(username, password) {
       .then((data)=>{
            if(data.status === 200) {
             localStorage.setItem('token', data.accessToken);
-            localStorage.setItem('user-type',data.userType)
+            localStorage.setItem('user-type',data.userType);
+            localStorage.setItem('firstName',data.firstName)
+            // localStorage.setItem('firstname',data.user.firstName)
             console.log('==============', localStorage.getItem('token'));
             console.log('==============', localStorage.getItem('user-type'));
+            console.log('================',data.firstName)
 
             switch(data.userType) {
                 case 'SUPER_ADMIN':
@@ -59,7 +62,8 @@ function handleResponse(response) {
              accessToken:response.data.accessToken,
              userType:response.data.user.roles[0].roleName,
              auth:response.data.auth,
-             status:response.data.status
+             status:response.data.status,
+             firstName:response.data.user.firstName
             }
         }
         else{

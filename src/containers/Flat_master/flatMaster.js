@@ -63,6 +63,12 @@ class FlatMaster extends Component{
        
     //  
     }
+      
+       
+
+    //    this.props.AddDetails(societyId,flatType,flatSuperArea,sizeId,coverArea)
+       this.props.history.push('/superDashboard/flatmaster/flatmasterdetails');
+    //    this.props.getDetails();
    
                
 }
