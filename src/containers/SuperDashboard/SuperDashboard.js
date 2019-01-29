@@ -22,6 +22,7 @@ class SuperDashboard extends Component {
                 <Link to="#" ><h4>Service Master</h4></Link>
                 <Link to="/superDashboard/towermaster"><h4>Tower Master</h4></Link>
                 <Link to="/superDashboard/sizemaster"><h4>Size Master</h4></Link>
+                <Link to="/superDashboard/QR"><h4>Qr Code</h4></Link>
 
                  <button className='btn btn-danger' onClick={this.logout}>Logout</button>
             </div>

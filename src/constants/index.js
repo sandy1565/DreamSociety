@@ -1,4 +1,4 @@
-export  const URN = 'http://192.168.1.15:8081/api';
+export  const URN = 'http://192.168.1.113:8081/api';
 export const USER_LOGIN='user_login';
 export const GET_ROLES='get_roles';
 export const GET_USERS='get_users';
@@ -24,3 +24,4 @@ export const GET_SERVICE='get_service';
 export const ADD_SERVICE='add_service';
 export const REMOVE_SERVICE='remove_service';
 export const GET_SERVICE_TYPE ='get_service_type'
+export const GET_QR='get_qr';

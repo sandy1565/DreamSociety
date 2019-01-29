@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { authHeader } from '../helper/auth-header';
-import {URN,GET_DETAILS,FETCH_DETAILS,FETCH_DROP,FETCH_SIZE_DROP,FETCH_SOCIETY_DROP,FETCH_SIZEMASTER_DROP} from '../constants/index'
+import {URN,GET_DETAILS,FETCH_DETAILS,FETCH_DROP,FETCH_SIZE_DROP,FETCH_SOCIETY_DROP,FETCH_SIZEMASTER_DROP,GET_QR} from '../constants/index'
 
 // const URL=`http://localhost:3001`;`
 
@@ -60,9 +60,9 @@ export  function getDrop(){
 }
 
 export  function getSizeDrop(){
-console.log("size api call==>",localStorage.getItem('token'))
-    const request = axios.get(`${URN}/size`,{headers:authHeader()})
-    .then(response => console.log(response.data))
+
+    const request = axios.get(`${URN}/size/`,{headers:authHeader()})
+    .then(response => response.data)
 
     return{
 
@@ -93,6 +93,18 @@ export  function getSizeTypeDetails(){
     return{
 
          type:FETCH_SIZEMASTER_DROP,
+         payload: request 
+    }
+
+}
+export  function getQr(){
+ 
+    const request = axios.get(`${URN}/user/10`,{headers:authHeader()})
+    .then(response => response.data)
+   
+    return{
+
+         type: GET_QR,
          payload: request 
     }
 

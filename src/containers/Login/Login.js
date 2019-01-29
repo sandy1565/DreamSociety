@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {connect} from 'react-redux';
 import {login} from '../../Actions/login_action';
 import { bindActionCreators } from 'redux';
+import QR from '../QR/QR Code';
 
 
 
@@ -50,6 +51,7 @@ render() {
              </div>
              <button type="submit" className='btn btn-success'>login</button>
          </form>
+         {/* <QR/> */}
            
         </div>
         

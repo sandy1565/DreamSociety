@@ -1,4 +1,4 @@
-import {FETCH_SOCIETY_DROP,FETCH_SIZEMASTER_DROP} from '../constants/index'
+import {FETCH_SOCIETY_DROP,FETCH_SIZEMASTER_DROP,GET_QR} from '../constants/index'
 export default function(state={},action){
 
     switch(action.type){
@@ -6,7 +6,8 @@ export default function(state={},action){
             return{...state,list0:action.payload}
         case FETCH_SIZEMASTER_DROP:
             return{...state,list4:action.payload}
-      
+        case GET_QR:
+            return{...state, QR1:action.payload}      
         default:
             return state;
     }

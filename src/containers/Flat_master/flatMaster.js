@@ -116,6 +116,9 @@ class FlatMaster extends Component{
         }
     }
     
+    push=() =>{
+        this.props.history.push('/superDashboard/flatmaster/flatmasterdetails')
+    }
      
     render(){
         
@@ -177,7 +180,8 @@ class FlatMaster extends Component{
                 </FormGroup>
             
                 <FormGroup>
-                    <Button color="primary" type="submit" col="sm-2">Submit</Button><Button color="success" onClick={this.push}>FlatDetails</Button>
+                    <Button color="primary" type="submit" col="sm-2">Submit</Button>
+                    <Button color="success" onClick={this.push}>FlatDetails</Button>
                 </FormGroup> 
                 </Form>      
            
